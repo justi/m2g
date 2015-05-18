@@ -1,4 +1,0 @@
-Cluster Configuration
-*********************
-
-Coming soon.
