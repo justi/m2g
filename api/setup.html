@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Local Configuration &mdash; m2g v1.1.0 documentation</title>
+  <title>Setup &mdash; m2g v1.1.0 documentation</title>
   
 
   
@@ -33,8 +33,8 @@
 
   
     <link rel="top" title="m2g v1.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Cluster Configuration" href="cluster_config.html"/>
-        <link rel="prev" title="Introduction" href="introduction.html"/> 
+        <link rel="up" title="Functions" href="functions.html"/>
+        <link rel="prev" title="Extract B0 Volume" href="extract_b0.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -77,14 +77,14 @@
           
           
               <p class="caption"><span class="caption-text">Documentation</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Local Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cluster_config.html">Cluster Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cloud_computing.html">Cloud Computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html">Style</a></li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/local_config.html">Local Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/cluster_config.html">Cluster Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/cloud_computing.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/style.html">Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/faq.html">Frequently Asked Questions (FAQ)</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
@@ -96,11 +96,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/analysis.html">Analysis</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/functions.html">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api/extract_b0.html">Extract B0 Volume</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/setup.html">Setup</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="functions.html">Functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="extract_b0.html">Extract B0 Volume</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
@@ -131,11 +131,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Local Configuration</li>
+          <li><a href="functions.html">Functions</a> &raquo;</li>
+      
+    <li>Setup</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/sphinx/local_config.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/setup.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -144,8 +146,29 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="local-configuration">
-<h1>Local Configuration<a class="headerlink" href="#local-configuration" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="packages.utils.setup">
+<code class="descclassname">packages.utils.</code><code class="descname">setup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.utils.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initial script for setting up m2g</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Inputs</dt>
+<dd><ul class="first last simple">
+<li>(Indirect) $M2G_HOME: system variable needs to be set to the base directory of the cloned m2g repo.</li>
+</ul>
+</dd>
+<dt>Outputs</dt>
+<dd><ul class="first last simple">
+<li>data/: directory containing atlas labels and template images.</li>
+<li>zindex.c: compiled cython script used in the framework.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
 </div>
 
 
@@ -154,10 +177,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cluster_config.html" class="btn btn-neutral float-right" title="Cluster Configuration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="introduction.html" class="btn btn-neutral" title="Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="extract_b0.html" class="btn btn-neutral" title="Extract B0 Volume" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

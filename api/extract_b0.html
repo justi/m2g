@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Functions &mdash; m2g v1.1.0 documentation</title>
+  <title>Extract B0 Volume &mdash; m2g v1.1.0 documentation</title>
   
 
   
@@ -33,8 +33,9 @@
 
   
     <link rel="top" title="m2g v1.1.0 documentation" href="../index.html"/>
+        <link rel="up" title="Functions" href="functions.html"/>
         <link rel="next" title="Setup" href="setup.html"/>
-        <link rel="prev" title="Modules" href="modules.html"/> 
+        <link rel="prev" title="Functions" href="functions.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -76,16 +77,30 @@
         
           
           
-              <ul>
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/local_config.html">Local Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/cluster_config.html">Cluster Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/cloud_computing.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/style.html">Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/faq.html">Frequently Asked Questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_usage.html">Basic Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/data.html">Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/algorithms.html">Algorithms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/analysis.html">Analysis</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Functions</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="functions.html">Functions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Extract B0 Volume</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
 </ul>
 </li>
@@ -117,11 +132,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Functions</li>
+          <li><a href="functions.html">Functions</a> &raquo;</li>
+      
+    <li>Extract B0 Volume</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/sphinx/functions.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/extract_b0.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -130,13 +147,30 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="functions">
-<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
-<h2>Setup Scripts</h2><div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+  <div class="section" id="extract-b0-volume">
+<h1>Extract B0 Volume<a class="headerlink" href="#extract-b0-volume" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="packages.dtipreproc.extract_b0">
+<code class="descclassname">packages.dtipreproc.</code><code class="descname">extract_b0</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.dtipreproc.extract_b0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts and saves the B0 volume from a DTI volume stack.</p>
+<p>When performing DTI registration, eddy correction, and multi-modal registration, the B0 scan of a DTI volume is often needed. Given the set of b-values used by the scanner and the DTI volume set, we can extract the B0 volume and save it as a niftii image for easier access in further processing.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Inputs</dt>
+<dd><ul class="first last simple">
+<li>DTI Image: Original X x Y x Z x D volume from scanner</li>
+<li>B0 Index: Location of b=0 volume in the DTI stack</li>
 </ul>
-</div>
+</dd>
+<dt>Outputs</dt>
+<dd><ul class="first last simple">
+<li>B0 Volume: X x Y x Z volume containing the DTI volume corresponding to a b0 index</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
 </div>
 
 
@@ -148,7 +182,7 @@
         <a href="setup.html" class="btn btn-neutral float-right" title="Setup" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="modules.html" class="btn btn-neutral" title="Modules" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="functions.html" class="btn btn-neutral" title="Functions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
