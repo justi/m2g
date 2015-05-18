@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Style &mdash; m2g v1.1.0 documentation</title>
+  <title>Graph Generation &mdash; m2g v1.1.0 documentation</title>
   
 
   
@@ -33,8 +33,9 @@
 
   
     <link rel="top" title="m2g v1.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Frequently Asked Questions (FAQ)" href="faq.html"/>
-        <link rel="prev" title="Contributing" href="contributing.html"/> 
+        <link rel="up" title="Functions" href="functions.html"/>
+        <link rel="next" title="Setup" href="setup.html"/>
+        <link rel="prev" title="Fiber Converter" href="fiber_convert.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -77,14 +78,14 @@
           
           
               <p class="caption"><span class="caption-text">Documentation</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="local_config.html">Local Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cluster_config.html">Cluster Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cloud_computing.html">Cloud Computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Style</a></li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/local_config.html">Local Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/cluster_config.html">Cluster Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/cloud_computing.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/style.html">Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/faq.html">Frequently Asked Questions (FAQ)</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
@@ -96,16 +97,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/analysis.html">Analysis</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/functions.html">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api/parse_b.html">Parse B-values/vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/extract_b0.html">Extract B0 Volume</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/tensor_gen.html">DTI Tensor Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/fiber_gen.html">Fiber Tractography</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/fiber_convert.html">Fiber Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/gengraph.html">Graph Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/setup.html">Setup</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="functions.html">Functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="parse_b.html">Parse B-values/vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extract_b0.html">Extract B0 Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tensor_gen.html">DTI Tensor Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fiber_gen.html">Fiber Tractography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fiber_convert.html">Fiber Converter</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
@@ -136,11 +137,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Style</li>
+          <li><a href="functions.html">Functions</a> &raquo;</li>
+      
+    <li>Graph Generation</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/sphinx/style.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/gengraph.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -149,8 +152,31 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="style">
-<h1>Style<a class="headerlink" href="#style" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="graph-generation">
+<h1>Graph Generation<a class="headerlink" href="#graph-generation" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mrcap.gengraph">
+<code class="descclassname">mrcap.</code><code class="descname">gengraph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mrcap.gengraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates graphs from fiber tracts</p>
+<p>We traverse fiber streamlines and map the voxels which they pass through to a brain region, as determined by an atlas. Big graphs have ROIs which are single voxels, whereas small graphs&#8217; ROIs are much larger and can be determined either by size, function, or any other method.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Inputs</dt>
+<dd><ul class="first last simple">
+<li>Fibers: MRIStudio format fiber streamlines.</li>
+<li>ROI Atlas: Region labels which will be used to parcellate the fibers.</li>
+<li>Format (graphml): Requested output format of graph.</li>
+</ul>
+</dd>
+<dt>Outputs</dt>
+<dd><ul class="first last simple">
+<li>Graph: Generated graph from fiber tracts</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
 </div>
 
 
@@ -159,10 +185,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="faq.html" class="btn btn-neutral float-right" title="Frequently Asked Questions (FAQ)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="setup.html" class="btn btn-neutral float-right" title="Setup" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="contributing.html" class="btn btn-neutral" title="Contributing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="fiber_convert.html" class="btn btn-neutral" title="Fiber Converter" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
