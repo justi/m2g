@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Validation &mdash; m2g v1.1.0 documentation</title>
+  <title>FSL Brain Extraction Tool &mdash; m2g v1.1.0 documentation</title>
   
 
   
@@ -33,8 +33,9 @@
 
   
     <link rel="top" title="m2g v1.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Analysis" href="analysis.html"/>
-        <link rel="prev" title="Algorithms" href="algorithms.html"/> 
+        <link rel="up" title="Functions" href="functions.html"/>
+        <link rel="next" title="FSL Linear Registration" href="flirt.html"/>
+        <link rel="prev" title="Functions" href="functions.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -88,27 +89,27 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="algorithms.html">Algorithms</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analysis.html">Analysis</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/algorithms.html">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/analysis.html">Analysis</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/functions.html">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api/bet.html">FSL Brain Extraction Tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/flirt.html">FSL Linear Registration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/parse_b.html">Parse B-values/vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/extract_b0.html">Extract B0 Volume</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/eddycorrect.html">FSL Eddy Correction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/tensor_gen.html">DTI Tensor Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/fiber_gen.html">Fiber Tractography</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/fiber_convert.html">Fiber Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/gengraph.html">Graph Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/setup.html">Setup</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="functions.html">Functions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">FSL Brain Extraction Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flirt.html">FSL Linear Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parse_b.html">Parse B-values/vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extract_b0.html">Extract B0 Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eddycorrect.html">FSL Eddy Correction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tensor_gen.html">DTI Tensor Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fiber_gen.html">Fiber Tractography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fiber_convert.html">Fiber Converter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gengraph.html">Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
@@ -139,11 +140,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Validation</li>
+          <li><a href="functions.html">Functions</a> &raquo;</li>
+      
+    <li>FSL Brain Extraction Tool</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/tutorials/validation.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/bet.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -152,8 +155,32 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="validation">
-<h1>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="fsl-brain-extraction-tool">
+<h1>FSL Brain Extraction Tool<a class="headerlink" href="#fsl-brain-extraction-tool" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="docs.scripts.bet">
+<code class="descclassname">docs.scripts.</code><code class="descname">bet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#docs.scripts.bet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts brain content from whole head image</p>
+<p>Using FSL&#8217;s BET, we extract the brain of the MPRAGE scans from the entirity of the image. The reason for this extraction is to aid in registration, as well as provide a mask which allows algorithm to identify voxels of interest further down the pipeline.</p>
+<p>FSL&#8217;s BET documentation: <a class="reference external" href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET">http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET</a></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Inputs</dt>
+<dd><ul class="first last simple">
+<li>MPRAGE Image: X x Y x Z structural T1 image from the MRI scanner.</li>
+<li>Fractional Intensity Threshold (0.4): Value used to influence aggressiveness of segmentation</li>
+</ul>
+</dd>
+<dt>Outputs</dt>
+<dd><ul class="first last simple">
+<li>Brain image: X x Y x Z structural T1 image in which all voxels not in the brain have been set to an intensity of zero.</li>
+<li>Brain mask: Binary representation of the Brain image</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
 </div>
 
 
@@ -162,10 +189,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="analysis.html" class="btn btn-neutral float-right" title="Analysis" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="flirt.html" class="btn btn-neutral float-right" title="FSL Linear Registration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="algorithms.html" class="btn btn-neutral" title="Algorithms" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="functions.html" class="btn btn-neutral" title="Functions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

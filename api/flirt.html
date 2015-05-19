@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Validation &mdash; m2g v1.1.0 documentation</title>
+  <title>FSL Linear Registration &mdash; m2g v1.1.0 documentation</title>
   
 
   
@@ -33,8 +33,9 @@
 
   
     <link rel="top" title="m2g v1.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Analysis" href="analysis.html"/>
-        <link rel="prev" title="Algorithms" href="algorithms.html"/> 
+        <link rel="up" title="Functions" href="functions.html"/>
+        <link rel="next" title="Parse B-values/vectors" href="parse_b.html"/>
+        <link rel="prev" title="FSL Brain Extraction Tool" href="bet.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -88,27 +89,27 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="algorithms.html">Algorithms</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analysis.html">Analysis</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/algorithms.html">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/analysis.html">Analysis</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/functions.html">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api/bet.html">FSL Brain Extraction Tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/flirt.html">FSL Linear Registration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/parse_b.html">Parse B-values/vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/extract_b0.html">Extract B0 Volume</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/eddycorrect.html">FSL Eddy Correction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/tensor_gen.html">DTI Tensor Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/fiber_gen.html">Fiber Tractography</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/fiber_convert.html">Fiber Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/gengraph.html">Graph Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/setup.html">Setup</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="functions.html">Functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bet.html">FSL Brain Extraction Tool</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">FSL Linear Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parse_b.html">Parse B-values/vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extract_b0.html">Extract B0 Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eddycorrect.html">FSL Eddy Correction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tensor_gen.html">DTI Tensor Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fiber_gen.html">Fiber Tractography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fiber_convert.html">Fiber Converter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gengraph.html">Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
@@ -139,11 +140,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Validation</li>
+          <li><a href="functions.html">Functions</a> &raquo;</li>
+      
+    <li>FSL Linear Registration</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/tutorials/validation.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/flirt.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -152,8 +155,34 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="validation">
-<h1>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="fsl-linear-registration">
+<h1>FSL Linear Registration<a class="headerlink" href="#fsl-linear-registration" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="docs.scripts.flirt">
+<code class="descclassname">docs.scripts.</code><code class="descname">flirt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#docs.scripts.flirt" title="Permalink to this definition">¶</a></dt>
+<dd><p>FSL&#8217;s linear registration tool for aligning multimodal MRI images.</p>
+<p>The linear registration tool in FSL, FLIRT, allows us to both compute and apply registration transforms between image spaces. This tool uses affine registration, and is implemented here to transform DTI data into structural MPRAGE space, as well as the MPRAGE image into standard MNI space.</p>
+<p>FSL&#8217;s FLIRT documentation: <a class="reference external" href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FLIRT">http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FLIRT</a></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Inputs</dt>
+<dd><ul class="first last simple">
+<li>Input image: The 3D image which is to be transformed.</li>
+<li>Reference image: The 3D image which will be the target of the transformation.</li>
+<li>Search range [X, Y, Z] (-180, 180): Orientation angles to search when aligning images.</li>
+<li>Transform matrix: If previously computed, the matrix which maps from the original image to the reference image.</li>
+</ul>
+</dd>
+<dt>Outputs</dt>
+<dd><ul class="first last simple">
+<li>Registered image: The input image aligned to the reference image space.</li>
+<li>Transform matrix: If not previously computed, the matrix which maps from the original image to the reference image.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
 </div>
 
 
@@ -162,10 +191,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="analysis.html" class="btn btn-neutral float-right" title="Analysis" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="parse_b.html" class="btn btn-neutral float-right" title="Parse B-values/vectors" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="algorithms.html" class="btn btn-neutral" title="Algorithms" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="bet.html" class="btn btn-neutral" title="FSL Brain Extraction Tool" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
