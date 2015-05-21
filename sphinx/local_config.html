@@ -79,7 +79,19 @@
               <p class="caption"><span class="caption-text">Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Single Node Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Single Node Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-package-update-and-install">Basic Package Update and Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-and-configure-python-27">Install and Configure Python 27</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basics-for-development">Basics for Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#oracle-java-install">Oracle Java Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#java-setup">Java Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#camino-and-fsl">Camino and FSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#igraph">igraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#m2g-setup">m2g setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#possibly-helpful-commands-at-runtime">Possibly Helpful Commands at Runtime</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="cluster_config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cloud_computing.html">Cloud Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
@@ -160,10 +172,208 @@
             
   <div class="section" id="single-node-configuration">
 <h1>Single Node Configuration<a class="headerlink" href="#single-node-configuration" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li>add once we have ec2 working [W]</li>
-<li>refactor to explain ec2 and <cite>cortex</cite> [W]</li>
-</ul>
+<p>m2g requires a number of standard packages, principally python2.7, igraph, numpy, scipy, Oracle Java, R, LONI Pipeline, FSL, and Camino.  Specific installation instructions are provided here for Centos 6.X.</p>
+<p>This was tested using a Centos 6 AMI (CentOS 6 x86_64 (2014_09_29) (ami-bc8131d4)).  We recommend attaching external storage using Elastic Block Storage.  The configuration details of an EC2 instance are beyond the scope of this tutorial; more information can be found at aws.amazon.com.  This installation guide should work equally well on a standalone machine.  Many of the dependencies can be satisfied with Anaconda as an alternative.</p>
+<p>We recommend Centos6.x for its compatibility with LONI Pipeline.</p>
+<div class="section" id="basic-package-update-and-install">
+<h2>Basic Package Update and Install<a class="headerlink" href="#basic-package-update-and-install" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">m2g</span><span class="o">=</span>/mrimages <span class="c">#root directory</span>
+yum update -y
+yum install -y wget gcc elfutils-libelf-devel libstdc++-devel glibc-devel libaio-devel gcc-c++
+yum groupinstall -y <span class="s2">&quot;Development tools&quot;</span> <span class="s2">&quot;X Window System&quot;</span> <span class="s2">&quot;Fonts&quot;</span>
+yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel xz-devel
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-and-configure-python-27">
+<h2>Install and Configure Python 27<a class="headerlink" href="#install-and-configure-python-27" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre>wget http://python.org/ftp/python/2.7.6/Python-2.7.6.tar.xz
+tar xf Python-2.7.6.tar.xz
+<span class="nb">cd </span>Python-2.7.6
+./configure --prefix<span class="o">=</span>/usr/local --enable-unicode<span class="o">=</span>ucs4 --enable-shared <span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-Wl,-rpath /usr/local/lib&quot;</span>
+make <span class="o">&amp;&amp;</span> make altinstall
+
+<span class="c"># Make python 2.7 default</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s1">&#39;/usr/local/bin&#39;</span>:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+ln -s /usr/local/bin/python2.7 /usr/local/bin/python
+<span class="c"># First get the setup script for Setuptools:</span>
+wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+<span class="c"># Then install it for Python 2.7 and/or Python 3.3:</span>
+python2.7 ez_setup.py
+easy_install-2.7 pip
+</pre></div>
+</div>
+</div>
+<div class="section" id="basics-for-development">
+<h2>Basics for Development<a class="headerlink" href="#basics-for-development" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c">#Basics for development</span>
+yum install -y java-1.6.0-openjdk-devel cmake vim screen
+yum install -y bc
+yum install -y epel-release
+yum install -y R nibabel
+pip2.7 install numpy
+pip2.7 install ipython
+pip2.7 install scipy <span class="c">#This seems to not work with 2.7 and yum</span>
+
+easy_install-2.7 argparse
+easy_install-2.7 -U distribute
+yum -y install libpng-devel
+pip2.7 install scikit-image
+pip2.7 install nibabel
+pip2.7 install Cython <span class="c">#Make sure we are at 0.22+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="oracle-java-install">
+<h2>Oracle Java Install<a class="headerlink" href="#oracle-java-install" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Oracle Java Install</span>
+mkdir -p <span class="nv">$m2g</span>/src/java
+<span class="nb">cd</span> <span class="nv">$m2g</span>/src/java
+wget --no-cookies --no-check-certificate --header <span class="s2">&quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie&quot;</span> <span class="s2">&quot;http://download.oracle.com/otn-pub/java/jdk/7u71-b14/jdk-7u71-linux-x64.tar.gz&quot;</span>
+tar xzf jdk-7u71-linux-x64.tar.gz
+
+<span class="nb">cd</span> <span class="nv">$m2g</span>/src/java/jdk1.7.0_71/
+alternatives --install /usr/bin/java java <span class="nv">$m2g</span>/src/java/jdk1.7.0_71/bin/java 2
+alternatives --config java <span class="c">#MANUAL STEP:  type 2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="java-setup">
+<h2>Java Setup<a class="headerlink" href="#java-setup" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre>alternatives --install /usr/bin/javac javac <span class="nv">$m2g</span>/src/java/jdk1.7.0_71/bin/javac 2
+alternatives --set javac <span class="nv">$m2g</span>/src/java/jdk1.7.0_71/bin/javac
+alternatives --install /usr/bin/jar jar <span class="nv">$m2g</span>/src/java/jdk1.7.0_71/bin/jar 2
+alternatives --set jar <span class="nv">$m2g</span>/src/java/jdk1.7.0_71/bin/jar
+</pre></div>
+</div>
+</div>
+<div class="section" id="camino-and-fsl">
+<h2>Camino and FSL<a class="headerlink" href="#camino-and-fsl" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c">#Camino</span>
+<span class="nb">cd</span> <span class="nv">$m2g</span>/src
+git clone git://git.code.sf.net/p/camino/code camino
+<span class="nb">cd </span>camino
+make
+git checkout voxelSpaceStreamlines
+make clean
+make
+
+<span class="c">#FSL</span>
+<span class="c"># - Due to the form required for fsl, this is completed after</span>
+<span class="c"># scp-ing the fslinstaller.py file to the ~/src directory.</span>
+<span class="c"># : http://fsl.fmrib.ox.ac.uk/fsldownloads/</span>
+<span class="nb">cd</span> <span class="nv">$m2g</span>/src/
+wget --no-check-certificate https://www.dropbox.com/s/z78p3jzczrv31ci/fsl-5.0.8-centos6_64.tar.gz
+tar zxvf fsl-5.0.8-centos6_64.tar.gz
+<span class="c">#Delete raw targz if space is tight</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="igraph">
+<h2>igraph<a class="headerlink" href="#igraph" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># igraph</span>
+
+yum -y install xml2 libxml2-devel
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src
+wget http://igraph.org/nightly/get/c/igraph-0.7.1.tar.gz
+tar xvfz igraph-0.7.1.tar.gz
+<span class="nb">cd </span>igraph-0.7.1
+./configure --prefix<span class="o">=</span>/mrimages/src/igraph
+make
+make install
+sudo R <span class="c">#MANUAL STEP had to type 90</span>
+install.packages<span class="o">(</span><span class="s1">&#39;igraph&#39;</span><span class="o">)</span> <span class="c">#&#39;http://ftp.ussg.iu.edu/CRAN/src/contrib/igraph_0.7.1.tar.gz&#39;</span>
+q<span class="o">()</span> <span class="c"># MANUAL STEP saved image</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="m2g-setup">
+<h2>m2g setup<a class="headerlink" href="#m2g-setup" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre>easy_install-2.7 python-igraph
+
+<span class="c"># Need to actually clone repo and install LONI</span>
+<span class="c"># Also need to SCP data</span>
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src
+git clone https://github.com/openconnectome/m2g.git
+<span class="nb">cd </span>m2g
+git checkout master <span class="c">#TODO</span>
+
+<span class="nb">export </span><span class="nv">M2G_HOME</span><span class="o">=</span>/mrimages/src/m2g
+
+<span class="nb">cd</span> <span class="nv">$M2G_HOME</span>/MR-OCP/mrcap
+python setup.py install <span class="c">#for z-index</span>
+
+python <span class="nv">$M2G_HOME</span>/packages/utils/setup.py
+
+mkdir <span class="nv">$m2g</span>/data
+<span class="nb">cd</span> <span class="nv">$m2g</span>/data
+scp will@cortex.cs.jhu.edu:/mnt/ssd1/data/inputs/KKI2009/KKI2009-22/* . <span class="c">#needs login</span>
+
+<span class="nb">cd</span> <span class="nv">$m2g</span>/src
+scp will@cortex.cs.jhu.edu:/home/will/Pipeline-6.0.1-unix.tar.bz2 . <span class="c">#needs login</span>
+mkdir loni
+tar -xvf Pipeline-6.0.1-unix.tar.bz2 -C loni
+
+<span class="c">#Get workflow</span>
+<span class="nb">cd</span> /mrimages/src/m2g/library/workflows/
+wget  --no-check-certificate https://www.dropbox.com/s/o562326mnjipllz/m2g_for_cloud.pipe
+
+mkdir <span class="nv">$HOME</span>/.pipeline
+<span class="nb">cd</span> <span class="nv">$HOME</span>/.pipeline
+wget --no-check-certificate https://www.dropbox.com/s/effz8dgikp76s88/preferences.xml
+</pre></div>
+</div>
+</div>
+<div class="section" id="export-paths-and-setup-environment">
+<h2>Export Paths and Setup Environment<a class="headerlink" href="#export-paths-and-setup-environment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c">#TODO this will REPLACE your ~/.bashrc file</span>
+<span class="nb">echo</span> <span class="s2">&quot;export m2g=/mrimages</span>
+<span class="s2">export M2G_HOME=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/m2g</span>
+<span class="s2"># Path to FSL</span>
+<span class="s2">FSLDIR=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/fsl</span>
+<span class="s2">. </span><span class="si">${</span><span class="nv">FSLDIR</span><span class="si">}</span><span class="s2">/etc/fslconf/fsl.sh</span>
+<span class="s2">PATH=</span><span class="si">${</span><span class="nv">FSLDIR</span><span class="si">}</span><span class="s2">/bin:</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">export FSLDIR PATH</span>
+
+<span class="s2"># JAVA</span>
+<span class="s2">export PATH=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/java/jdk1.7.0_71/bin:</span><span class="nv">$PATH</span><span class="s2"></span>
+<span class="s2">export JAVA_HOME=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/java/jdk1.7.0_71</span>
+
+<span class="s2">#M2G</span>
+<span class="s2">export PATH=&#39;/usr/local/bin&#39;:</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">:</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/m2g/MR-OCP/mrcap</span>
+<span class="s2">export PATH=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">:</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/m2g/packages/*</span>
+<span class="s2">export PYTHONPATH=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/m2g/MR-OCP</span>
+<span class="s2">export PYTHONPATH=</span><span class="si">${</span><span class="nv">PYTHONPATH</span><span class="si">}</span><span class="s2">:</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/m2g/MR-OCP/MROCPdjango:</span><span class="si">${</span><span class="nv">M2G_HOME</span><span class="si">}</span><span class="s2">/MR-OCP/mrcap:</span><span class="si">${</span><span class="nv">M2G_HOME</span><span class="si">}</span><span class="s2"></span>
+
+<span class="s2"># Camino</span>
+<span class="s2">export PATH=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/camino/bin:</span><span class="nv">$PATH</span><span class="s2"></span>
+<span class="s2">export CAMINO_HEAP_SIZE=4000&quot;</span> &gt; ~/.bashrc
+. ~/.bashrc
+</pre></div>
+</div>
+</div>
+<div class="section" id="possibly-helpful-commands-at-runtime">
+<h2>Possibly Helpful Commands at Runtime<a class="headerlink" href="#possibly-helpful-commands-at-runtime" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># NEED TO MOUNT DRIVE (EBS)</span>
+mkdir /mnt/loni
+lsblk
+mkfs -t ext4 /dev/xvdj
+mount /dev/xvdj /mnt/loni/
+<span class="nb">cd</span> /mrimages/src/loni
+./PipelineCLI.sh --validate /mrimages/src/m2g/library/workflows/m2g_for_cloud.pipe
+./PipelineCLI.sh --execute /mrimages/src/m2g/library/workflows/m2g_for_cloud.pipe
+
+<span class="c"># We are refactoring our code to avoid these manual installation steps</span>
+<span class="c"># Manual steps:  Write .bashrc</span>
+<span class="c"># Manual steps:  igraph R install</span>
+<span class="c"># Manual steps: alternatives --config java #2 #type 2</span>
+<span class="c"># Manual steps: logging into cortex for data</span>
+<span class="c"># Manual steps: logging into cortex for loni binary</span>
+<span class="c"># Manual steps:  Hardcoded centroid path</span>
+<span class="c"># Hardcoded paths in m2g setup</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
