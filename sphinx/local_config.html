@@ -95,11 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cluster_config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cloud_computing.html">Cloud Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guides</a><ul>
-<li class="toctree-l2"><a class="reference external" href="http://legacy.python.org/dev/peps/pep-0008/">Python code complies with PEP-8</a></li>
-<li class="toctree-l2"><a class="reference external" href="http://w.ocp.me/style">m2g follows the style guidelines used by the Open Connectome Project</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ)</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
@@ -276,7 +272,7 @@ make
 
 <span class="c">#FSL</span>
 <span class="c"># - Due to the form required for fsl, this is completed after</span>
-<span class="c"># scp-ing the fslinstaller.py file to the ~/src directory.</span>
+<span class="c"># downloading the fsl compressed file and storing it on a server.</span>
 <span class="c"># : http://fsl.fmrib.ox.ac.uk/fsldownloads/</span>
 <span class="nb">cd</span> <span class="nv">$m2g</span>/src/
 wget http://openconnecto.me/data/public/MR/startup_m2g/fsl-5.0.8-centos6_64.tar.gz
@@ -294,12 +290,15 @@ yum -y install xml2 libxml2-devel
 wget http://igraph.org/nightly/get/c/igraph-0.7.1.tar.gz
 tar xvfz igraph-0.7.1.tar.gz
 <span class="nb">cd </span>igraph-0.7.1
-./configure --prefix<span class="o">=</span>/mrimages/src/igraph
+./configure --prefix<span class="o">=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src/igraph
 make
 make install
-sudo R <span class="c">#MANUAL STEP had to type 90</span>
-install.packages<span class="o">(</span><span class="s1">&#39;igraph&#39;</span><span class="o">)</span> <span class="c">#&#39;http://ftp.ussg.iu.edu/CRAN/src/contrib/igraph_0.7.1.tar.gz&#39;</span>
-q<span class="o">()</span> <span class="c"># MANUAL STEP saved image</span>
+
+git clone https://gist.github.com/15015a9485d87d8c22e6.git
+<span class="nb">cd </span>15015a9485d87d8c22e6
+Rscript installRigraph.R <span class="c"># using mirror: &#39;http://ftp.ussg.iu.edu/CRAN/src/contrib/igraph_0.7.1.tar.gz&#39;</span>
+<span class="nb">cd</span> ..
+rm -rf 15015a9485d87d8c22e6
 </pre></div>
 </div>
 </div>
