@@ -114,7 +114,14 @@
 <li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_usage.html">Advanced Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#first-steps-after-processing-your-data">First steps after processing your data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-graph-statistics">Basic Graph Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#graph-analysis-clustering">Graph Analysis: Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#graph-analysis-inference">Graph Analysis: Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#helping-us">Helping us</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul>
@@ -181,13 +188,26 @@
             
   <div class="section" id="analysis">
 <h1>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li>Graph statistics overview [Greg]</li>
-<li>Things you can do once you process your data [Greg]</li>
-<li>Add TRT walkthrough [Greg]</li>
-<li>Add {clustering} walkthrough [Greg]</li>
-<li>Explain that people can jump in here [Greg]</li>
-</ul>
+<div class="section" id="first-steps-after-processing-your-data">
+<h2>First steps after processing your data<a class="headerlink" href="#first-steps-after-processing-your-data" title="Permalink to this headline">¶</a></h2>
+<p>All data derivatives computed throughout the pipeline are made available. Analysis can be performed to assess the quality of intermediate steps of the pipeline, such as dice overlap for assessing image registration quality. This type of analysis can be useful when tuning parameters and ensuring that you are obtaining brain-graphs that are meaningful for your data. For more information on analysis of each step of m2g see our quality control pages (coming soon).</p>
+</div>
+<div class="section" id="basic-graph-statistics">
+<h2>Basic Graph Statistics<a class="headerlink" href="#basic-graph-statistics" title="Permalink to this headline">¶</a></h2>
+<p>As was mentioned previously, we validate our pipelines using test-retest reliability. However, a perfect TRT score does not mean that the pipeline cannot further improve. Therefore, we needed to devise a better metric for assessing the quality and distributions of our graphs. Knowing the true subject/scan associations, we can leverage our graph difference as computed in our TRT calculation to form a distribution of inter- and intra-subject connectome differences. We are then able to estimate the kernel density of these distributions and compute the distance between them as well as the significance of our discrimination. In v1.1.0 of m2g, we measured a highly significant discrimination between same and different subject scans (&lt; 1e-4) on the KKI2009 dataset.</p>
+</div>
+<div class="section" id="graph-analysis-clustering">
+<h2>Graph Analysis: Clustering<a class="headerlink" href="#graph-analysis-clustering" title="Permalink to this headline">¶</a></h2>
+<p>A technique which has recently become popular when looking at graphs is vertex clustering. This can be done through many different algorithms such as sampling from stochastic block models (SBM), Louvain clustering, spectral clustering, to name a few. The small graphs produced by m2g are, in a statistical sense, a  graph which has been sampled from a stochastic block model with 70 regions. Looking at big graphs, we are able to cluster vertices and determine optimal scaling and partitioning of these graphs - i.e. find the optimal number of clusters for subsequent inference.</p>
+</div>
+<div class="section" id="graph-analysis-inference">
+<h2>Graph Analysis: Inference<a class="headerlink" href="#graph-analysis-inference" title="Permalink to this headline">¶</a></h2>
+<p>Inference tasks require datasets with covariates and phenotypic information along with their physical scans. From this information, one can build classifiers and decision rule classes that attempt to map from connectome properties to covariate information. These tasks are particularly interesting when thinking about the application of connectomics to medicine, as when paired with the right classifier a connectome may be able to serve as a powerful diagnostic tool.</p>
+</div>
+<div class="section" id="helping-us">
+<h2>Helping us<a class="headerlink" href="#helping-us" title="Permalink to this headline">¶</a></h2>
+<p>As graph statistics are a young field, we are always looking for new ways to analyze the data we are producing, and learning valuable things from it. If you have interest or expertise in developing graph statistics and would like to help, we encourage you to get in touch with us and forging a collaboration.</p>
+</div>
 </div>
 
 
