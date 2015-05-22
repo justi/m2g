@@ -105,7 +105,11 @@
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/input_data.html">Input Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/input_data.html">Data Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/input_data.html#input-data">Input Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/input_data.html#output-data">Output Data</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/available_data.html">Public Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_usage.html">Basic Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a></li>
@@ -303,7 +307,7 @@ git clone https://github.com/openconnectome/m2g.git
 <span class="nb">cd </span>m2g
 git checkout master <span class="c">#TODO</span>
 
-<span class="nb">export </span><span class="nv">M2G_HOME</span><span class="o">=</span>/mrimages/src/m2g
+<span class="nb">export </span><span class="nv">M2G_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src/m2g
 
 <span class="nb">cd</span> <span class="nv">$M2G_HOME</span>/MR-OCP/mrcap
 python setup.py install <span class="c">#for z-index</span>
@@ -320,7 +324,7 @@ mkdir loni
 tar -xvf Pipeline-6.0.1-unix.tar.bz2 -C loni
 
 <span class="c">#Get workflow</span>
-<span class="nb">cd</span> /mrimages/src/m2g/library/workflows/
+<span class="nb">cd</span> <span class="nv">$m2g</span>/src/m2g/library/workflows/
 wget  --no-check-certificate https://www.dropbox.com/s/o562326mnjipllz/m2g_for_cloud.pipe
 
 mkdir <span class="nv">$HOME</span>/.pipeline
@@ -364,17 +368,16 @@ mkdir /mnt/loni
 lsblk
 mkfs -t ext4 /dev/xvdj
 mount /dev/xvdj /mnt/loni/
-<span class="nb">cd</span> /mrimages/src/loni
-./PipelineCLI.sh --validate /mrimages/src/m2g/library/workflows/m2g_for_cloud.pipe
-./PipelineCLI.sh --execute /mrimages/src/m2g/library/workflows/m2g_for_cloud.pipe
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src/loni
+./PipelineCLI.sh --validate <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src/m2g/library/workflows/m2g_for_cloud.pipe
+./PipelineCLI.sh --execute <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src/m2g/library/workflows/m2g_for_cloud.pipe
 
 <span class="c"># We are refactoring our code to avoid these manual installation steps</span>
-<span class="c"># Manual steps:  Write .bashrc</span>
 <span class="c"># Manual steps:  igraph R install</span>
 <span class="c"># Manual steps: alternatives --config java #2 #type 2</span>
 <span class="c"># Manual steps: logging into cortex for data</span>
 <span class="c"># Manual steps: logging into cortex for loni binary</span>
-<span class="c"># Manual steps:  Hardcoded centroid path, Patch in B0</span>
+<span class="c"># Manual steps:  Hardcoded centroid patch, Patch in B0</span>
 <span class="c"># Hardcoded paths in m2g setup</span>
 </pre></div>
 </div>
