@@ -189,14 +189,23 @@
   <div class="section" id="basic-usage">
 <h1>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h1>
 <p>The overall workflow for the diffusion portion of M2G is shown in the image below.</p>
-<blockquote>
-<div><ul class="simple">
-<li>Explain how to use the pipeline as a blackbox [w]</li>
-</ul>
-</div></blockquote>
-<a class="reference internal image-reference" href="../_images/m2g_loni_overall.png"><img alt="../_images/m2g_loni_overall.png" class="align-center" src="../_images/m2g_loni_overall.png" style="width: 600px;" /></a>
-<a class="reference internal image-reference" href="../_images/m2g_loni_diffusion.png"><img alt="../_images/m2g_loni_diffusion.png" class="align-center" src="../_images/m2g_loni_diffusion.png" style="width: 600px;" /></a>
-<a class="reference internal image-reference" href="../_images/m2g_loni_registration.png"><img alt="../_images/m2g_loni_registration.png" class="align-center" src="../_images/m2g_loni_registration.png" style="width: 600px;" /></a>
+<p>Inputs:
+- List file specifying anatomical scans
+- List file specifiying dti scans
+- List file specifying dti parameters (bvalues and gradients)</p>
+<p>Files within each list must be in correspondence to each other and must have the same length for proper pipelining operation.</p>
+<p>The pipeline also requires the user to specify the atlas(es), reference structural volume and brain mask corresponding to the atlas(es).</p>
+<p>Outputs:
+- Graphs
+- Other derivative products</p>
+<p>m2g is a &#8216;one-click&#8217; pipeline, but the processing can be conceptually divided into two parts:  registration and diffusion processing.</p>
+<p>In the registration workflow, images are preprocessed (e.g, skull-stripped and denoised), and then registered.  Specifically, DTI volumes are registered to the B0 reference scan, the B0 scan is registered to the anatomical scan, and the anatomical scan is registered to the atlas (e.g., MNI) space.  Finally, these transforms are combined to create a DTI volume in atlas space so that scans and subjects can be easily compared.</p>
+<a class="reference internal image-reference" href="../_images/m2g_loni_registration.png" id="loni-registration-workflow"><img alt="../_images/m2g_loni_registration.png" class="align-center" id="loni-registration-workflow" src="../_images/m2g_loni_registration.png" style="width: 800px;" /></a>
+<p>Finally, in the diffusion processing workflow, tensors are estimated for each voxel, indicating the primary direction of water diffusion at that location in the brain.  It has been shown that this corresponds to the principal direction of travel for major white matter (axonal) connections in the brain.  From the tensors, fiber streamlines, or tracks, are created using deterministic and probabilistic algorithms.  From the fibers and the atlas paracellations, we are able to estimate a graph.</p>
+<a class="reference internal image-reference" href="../_images/m2g_loni_diffusion.png" id="loni-diffusion-workflow"><img alt="../_images/m2g_loni_diffusion.png" class="align-center" id="loni-diffusion-workflow" src="../_images/m2g_loni_diffusion.png" style="width: 800px;" /></a>
+<p>To generate a graph, we first form an empty graph (A), with rows and columns corresponding to nodes (atlas regions).  For each fiber streamline, we find all connected regions; for each pair of regions (i,j) in the streamline, we increment the A(i,j).  Because these connections are undirected, we also increment A(j,i) - or equivalently store only the upper triangular matrix.</p>
+<a class="reference internal image-reference" href="../_images/graph_construction.png" id="graph-construction-example"><img alt="../_images/graph_construction.png" class="align-center" id="graph-construction-example" src="../_images/graph_construction.png" style="width: 800px;" /></a>
+<p>TODO:  Do we want more cartoon pictures or less? Not sure what the right balance is between LONI and cartoon.  We can do both!</p>
 </div>
 
 

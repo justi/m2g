@@ -188,12 +188,7 @@
             
   <div class="section" id="data-formats">
 <h1>Data Formats<a class="headerlink" href="#data-formats" title="Permalink to this headline">¶</a></h1>
-<p>This is a draft input/output specfication for discussion.  Open questions:</p>
-<ul class="simple">
-<li>Do we want to organize by subject or derivative?  Subject is clearer, but almost all analysis prefers derivative ordering (e.g., an entire folder of small graphs)</li>
-<li>How much data conversion should we do for the end user automatically (graphML vs. MAT vs. edgelist...)</li>
-<li>How can we track different versions?</li>
-</ul>
+<p>This is a draft input/output specfication for processing MR data.</p>
 <div class="section" id="input-data">
 <h2>Input Data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
 <p>Data to process must be organized in the following hierarchical format, by dataset or series:</p>
@@ -222,27 +217,13 @@
 </div>
 <div class="section" id="output-data">
 <h2>Output Data<a class="headerlink" href="#output-data" title="Permalink to this headline">¶</a></h2>
-<p>Data derivatives for processed brains include the following data:</p>
-<p><strong>Graphs</strong></p>
-<ul class="simple">
-<li>Small Graphs</li>
-<li>Big Graphs</li>
-<li>Graphs based on other parcellations</li>
-</ul>
-<p><strong>Derivative and Intemediate Products</strong></p>
-<ul class="simple">
-<li>Big Invariants</li>
-<li>Big LCC</li>
-<li>Big LCC Graphs</li>
-<li>Small Graphs GraphML</li>
-<li>Small Invariants</li>
-<li>Small LCC</li>
-<li>Embeddings</li>
-<li>Fibers</li>
-<li>Subject Covariates</li>
-<li>MNI Data</li>
-<li>Tensors</li>
-</ul>
+<p>Data derivatives for processed brains include the following data, tagged with its quarterly release.  For each data product, users select the product, the atlas (parcellation scheme) and data format:</p>
+<ol class="arabic simple">
+<li>graphs + atlas + format</li>
+<li>derivative + atlas + format</li>
+<li>subject covariates</li>
+</ol>
+<p>Graphs range in size from O(10^1) to O(10^6), and intermediate products include graph invariants and processing artifacts (e.g., fibers, tensors).</p>
 </div>
 </div>
 
