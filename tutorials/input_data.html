@@ -189,17 +189,28 @@
 </ul>
 <div class="section" id="input-data">
 <h2>Input Data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
-<p>Data to process must be organized in the following format:</p>
-<ul class="simple">
-<li>Dataset</li>
-<li>Series [Often all together, but accomodates multiple releases or revisions]</li>
-<li>Subject</li>
-<li>Scan</li>
+<p>Data to process must be organized in the following hierarchical format, by dataset or series:</p>
+<p><strong>Dataset (series)</strong></p>
+<ul>
+<li><dl class="first docutils">
+<dt>Subject</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Scan</dt>
+<dd><ul class="first last simple">
 <li>dti [Diffusion Tensor Imaging]</li>
 <li>dsi [Diffusion Spectrum Imaging]</li>
 <li>rest [Resting State functional scan]</li>
 <li>anat [Anatomical Scan, e.g., MPRAGE]</li>
 <li>params [b vals, gradients]</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
 <div class="section" id="output-data">
