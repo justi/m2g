@@ -33,7 +33,7 @@
 
   
     <link rel="top" title="m2g v1.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Local Configuration" href="local_config.html"/>
+        <link rel="next" title="Single Node Configuration" href="local_config.html"/>
         <link rel="prev" title="&lt;no title&gt;" href="../index.html"/> 
 
   
@@ -79,17 +79,37 @@
               <p class="caption"><span class="caption-text">Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="local_config.html">Local Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local_config.html">Single Node Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="local_config.html#basic-package-update-and-install">Basic Package Update and Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local_config.html#install-and-configure-python-2-7">Install and Configure Python 2.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local_config.html#basics-for-development">Basics for Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local_config.html#oracle-java-install">Oracle Java Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local_config.html#java-setup">Java Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local_config.html#camino-and-fsl">Camino and FSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local_config.html#igraph">igraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local_config.html#m2g-setup">m2g setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local_config.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local_config.html#possibly-helpful-commands-at-runtime">Possibly Helpful Commands at Runtime</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="cluster_config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cloud_computing.html">Cloud Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guides</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://legacy.python.org/dev/peps/pep-0008/">Python code complies with PEP-8</a></li>
+<li class="toctree-l2"><a class="reference external" href="http://w.ocp.me/style">m2g follows the style guidelines used by the Open Connectome Project</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ)</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/input_data.html">Input Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/input_data.html">Data Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/input_data.html#input-data">Input Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/input_data.html#output-data">Output Data</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/available_data.html">Public Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_usage.html">Basic Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a></li>
@@ -99,8 +119,12 @@
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/functions.html">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api/bet.html">FSL Brain Extraction Tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/functions.html">Function Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/bet.html">FSL Brain Extraction Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/bet.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/bet.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../api/flirt.html">FSL Linear Registration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/parse_b.html">Parse B-values/vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/extract_b0.html">Extract B0 Volume</a></li>
@@ -117,6 +141,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://TBD">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://openconnectome.github.io/m2g/">Project page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
           
@@ -156,15 +181,12 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>The ability to estimate a connectome, i.e. a description of connectivity in the brain of an individual, promises advances in many areas from personalized medicine to learning and education, and even to intelligence analysis. A robust analysis of these brain-graphs is on the horizon due to recent efforts to collect large amounts of multimodal magnetic resonance imaging data.An ideal methodology would enable scalable computing of graphs and functionals thereof in a way that yields estimates that are reliable. Moreover, such a tool would be open source, and make the data it processes open source in a user friendly way.</p>
+<p>The ability to estimate a connectome, i.e. a description of connectivity in the brain of an individual, promises advances in many areas from personalized medicine to learning and education, and even to intelligence analysis. A robust analysis of these brain-graphs is on the horizon due to recent efforts to collect large amounts of multimodal magnetic resonance imaging data. An ideal methodology would enable scalable computing of graphs and functionals thereof in a way that yields estimates that are reliable. Moreover, such a tool would be open source, and make the data it processes open source in a user friendly way.</p>
 <p>Building such a tool, however, is challenging.  The data for each subject consists of about 1 gigabyte (GB) of data.  Converting from raw data to graphs and functions thereof requires daisy-chaining over 20 subroutines, each of which implements a different transformation of the data.  The utility of the output brain-graphs is a function of its scientific meaningfulness.  Because such data currently lack ground truth for the estimates, or even other gold standards, investigators are left to assess the quality of estimates using only the data itself.  Test-retest datasets consist of multiple subjects, each of whom have been scanned multiple times. Most previous work on reliability has assessed parametric reliability of features of the data.  For example, it is standard to compare the between and within variances of, say, the number of edges.  However, these approaches are limited because they make parametric assumptions, and test scalar functions of the graphs.</p>
-<p>We present here a new pipeline for estimating Graphs from MR images, called M2G. In addition to satisfying the above two mentioned desiderata (scalability and reliability), our pipeline, and much of our data, are provided in accordance with open science.</p>
-<p>The ability to &#8216;&#8217;classify&#8217;&#8217; an individual&#8217;s connectome further allows for inferring characteristics of an individual based on the degree to which his or her patterns of brain connectivity align with those observed in cohorts having known properties or outcomes, such as gender, handedness, intelligence, the ability to learn a foreign language, psychological impairments, disease susceptibility, etc.</p>
+<p>We present here a new pipeline for estimating Graphs from MR images, called m2g. In addition to satisfying the above two mentioned desiderata (scalability and reliability), our pipeline, and much of our data, are provided in accordance with open science. Our pipline creates reproducible graphs that give the community the ability to &#8216;&#8217;classify&#8217;&#8217; an individual&#8217;s connectome. This classification can be derived from inferring characteristics of an individual based on the degree to which his or her patterns of brain connectivity align with those observed in cohorts having known properties or outcomes. Traits such as gender, handedness, intelligence, the ability to learn a foreign language, psychological impairments, disease susceptibility, etc., are all things which can be studied through the lens of brain-graphs.</p>
 <p>The primary contribution of our efforts is the creation of a robust, high-throughput pipeline for estimating connectomes, beginning with diffusion MR images and MPRAGE structural data and ending with both small (70 vertex) , and big (1 million) vertex brain graphs.  Further, we have made enhancements to the pipeline that include validation and analysis algorithms (e.g. graph embedding) to enable high-throughput, end-to-end solutions.</p>
 <img alt="../_images/m2g.png" src="../_images/m2g.png" />
-<p>TODO
-- read and update (see asana comments) [G]
-- simplify and explain picture [G]</p>
+<p>m2g estimates braingraphs from multimodal MRI through a series of steps which are illustrated above. Before advanced processing can occur, the images must first be aligned into the same physical space as one another, as well as a template atlas which contains labeling information of the regions. Then, tensors are estimated from the diffusion data and fibers traced using the deterministic FACT algorithm. Once fiber streamlines are obtained, the graphs are generated through a look-up process which maps voxels along the fibers to regions within the atlas. The generated graphs are then analyzed and reliability of the pipeline assessed, in the case of a TRT compatible dataset.</p>
 </div>
 
 
@@ -173,7 +195,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="local_config.html" class="btn btn-neutral float-right" title="Local Configuration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="local_config.html" class="btn btn-neutral float-right" title="Single Node Configuration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

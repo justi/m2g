@@ -272,7 +272,7 @@ make
 <span class="c"># scp-ing the fslinstaller.py file to the ~/src directory.</span>
 <span class="c"># : http://fsl.fmrib.ox.ac.uk/fsldownloads/</span>
 <span class="nb">cd</span> <span class="nv">$m2g</span>/src/
-wget --no-check-certificate https://www.dropbox.com/s/z78p3jzczrv31ci/fsl-5.0.8-centos6_64.tar.gz
+wget http://openconnecto.me/data/public/MR/startup_m2g/fsl-5.0.8-centos6_64.tar.gz
 tar zxvf fsl-5.0.8-centos6_64.tar.gz
 <span class="c">#Delete raw targz if space is tight</span>
 </pre></div>
@@ -298,45 +298,45 @@ q<span class="o">()</span> <span class="c"># MANUAL STEP saved image</span>
 </div>
 <div class="section" id="m2g-setup">
 <h2>m2g setup<a class="headerlink" href="#m2g-setup" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre>easy_install-2.7 python-igraph
+<div class="highlight-bash"><div class="highlight"><pre>      easy_install-2.7 python-igraph
 
-<span class="c"># Need to actually clone repo and install LONI</span>
-<span class="c"># Also need to SCP data</span>
-<span class="nb">cd</span> <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src
-git clone https://github.com/openconnectome/m2g.git
-<span class="nb">cd </span>m2g
-git checkout master <span class="c">#TODO</span>
+      <span class="c"># Need to actually clone repo and install LONI</span>
+      <span class="c"># Also need to SCP data</span>
+      <span class="nb">cd</span> <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src
+      git clone https://github.com/openconnectome/m2g.git
+      <span class="nb">cd </span>m2g
+      git checkout master <span class="c">#TODO</span>
 
-<span class="nb">export </span><span class="nv">M2G_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src/m2g
+      <span class="nb">export </span><span class="nv">M2G_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src/m2g
 
-<span class="nb">cd</span> <span class="nv">$M2G_HOME</span>/MR-OCP/mrcap
-python setup.py install <span class="c">#for z-index</span>
+      <span class="nb">cd</span> <span class="nv">$M2G_HOME</span>/MR-OCP/mrcap
+      python setup.py install <span class="c">#for z-index</span>
 
-python <span class="nv">$M2G_HOME</span>/packages/utils/setup.py
+      python <span class="nv">$M2G_HOME</span>/packages/utils/setup.py
 
-mkdir <span class="nv">$m2g</span>/data
-<span class="nb">cd</span> <span class="nv">$m2g</span>/data
-scp will@cortex.cs.jhu.edu:/mnt/ssd1/data/inputs/KKI2009/KKI2009-22/* . <span class="c">#needs login</span>
+      mkdir <span class="nv">$m2g</span>/data
+      <span class="nb">cd</span> <span class="nv">$m2g</span>/data
+      wget http://openconnecto.me/data/public/MR/startup_m2g/KKI2009-22.tar.gz
+tar zxvf KKI2009-22.tar.gz
 
-<span class="nb">cd</span> <span class="nv">$m2g</span>/src
-scp will@cortex.cs.jhu.edu:/home/will/Pipeline-6.0.1-unix.tar.bz2 . <span class="c">#needs login</span>
-mkdir loni
-tar -xvf Pipeline-6.0.1-unix.tar.bz2 -C loni
+      <span class="nb">cd</span> <span class="nv">$m2g</span>/src
+      wget http://openconnecto.me/data/public/MR/startup_m2g/Pipeline-6.0.1-unix.tar.bz2
+      mkdir loni
+      tar -xvf Pipeline-6.0.1-unix.tar.bz2 -C loni
 
-<span class="c">#Get workflow</span>
-<span class="nb">cd</span> <span class="nv">$m2g</span>/src/m2g/library/workflows/
-wget  --no-check-certificate https://www.dropbox.com/s/o562326mnjipllz/m2g_for_cloud.pipe
+      <span class="c">#Get workflow</span>
+      <span class="nb">cd</span> <span class="nv">$m2g</span>/src/m2g/library/workflows/
+      wget http://openconnecto.me/data/public/MR/startup_m2g/m2g_test.pipe
 
-mkdir <span class="nv">$HOME</span>/.pipeline
-<span class="nb">cd</span> <span class="nv">$HOME</span>/.pipeline
-wget --no-check-certificate https://www.dropbox.com/s/effz8dgikp76s88/preferences.xml
+      mkdir <span class="nv">$HOME</span>/.pipeline
+      <span class="nb">cd</span> <span class="nv">$HOME</span>/.pipeline
+      wget --no-check-certificate http://openconnecto.me/data/public/MR/startup_m2g/preferences.xml
 </pre></div>
 </div>
 </div>
 <div class="section" id="export-paths-and-setup-environment">
 <h2>Export Paths and Setup Environment<a class="headerlink" href="#export-paths-and-setup-environment" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c">#TODO this will REPLACE your ~/.bashrc file</span>
-<span class="nb">echo</span> <span class="s2">&quot;export m2g=/mrimages</span>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">echo</span> <span class="s2">&quot;export m2g=/mrimages</span>
 <span class="s2">export M2G_HOME=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/m2g</span>
 <span class="s2"># Path to FSL</span>
 <span class="s2">FSLDIR=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/fsl</span>
@@ -356,8 +356,8 @@ wget --no-check-certificate https://www.dropbox.com/s/effz8dgikp76s88/preference
 
 <span class="s2"># Camino</span>
 <span class="s2">export PATH=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/camino/bin:</span><span class="nv">$PATH</span><span class="s2"></span>
-<span class="s2">export CAMINO_HEAP_SIZE=4000&quot;</span> &gt; ~/.bashrc
-. ~/.bashrc
+<span class="s2">export CAMINO_HEAP_SIZE=4000&quot;</span> &gt; <span class="nv">$m2g</span>/.bashrc
+. <span class="nv">$m2g</span>/.bashrc
 </pre></div>
 </div>
 </div>
@@ -375,10 +375,7 @@ mount /dev/xvdj /mnt/loni/
 <span class="c"># We are refactoring our code to avoid these manual installation steps</span>
 <span class="c"># Manual steps:  igraph R install</span>
 <span class="c"># Manual steps: alternatives --config java #2 #type 2</span>
-<span class="c"># Manual steps: logging into cortex for data</span>
-<span class="c"># Manual steps: logging into cortex for loni binary</span>
 <span class="c"># Manual steps:  Hardcoded centroid patch, Patch in B0</span>
-<span class="c"># Hardcoded paths in m2g setup</span>
 </pre></div>
 </div>
 </div>
