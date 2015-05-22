@@ -33,9 +33,9 @@
 
   
     <link rel="top" title="m2g v1.1.0 documentation" href="../index.html"/>
-        <link rel="up" title="Functions" href="functions.html"/>
+        <link rel="up" title="Function Reference" href="functions.html"/>
         <link rel="next" title="FSL Linear Registration" href="flirt.html"/>
-        <link rel="prev" title="Functions" href="functions.html"/> 
+        <link rel="prev" title="Function Reference" href="functions.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -80,11 +80,27 @@
               <p class="caption"><span class="caption-text">Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sphinx/local_config.html">Local Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/local_config.html">Single Node Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#basic-package-update-and-install">Basic Package Update and Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#install-and-configure-python-27">Install and Configure Python 27</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#basics-for-development">Basics for Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#oracle-java-install">Oracle Java Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#java-setup">Java Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#camino-and-fsl">Camino and FSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#igraph">igraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#m2g-setup">m2g setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#possibly-helpful-commands-at-runtime">Possibly Helpful Commands at Runtime</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/cluster_config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/cloud_computing.html">Cloud Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sphinx/style.html">Style Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/style.html">Style Guides</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://legacy.python.org/dev/peps/pep-0008/">Python code complies with PEP-8</a></li>
+<li class="toctree-l2"><a class="reference external" href="http://w.ocp.me/style">m2g follows the style guidelines used by the Open Connectome Project</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/faq.html">Frequently Asked Questions (FAQ)</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
@@ -100,8 +116,12 @@
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="functions.html">Functions</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">FSL Brain Extraction Tool</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="functions.html">Function Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">FSL Brain Extraction Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="flirt.html">FSL Linear Registration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parse_b.html">Parse B-values/vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extract_b0.html">Extract B0 Volume</a></li>
@@ -142,7 +162,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="functions.html">Functions</a> &raquo;</li>
+          <li><a href="functions.html">Function Reference</a> &raquo;</li>
       
     <li>FSL Brain Extraction Tool</li>
       <li class="wy-breadcrumbs-aside">
@@ -183,6 +203,13 @@
 </div></blockquote>
 </dd></dl>
 
+<div class="section" id="pseudocode">
+<h2>Pseudocode<a class="headerlink" href="#pseudocode" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The tool employed for skull stripping/brain extraction is FSL&#8217;s BET <a class="reference external" href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide">http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide</a>. More information about this algorithm can be found at: &lt;ttp://onlinelibrary.wiley.com/doi/10.1002/hbm.10062/epdf.</p>
+</div>
 </div>
 
 
@@ -194,7 +221,7 @@
         <a href="flirt.html" class="btn btn-neutral float-right" title="FSL Linear Registration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="functions.html" class="btn btn-neutral" title="Functions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="functions.html" class="btn btn-neutral" title="Function Reference" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
