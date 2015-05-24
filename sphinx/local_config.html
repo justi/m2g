@@ -89,7 +89,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#igraph">igraph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#m2g-setup">m2g setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#possibly-helpful-commands-at-runtime">Possibly Helpful Commands at Runtime</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cluster_config.html">Cluster Configuration</a></li>
@@ -144,6 +143,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://TBD">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://openconnectome.github.io/m2g/">Project page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/graphs/contributors">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
@@ -210,7 +210,7 @@ make <span class="o">&amp;&amp;</span> make altinstall
 ln -s /usr/local/bin/python2.7 /usr/local/bin/python
 <span class="c"># First get the setup script for Setuptools:</span>
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
-<span class="c"># Then install it for Python 2.7 and/or Python 3.3:</span>
+<span class="c"># Then install it for Python 2.7:</span>
 python2.7 ez_setup.py
 easy_install-2.7 pip
 </pre></div>
@@ -222,17 +222,17 @@ easy_install-2.7 pip
 yum install -y java-1.6.0-openjdk-devel cmake vim screen
 yum install -y bc
 yum install -y epel-release
-yum install -y R nibabel
+yum install -y R
 pip2.7 install numpy
 pip2.7 install ipython
-pip2.7 install scipy <span class="c">#This seems to not work with 2.7 and yum</span>
+pip2.7 install scipy
 
 easy_install-2.7 argparse
 easy_install-2.7 -U distribute
 yum -y install libpng-devel
 pip2.7 install scikit-image
 pip2.7 install nibabel
-pip2.7 install Cython <span class="c">#Make sure we are at 0.22+</span>
+pip2.7 install Cython <span class="c"># requires &gt;= v0.22</span>
 </pre></div>
 </div>
 </div>
@@ -271,9 +271,10 @@ make clean
 make
 
 <span class="c">#FSL</span>
-<span class="c"># - Due to the form required for fsl, this is completed after</span>
-<span class="c"># downloading the fsl compressed file and storing it on a server.</span>
-<span class="c"># : http://fsl.fmrib.ox.ac.uk/fsldownloads/</span>
+<span class="c"># Requires completing a form on the FSL website, running</span>
+<span class="c"># fslinstaller.py. We&#39;ve stored the obtained binary on</span>
+<span class="c"># a server for convenience.</span>
+<span class="c"># FSL website: http://fsl.fmrib.ox.ac.uk/fsldownloads/</span>
 <span class="nb">cd</span> <span class="nv">$m2g</span>/src/
 wget http://openconnecto.me/data/public/MR/startup_m2g/fsl-5.0.8-centos6_64.tar.gz
 tar zxvf fsl-5.0.8-centos6_64.tar.gz
@@ -284,7 +285,6 @@ tar zxvf fsl-5.0.8-centos6_64.tar.gz
 <div class="section" id="igraph">
 <h2>igraph<a class="headerlink" href="#igraph" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># igraph</span>
-
 yum -y install xml2 libxml2-devel
 <span class="nb">cd</span> <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src
 wget http://igraph.org/nightly/get/c/igraph-0.7.1.tar.gz
@@ -364,24 +364,6 @@ wget --no-check-certificate http://openconnecto.me/data/public/MR/startup_m2g/pr
 <span class="s2">export PATH=</span><span class="si">${</span><span class="nv">m2g</span><span class="si">}</span><span class="s2">/src/camino/bin:</span><span class="nv">$PATH</span><span class="s2"></span>
 <span class="s2">export CAMINO_HEAP_SIZE=4000&quot;</span> &gt; <span class="nv">$m2g</span>/.bashrc
 . <span class="nv">$m2g</span>/.bashrc
-</pre></div>
-</div>
-</div>
-<div class="section" id="possibly-helpful-commands-at-runtime">
-<h2>Possibly Helpful Commands at Runtime<a class="headerlink" href="#possibly-helpful-commands-at-runtime" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># NEED TO MOUNT DRIVE (EBS)</span>
-mkdir /mnt/loni
-lsblk
-mkfs -t ext4 /dev/xvdj
-mount /dev/xvdj /mnt/loni/
-<span class="nb">cd</span> <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src/loni
-./PipelineCLI.sh --validate <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src/m2g/library/workflows/m2g_for_cloud.pipe
-./PipelineCLI.sh --execute <span class="si">${</span><span class="nv">m2g</span><span class="si">}</span>/src/m2g/library/workflows/m2g_for_cloud.pipe
-
-<span class="c"># We are refactoring our code to avoid these manual installation steps</span>
-<span class="c"># Manual steps:  igraph R install</span>
-<span class="c"># Manual steps: alternatives --config java #2 #type 2</span>
-<span class="c"># Manual steps:  Hardcoded centroid patch, Patch in B0</span>
 </pre></div>
 </div>
 </div>

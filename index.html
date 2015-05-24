@@ -90,10 +90,8 @@
 <li class="toctree-l2"><a class="reference internal" href="sphinx/local_config.html#igraph">igraph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx/local_config.html#m2g-setup">m2g setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx/local_config.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sphinx/local_config.html#possibly-helpful-commands-at-runtime">Possibly Helpful Commands at Runtime</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sphinx/cluster_config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx/cloud_computing.html">Cloud Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx/style.html">Style Guides</a></li>
@@ -111,14 +109,6 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorials/basic_usage.html">Basic Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/advanced_usage.html">Advanced Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/validation.html">Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/analysis.html">Analysis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/analysis.html#first-steps-after-processing-your-data">First steps after processing your data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/analysis.html#basic-graph-statistics">Basic Graph Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/analysis.html#graph-analysis-clustering">Graph Analysis: Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/analysis.html#graph-analysis-inference">Graph Analysis: Inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/analysis.html#helping-us">Helping us</a></li>
-</ul>
-</li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul>
@@ -133,19 +123,31 @@
 <li class="toctree-l2"><a class="reference internal" href="api/parse_b.html">Parse B-values/vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/extract_b0.html">Extract B0 Volume</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/eddycorrect.html">FSL Eddy Correction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/tensor_gen.html">DTI Tensor Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/fiber_gen.html">Fiber Tractography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tensor_gen.html">DTI Tensor Estimation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/tensor_gen.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/tensor_gen.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/fiber_gen.html">Fiber Tractography</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/fiber_gen.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/fiber_gen.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="api/fiber_convert.html">Fiber Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/gengraph.html">Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/gengraph.html">Graph Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/gengraph.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/gengraph.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="api/setup.html">Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://TBD">Mailing List</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://openconnectome.github.io/m2g/">Project page</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sphinx/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/graphs/contributors">Contributors</a></li>
 </ul>
 
           
@@ -205,7 +207,7 @@
   </div>
 </div>
 <br><hr>
-<p>This page describes how brain graphs are generated in our service from Diffusion Weighted MRI (dMRI), and structural MRI (sMRI) images of human brains. The MRImages to Graphs (m2g) pipeline is the successor of MRCAP and MIGRAINE. m2g combines dMRI and sMRI data from a single subject to estimate a high-level connectome. The connectomes returned describe regions of connectivity within the brain at multiple levels of resolution - from a single voxel scale ~1 mm<sup>3</sup> to large cortical regions ~20 cm<sup>3</sup>. The estimation of functional connectomes is currently under development and will be added in a subsequent release.</p>
+<p>This page describes how brain graphs are generated in our service from Diffusion Weighted MRI (dMRI), and structural MRI (sMRI) images of human brains, as well as a template atlas (MNI152, for instance). The MRImages to Graphs (m2g) pipeline is the successor of MRCAP and MIGRAINE. m2g combines dMRI and sMRI data from a single subject to estimate a high-level connectome. The connectomes returned describe regions of connectivity within the brain at multiple levels of resolution - from a single voxel scale ~1 mm<sup>3</sup> to large cortical regions ~20 cm<sup>3</sup></p>
 
 <p> m2g has been developed in the LONI pipelining environment. This environment facilitates modular construction, and all workflows and modules are command-line executable. This makes m2g efficient and allows users or researchers to modify algorithms for their specific requirements. </p>
 
@@ -223,7 +225,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="sphinx/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx/local_config.html">Single Node Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sphinx/cluster_config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx/cloud_computing.html">Cloud Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx/style.html">Style Guides</a></li>
@@ -239,7 +240,6 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorials/basic_usage.html">Basic Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/advanced_usage.html">Advanced Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/validation.html">Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/analysis.html">Analysis</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound" id="further-reading">
@@ -249,14 +249,16 @@
 <li class="toctree-l1"><a class="reference internal" href="api/functions.html">Function Reference</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://TBD">Mailing List</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://openconnectome.github.io/m2g/">Project page</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sphinx/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/graphs/contributors">Contributors</a></li>
 </ul>
 </div>
-<p>If you use m2g or its data derivatives, please cite:
-W Gray Roncal, ZH Koterba, D Mhembere, DM Kleissas, JT Vogelstein, R Burns, AR Bowles, DK Donavos, S Ryman, RE Jung, L Wu, V Calhoun, RJ Vogelstein. MIGRAINE: MRI Graph Reliability Analysis and Inference for Connectomics. GlobalSIP, 2013 <a class="reference external" href="http://arxiv.org/abs/1312.4875">arXiv</a></p>
+<dl class="docutils">
+<dt>If you use m2g or its data derivatives, please cite:</dt>
+<dd>W Gray Roncal, ZH Koterba, D Mhembere, DM Kleissas, JT Vogelstein, R Burns, AR Bowles, DK Donavos, S Ryman, RE Jung, L Wu, V Calhoun, RJ Vogelstein. MIGRAINE: MRI Graph Reliability Analysis and Inference for Connectomics. GlobalSIP, 2013 <a class="reference external" href="http://arxiv.org/abs/1312.4875">arXiv</a></dd>
+</dl>
 
 
           </div>

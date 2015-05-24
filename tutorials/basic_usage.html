@@ -89,7 +89,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#igraph">igraph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#m2g-setup">m2g setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#possibly-helpful-commands-at-runtime">Possibly Helpful Commands at Runtime</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/cluster_config.html">Cluster Configuration</a></li>
@@ -144,7 +143,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://TBD">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://openconnectome.github.io/m2g/">Project page</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sphinx/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/graphs/contributors">Contributors</a></li>
 </ul>
 
           
@@ -184,10 +183,10 @@
             
   <div class="section" id="basic-usage">
 <h1>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h1>
-<p>The overall workflow for the diffusion portion of M2G is shown in the image below.</p>
+<p>The overall workflow for the diffusion portion of m2g is shown in the image below.</p>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="../_images/m2g_loni_overall.png"><img alt="../_images/m2g_loni_overall.png" src="../_images/m2g_loni_overall.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text">LONI Overall Workflow</span></p>
+<p class="caption"><span class="caption-text">m2g Overall Workflow</span></p>
 </div>
 <p>Inputs:</p>
 <ul class="simple">
@@ -206,19 +205,18 @@
 <p>In the registration workflow, images are preprocessed (e.g, skull-stripped and denoised), and then registered.  Specifically, DTI volumes are registered to the B0 reference scan, the B0 scan is registered to the anatomical scan, and the anatomical scan is registered to the atlas (e.g., MNI) space.  Finally, these transforms are combined to create a DTI volume in atlas space so that scans and subjects can be easily compared.</p>
 <div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/m2g_loni_registration.png"><img alt="../_images/m2g_loni_registration.png" src="../_images/m2g_loni_registration.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text">LONI Registration Workflow</span></p>
+<p class="caption"><span class="caption-text">m2g Registration Workflow</span></p>
 </div>
 <p>Finally, in the diffusion processing workflow, tensors are estimated for each voxel, indicating the primary direction of water diffusion at that location in the brain.  It has been shown that this corresponds to the principal direction of travel for major white matter (axonal) connections in the brain.  From the tensors, fiber streamlines, or tracks, are created using deterministic and probabilistic algorithms.  From the fibers and the atlas paracellations, we are able to estimate a graph.</p>
 <div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/m2g_loni_diffusion.png"><img alt="../_images/m2g_loni_diffusion.png" src="../_images/m2g_loni_diffusion.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text">LONI Diffusion Workflow</span></p>
+<p class="caption"><span class="caption-text">m2g Diffusion Workflow</span></p>
 </div>
 <p>To generate a graph, we first form an empty graph (A), with rows and columns corresponding to nodes (atlas regions).  For each fiber streamline, we find all connected regions; for each pair of regions (i,j) in the streamline, we increment the A(i,j).  Because these connections are undirected, we also increment A(j,i) - or equivalently store only the upper triangular matrix.</p>
 <div class="figure align-center" id="id4">
 <a class="reference internal image-reference" href="../_images/graph_construction.png"><img alt="../_images/graph_construction.png" src="../_images/graph_construction.png" style="width: 800px;" /></a>
 <p class="caption"><span class="caption-text">Graph Construction Example</span></p>
 </div>
-<p>TODO:  Do we want more cartoon pictures or less? Not sure what the right balance is between LONI and cartoon.  We can do both!</p>
 </div>
 
 
