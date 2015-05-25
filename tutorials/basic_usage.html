@@ -91,7 +91,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../sphinx/cluster_config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/cloud_computing.html">Cloud Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/style.html">Style Guides</a></li>
@@ -106,17 +105,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="available_data.html">Public Data</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Basic Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_usage.html">Advanced Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analysis.html">Analysis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#first-steps-after-processing-your-data">First steps after processing your data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#basic-graph-statistics">Basic Graph Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#graph-analysis-clustering">Graph Analysis: Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#graph-analysis-inference">Graph Analysis: Inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#helping-us">Helping us</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Basic Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#m2g-complete-pipeline">m2g Complete Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#m2g-registration-pipeline">m2g Registration Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#m2g-diffusion-processing-pipeline">m2g Diffusion Processing Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_usage.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul>
@@ -131,16 +128,28 @@
 <li class="toctree-l2"><a class="reference internal" href="../api/parse_b.html">Parse B-values/vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/extract_b0.html">Extract B0 Volume</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/eddycorrect.html">FSL Eddy Correction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/tensor_gen.html">DTI Tensor Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/fiber_gen.html">Fiber Tractography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/tensor_gen.html">DTI Tensor Estimation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/tensor_gen.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/tensor_gen.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/fiber_gen.html">Fiber Tractography</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/fiber_gen.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/fiber_gen.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../api/fiber_convert.html">Fiber Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/gengraph.html">Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/gengraph.html">Graph Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/gengraph.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/gengraph.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../api/setup.html">Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://TBD">Mailing List</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://openconnectome.github.io/m2g/">Project page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/graphs/contributors">Contributors</a></li>
@@ -183,39 +192,107 @@
             
   <div class="section" id="basic-usage">
 <h1>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h1>
-<p>The overall workflow for the diffusion portion of m2g is shown in the image below.</p>
-<div class="figure align-center" id="id1">
+<p>m2g is a &#8216;one-click&#8217; pipeline which can estimate brain graphs from diffusion and structural MRI data. Provided here are an overview of the function and usage of the entire m2g pipeline, as well as the two sub-pipelines which make up m2g: the registration and diffusion processing pipelines.</p>
+<div class="section" id="m2g-complete-pipeline">
+<h2>m2g Complete Pipeline<a class="headerlink" href="#m2g-complete-pipeline" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/m2g_loni_overall.png"><img alt="../_images/m2g_loni_overall.png" src="../_images/m2g_loni_overall.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text">m2g Overall Workflow</span></p>
 </div>
-<p>Inputs:</p>
-<ul class="simple">
-<li>List file specifying anatomical scans</li>
-<li>List file specifiying dti scans</li>
-<li>List file specifying dti parameters (bvalues and gradients)</li>
+<dl class="function">
+<dt id="docs.scripts.m2g">
+<code class="descclassname">docs.scripts.</code><code class="descname">m2g</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#docs.scripts.m2g" title="Permalink to this definition">¶</a></dt>
+<dd><p>Complete m2g workflow which estimates brain graphs from multimodal MRI images.</p>
+<p>Starting with raw image data of both structural and diffusion varieties, diffusion scanner parameters, and an atlas which the subject is being compared to, the m2g workflow estimates a brain graph for a subject. In order to submit inputs to the pipeline, files names must be entered in the form of list files (enumerated ASCII text files with one item per line) and submitted to the workflow. The standard MNI152 atlas is currently distributed with our tools, though a user may use a pediatric atlas or another which is most suitable for their data.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Inputs</dt>
+<dd><ul class="first last simple">
+<li>MPRAGE image (.nii): Raw 3D structural image of the subject.</li>
+<li>DTI image (.nii): Raw 4D diffusion image (3D + diffusion directions) of the subject.</li>
+<li>DTI B vectors (ASCII text): Orientation vectors of the scanner corresponding to the DTI image.</li>
+<li>DTI B values (ASCII text): B value intensities of the scanner corresponding to the DTI image.</li>
+<li>Atlas image (.nii) (default=MNI152): Structural template T1 image to which the atlas labels are aligned.</li>
+<li>Atlas brain mask (.nii): Binary mask of the brain of the atlas image.</li>
+<li>Atlas labels (.nii) (default=desikan): Region labels/parcellations of the atlas image.</li>
 </ul>
-<p>Files within each list must be in correspondence to each other and must have the same length for proper pipelining operation.</p>
-<p>The pipeline also requires the user to specify the atlas(es), reference structural volume and brain mask corresponding to the atlas(es).</p>
-<p>Outputs:</p>
-<ul class="simple">
-<li>Graphs</li>
-<li>Other derivative products</li>
+</dd>
+<dt>Outputs</dt>
+<dd><ul class="first last simple">
+<li>Brain Graph (.mat, .graphml): Graph of structural region connectivity of the subject.</li>
 </ul>
-<p>m2g is a &#8216;one-click&#8217; pipeline, but the processing can be conceptually divided into two parts:  registration and diffusion processing.</p>
-<p>In the registration workflow, images are preprocessed (e.g, skull-stripped and denoised), and then registered.  Specifically, DTI volumes are registered to the B0 reference scan, the B0 scan is registered to the anatomical scan, and the anatomical scan is registered to the atlas (e.g., MNI) space.  Finally, these transforms are combined to create a DTI volume in atlas space so that scans and subjects can be easily compared.</p>
-<div class="figure align-center" id="id2">
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="m2g-registration-pipeline">
+<h2>m2g Registration Pipeline<a class="headerlink" href="#m2g-registration-pipeline" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/m2g_loni_registration.png"><img alt="../_images/m2g_loni_registration.png" src="../_images/m2g_loni_registration.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text">m2g Registration Workflow</span></p>
 </div>
-<p>Finally, in the diffusion processing workflow, tensors are estimated for each voxel, indicating the primary direction of water diffusion at that location in the brain.  It has been shown that this corresponds to the principal direction of travel for major white matter (axonal) connections in the brain.  From the tensors, fiber streamlines, or tracks, are created using deterministic and probabilistic algorithms.  From the fibers and the atlas paracellations, we are able to estimate a graph.</p>
-<div class="figure align-center" id="id3">
+<dl class="function">
+<dt id="docs.scripts.m2g_registration">
+<code class="descclassname">docs.scripts.</code><code class="descname">m2g_registration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#docs.scripts.m2g_registration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registration portion of the m2g workflow which aligns diffusion data to the atlas space.</p>
+<p>In the registration workflow, diffusion and structural images are preprocessed (e.g, skull-stripped and denoised), and then registered.  Specifically, DTI volumes undergo eddy current correction and are registered to the B0 reference scan. The B0 scan is then registered to the structural MPRAGE image, and the MPRAGE image is registered to the atlas (e.g., MNI152) space.  Finally, these transforms are combined to create a DTI volume in atlas space so that scans and subjects can be easily compared.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Inputs</dt>
+<dd><ul class="first last simple">
+<li>MPRAGE image (.nii): Raw 3D structural image of the subject.</li>
+<li>DTI image (.nii): Raw 4D diffusion image (3D + diffusion directions) of the subject.</li>
+<li>DTI B values (ASCII text): B value intensities of the scanner corresponding to the DTI image.</li>
+<li>Atlas image (.nii) (default=MNI152): Structural template T1 image to which the atlas labels are aligned.</li>
+</ul>
+</dd>
+<dt>Outputs</dt>
+<dd><ul class="first last simple">
+<li>Registered DTI image (.nii): DTI image which has been denoised and aligned to the atlas space.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="m2g-diffusion-processing-pipeline">
+<h2>m2g Diffusion Processing Pipeline<a class="headerlink" href="#m2g-diffusion-processing-pipeline" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/m2g_loni_diffusion.png"><img alt="../_images/m2g_loni_diffusion.png" src="../_images/m2g_loni_diffusion.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text">m2g Diffusion Workflow</span></p>
 </div>
+<dl class="function">
+<dt id="docs.scripts.m2g_diffusion">
+<code class="descclassname">docs.scripts.</code><code class="descname">m2g_diffusion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#docs.scripts.m2g_diffusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diffusion processing portion of the m2g workflow which analyzes diffusion information to estimate brain graphs.</p>
+<p>In the diffusion processing workflow, the newly aligned DTI image is processed and then mapped to a set of defined labels. Specifically, tensors are estimated for each voxel, indicating the primary direction of water diffusion at that location in the brain.  It has been shown that this corresponds to the principal direction of travel for major white matter (axonal) connections in the brain.  From the tensors, fiber streamlines (or tracks) are created using deterministic algorithms. The fibers are then mapped to atlas regions defined by the inputted parcellation.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Inputs</dt>
+<dd><ul class="first last simple">
+<li>Registered DTI image (.nii): DTI image which has been denoised and aligned to the atlas space.</li>
+<li>DTI B vectors (ASCII text): Orientation vectors of the scanner corresponding to the DTI image.</li>
+<li>DTI B values (ASCII text): B value intensities of the scanner corresponding to the DTI image.</li>
+<li>Atlas brain mask (.nii): Binary mask of the brain of the atlas image.</li>
+<li>Atlas labels (.nii) (default=desikan): Region labels/parcellations of the atlas image.</li>
+</ul>
+</dd>
+<dt>Outputs</dt>
+<dd><ul class="first last simple">
+<li>Brain Graph (.mat, .graphml): Graph of structural region connectivity of the subject.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="intuition-behind-graph-generation">
+<h2>Intuition Behind Graph Generation<a class="headerlink" href="#intuition-behind-graph-generation" title="Permalink to this headline">¶</a></h2>
 <p>To generate a graph, we first form an empty graph (A), with rows and columns corresponding to nodes (atlas regions).  For each fiber streamline, we find all connected regions; for each pair of regions (i,j) in the streamline, we increment the A(i,j).  Because these connections are undirected, we also increment A(j,i) - or equivalently store only the upper triangular matrix.</p>
-<div class="figure align-center" id="id4">
+<div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/graph_construction.png"><img alt="../_images/graph_construction.png" src="../_images/graph_construction.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text">Graph Construction Example</span></p>
+</div>
 </div>
 </div>
 

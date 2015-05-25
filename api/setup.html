@@ -34,7 +34,6 @@
   
     <link rel="top" title="m2g v1.1.0 documentation" href="../index.html"/>
         <link rel="up" title="Function Reference" href="functions.html"/>
-        <link rel="next" title="References" href="../sphinx/references.html"/>
         <link rel="prev" title="Graph Generation" href="gengraph.html"/> 
 
   
@@ -90,17 +89,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#igraph">igraph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#m2g-setup">m2g setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#possibly-helpful-commands-at-runtime">Possibly Helpful Commands at Runtime</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../sphinx/cluster_config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/cloud_computing.html">Cloud Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sphinx/style.html">Style Guides</a><ul>
-<li class="toctree-l2"><a class="reference external" href="http://legacy.python.org/dev/peps/pep-0008/">Python code complies with PEP-8</a></li>
-<li class="toctree-l2"><a class="reference external" href="http://w.ocp.me/style">m2g follows the style guidelines used by the Open Connectome Project</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/style.html">Style Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/faq.html">Frequently Asked Questions (FAQ)</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
@@ -112,17 +105,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/available_data.html">Public Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_usage.html">Basic Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/analysis.html">Analysis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/analysis.html#first-steps-after-processing-your-data">First steps after processing your data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/analysis.html#basic-graph-statistics">Basic Graph Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/analysis.html#graph-analysis-clustering">Graph Analysis: Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/analysis.html#graph-analysis-inference">Graph Analysis: Inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/analysis.html#helping-us">Helping us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_usage.html">Basic Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-complete-pipeline">m2g Complete Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-registration-pipeline">m2g Registration Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-diffusion-processing-pipeline">m2g Diffusion Processing Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul class="current">
@@ -137,19 +128,31 @@
 <li class="toctree-l2"><a class="reference internal" href="parse_b.html">Parse B-values/vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extract_b0.html">Extract B0 Volume</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eddycorrect.html">FSL Eddy Correction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tensor_gen.html">DTI Tensor Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fiber_gen.html">Fiber Tractography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tensor_gen.html">DTI Tensor Estimation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tensor_gen.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tensor_gen.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fiber_gen.html">Fiber Tractography</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fiber_gen.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fiber_gen.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="fiber_convert.html">Fiber Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gengraph.html">Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gengraph.html">Graph Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gengraph.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gengraph.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://TBD">Mailing List</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://openconnectome.github.io/m2g/">Project page</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sphinx/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/graphs/contributors">Contributors</a></li>
 </ul>
 
           
@@ -219,8 +222,6 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../sphinx/references.html" class="btn btn-neutral float-right" title="References" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="gengraph.html" class="btn btn-neutral" title="Graph Generation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
