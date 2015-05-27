@@ -206,18 +206,32 @@
 <dd><p>Extracts brain content from whole head image.</p>
 <p>Using FSL&#8217;s BET, we extract the brain of the MPRAGE scans from the entirity of the image. The reason for this extraction is to aid in registration, as well as provide a mask which allows algorithm to identify voxels of interest further down the pipeline.</p>
 <p>FSL&#8217;s BET documentation: <a class="reference external" href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET">http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET</a></p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>MPRAGE Image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>MPRAGE Image: X x Y x Z structural T1 image from the MRI scanner.</li>
-<li>Fractional Intensity Threshold (0.4): Value used to influence aggressiveness of segmentation</li>
+<li>X x Y x Z, Structural T1 image from the MRI scanner.</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+<dt>Fractional Intensity Threshold: [float] (default = 0.4)</dt>
 <dd><ul class="first last simple">
-<li>Brain image: X x Y x Z structural T1 image in which all voxels not in the brain have been set to an intensity of zero.</li>
-<li>Brain mask: Binary representation of the Brain image</li>
+<li>Value used to influence aggressiveness of segmentation</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Brain image: [nifti]</dt>
+<dd><ul class="first last simple">
+<li>X x Y x Z, Structural T1 image in which all voxels not in the brain have been set to an intensity of zero.</li>
+</ul>
+</dd>
+<dt>Brain mask: [nifti]</dt>
+<dd><ul class="first last simple">
+<li>Binary representation of the Brain image</li>
 </ul>
 </dd>
 </dl>

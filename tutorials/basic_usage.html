@@ -208,22 +208,52 @@
 <code class="descclassname">docs.scripts.</code><code class="descname">m2g</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#docs.scripts.m2g" title="Permalink to this definition">¶</a></dt>
 <dd><p>Complete m2g workflow which estimates brain graphs from multimodal MRI images.</p>
 <p>Starting with raw image data of both structural and diffusion varieties, diffusion scanner parameters, and an atlas which the subject is being compared to, the m2g workflow estimates a brain graph for a subject. In order to submit inputs to the pipeline, files names must be entered in the form of list files (enumerated ASCII text files with one item per line) and submitted to the workflow. The standard MNI152 atlas is currently distributed with our tools, though a user may use a pediatric atlas or another which is most suitable for their data.</p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>MPRAGE image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>MPRAGE image (.nii): Raw 3D structural image of the subject.</li>
-<li>DTI image (.nii): Raw 4D diffusion image (3D + diffusion directions) of the subject.</li>
-<li>DTI B vectors (ASCII text): Orientation vectors of the scanner corresponding to the DTI image.</li>
-<li>DTI B values (ASCII text): B value intensities of the scanner corresponding to the DTI image.</li>
-<li>Atlas image (.nii) (default=MNI152): Structural template T1 image to which the atlas labels are aligned.</li>
-<li>Atlas brain mask (.nii): Binary mask of the brain of the atlas image.</li>
-<li>Atlas labels (.nii) (default=desikan): Region labels/parcellations of the atlas image.</li>
+<li>Raw 3D structural image of the subject.</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+<dt>DTI image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>Brain Graph (.mat, .graphml): Graph of structural region connectivity of the subject.</li>
+<li>Raw 4D diffusion image (3D + diffusion directions) of the subject.</li>
+</ul>
+</dd>
+<dt>DTI B vectors: [ASCII]</dt>
+<dd><ul class="first last simple">
+<li>Orientation vectors of the scanner corresponding to the DTI image.</li>
+</ul>
+</dd>
+<dt>DTI B values: [ASCII]</dt>
+<dd><ul class="first last simple">
+<li>B value intensities of the scanner corresponding to the DTI image.</li>
+</ul>
+</dd>
+<dt>Atlas image: [nifti] (default = MNI152)</dt>
+<dd><ul class="first last simple">
+<li>Structural template T1 image to which the atlas labels are aligned.</li>
+</ul>
+</dd>
+<dt>Atlas brain mask: [nifti]</dt>
+<dd><ul class="first last simple">
+<li>Binary mask of the brain of the atlas image.</li>
+</ul>
+</dd>
+<dt>Atlas labels: [nifti] (default = desikan)</dt>
+<dd><ul class="first last simple">
+<li>Region labels/parcellations of the atlas image.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Brain Graph: [mat, graphml]</dt>
+<dd><ul class="first last simple">
+<li>Graph of structural region connectivity of the subject.</li>
 </ul>
 </dd>
 </dl>
@@ -241,19 +271,37 @@
 <code class="descclassname">docs.scripts.</code><code class="descname">m2g_registration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#docs.scripts.m2g_registration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Registration portion of the m2g workflow which aligns diffusion data to the atlas space.</p>
 <p>In the registration workflow, diffusion and structural images are preprocessed (e.g, skull-stripped and denoised), and then registered.  Specifically, DTI volumes undergo eddy current correction and are registered to the B0 reference scan. The B0 scan is then registered to the structural MPRAGE image, and the MPRAGE image is registered to the atlas (e.g., MNI152) space.  Finally, these transforms are combined to create a DTI volume in atlas space so that scans and subjects can be easily compared.</p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>MPRAGE image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>MPRAGE image (.nii): Raw 3D structural image of the subject.</li>
-<li>DTI image (.nii): Raw 4D diffusion image (3D + diffusion directions) of the subject.</li>
-<li>DTI B values (ASCII text): B value intensities of the scanner corresponding to the DTI image.</li>
-<li>Atlas image (.nii) (default=MNI152): Structural template T1 image to which the atlas labels are aligned.</li>
+<li>Raw 3D structural image of the subject.</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+<dt>DTI image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>Registered DTI image (.nii): DTI image which has been denoised and aligned to the atlas space.</li>
+<li>Raw 4D diffusion image (3D + diffusion directions) of the subject.</li>
+</ul>
+</dd>
+<dt>DTI B values: [ASCII]</dt>
+<dd><ul class="first last simple">
+<li>B value intensities of the scanner corresponding to the DTI image.</li>
+</ul>
+</dd>
+<dt>Atlas image: [nifti] (default = MNI152)</dt>
+<dd><ul class="first last simple">
+<li>Structural template T1 image to which the atlas labels are aligned.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Registered DTI image: [nifti]</dt>
+<dd><ul class="first last simple">
+<li>DTI image which has been denoised and aligned to the atlas space.</li>
 </ul>
 </dd>
 </dl>
@@ -271,20 +319,42 @@
 <code class="descclassname">docs.scripts.</code><code class="descname">m2g_diffusion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#docs.scripts.m2g_diffusion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Diffusion processing portion of the m2g workflow which analyzes diffusion information to estimate brain graphs.</p>
 <p>In the diffusion processing workflow, the newly aligned DTI image is processed and then mapped to a set of defined labels. Specifically, tensors are estimated for each voxel, indicating the primary direction of water diffusion at that location in the brain.  It has been shown that this corresponds to the principal direction of travel for major white matter (axonal) connections in the brain.  From the tensors, fiber streamlines (or tracks) are created using deterministic algorithms. The fibers are then mapped to atlas regions defined by the inputted parcellation.</p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>Registered DTI image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>Registered DTI image (.nii): DTI image which has been denoised and aligned to the atlas space.</li>
-<li>DTI B vectors (ASCII text): Orientation vectors of the scanner corresponding to the DTI image.</li>
-<li>DTI B values (ASCII text): B value intensities of the scanner corresponding to the DTI image.</li>
-<li>Atlas brain mask (.nii): Binary mask of the brain of the atlas image.</li>
-<li>Atlas labels (.nii) (default=desikan): Region labels/parcellations of the atlas image.</li>
+<li>DTI image which has been denoised and aligned to the atlas space.</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+<dt>DTI B vectors: [ASCII]</dt>
 <dd><ul class="first last simple">
-<li>Brain Graph (.mat, .graphml): Graph of structural region connectivity of the subject.</li>
+<li>Orientation vectors of the scanner corresponding to the DTI image.</li>
+</ul>
+</dd>
+<dt>DTI B values: [ASCII]</dt>
+<dd><ul class="first last simple">
+<li>B value intensities of the scanner corresponding to the DTI image.</li>
+</ul>
+</dd>
+<dt>Atlas brain mask: [nitfi]</dt>
+<dd><ul class="first last simple">
+<li>Binary mask of the brain of the atlas image.</li>
+</ul>
+</dd>
+<dt>Atlas labels: [nifti] (default = desikan)</dt>
+<dd><ul class="first last simple">
+<li>Region labels/parcellations of the atlas image.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Brain Graph: [mat, graphml]</dt>
+<dd><ul class="first last simple">
+<li>Graph of structural region connectivity of the subject.</li>
 </ul>
 </dd>
 </dl>

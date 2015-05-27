@@ -206,17 +206,27 @@
 <dd><p>FSL&#8217;s eddy correct function which performs chromatic and geometric alignment of diffusion data.</p>
 <p>The eddy correct tool in FSL both aligns DTI volumes to the B0 scan, as well as corrects for chromatic errors - namely, eddy currents created by the scanner. Eddy currents are inherent to MR imaging as the imposed magnetic field induces a perpendicular current. In the case of DTI, this is an issue as the direction of the magnetic field changes so eddy current direction also changes.</p>
 <p>FSL&#8217;s eddy correct documentation: <a class="reference external" href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/EDDY">http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/EDDY</a></p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>DTI volume: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>DTI volume: [X, Y, Z, D] DTI image stack from scanner.</li>
-<li>B0 index: Location of the B0 scan in the DTI volume.</li>
+<li>X x Y x Z x D, DTI image stack from scanner.</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+<dt>B0 index: [int]</dt>
 <dd><ul class="first last simple">
-<li>Corrected DTI: [X, Y, Z, D] DTI image stack which has been image aligned as well as eddy correction.</li>
+<li>Location of the B0 scan in the DTI volume.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Corrected DTI: [nifti]</dt>
+<dd><ul class="first last simple">
+<li>X x Y x Z x D, DTI image stack which has been image aligned as well as eddy correction.</li>
 </ul>
 </dd>
 </dl>

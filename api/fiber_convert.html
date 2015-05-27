@@ -205,16 +205,22 @@
 <code class="descclassname">packages.tractography.</code><code class="descname">fiber_convert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.tractography.fiber_convert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts fibers from Camino format to MRIStudio format</p>
 <p>Fibers produced by Camino are in a format which is incompatible with developed graph generation code, and thus are converted to the legacy MRIStudio format.</p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>Camino fibers: [Bfloat]</dt>
 <dd><ul class="first last simple">
-<li>Camino fibers: File generated containing fiber tracts computed from the diffusion tensors</li>
+<li>File generated containing fiber tracts computed from the diffusion tensors</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>MRIStudio fibers: [dat]</dt>
 <dd><ul class="first last simple">
-<li>MRIStudio fibers: File containing the reformated fibers in a data format consistent with MRIStudio&#8217;s generated fibers.</li>
+<li>File containing the reformated fibers in a data format consistent with MRIStudio&#8217;s generated fibers.</li>
 </ul>
 </dd>
 </dl>

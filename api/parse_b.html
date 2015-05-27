@@ -205,18 +205,32 @@
 <code class="descclassname">packages.dtipreproc.</code><code class="descname">parse_b</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.dtipreproc.parse_b" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parses b-vectors (or, gradient direction) and b-values files provided by the scanner.</p>
 <p>B-vectors and b-values can be provided in slightly different formats from different scanners, and this module parses them to ensure that downstream functions correctly perceive the information provided.</p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>B-values: [ASCII]</dt>
 <dd><ul class="first last simple">
-<li>B-values: Ordered list of b-values from the scanner</li>
-<li>B-vectors: Gradient directions of scanner corresponding to the b-values</li>
+<li>Ordered list of b-values from the scanner</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+<dt>B-vectors: [ASCII]</dt>
 <dd><ul class="first last simple">
-<li>B0 Index: Location of the first B0 volume in the DTI image stack</li>
-<li>Gradients: Reformatted B-vectors file which is compatible with downstream processing algorithms</li>
+<li>Gradient directions of scanner corresponding to the b-values</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>B0 Index: [int]</dt>
+<dd><ul class="first last simple">
+<li>Location of the first B0 volume in the DTI image stack</li>
+</ul>
+</dd>
+<dt>Gradients: [ASCII]</dt>
+<dd><ul class="first last simple">
+<li>Reformatted B-vectors file which is compatible with downstream processing algorithms</li>
 </ul>
 </dd>
 </dl>

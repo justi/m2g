@@ -206,20 +206,42 @@
 <dd><p>FSL&#8217;s linear registration tool for aligning multimodal MRI images.</p>
 <p>The linear registration tool in FSL, FLIRT, allows us to both compute and apply registration transforms between image spaces. This tool uses affine registration, and is implemented here to transform DTI data into structural MPRAGE space, as well as the MPRAGE image into standard MNI space.</p>
 <p>FSL&#8217;s FLIRT documentation: <a class="reference external" href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FLIRT">http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FLIRT</a></p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>Input image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>Input image: The 3D image which is to be transformed.</li>
-<li>Reference image: The 3D image which will be the target of the transformation.</li>
-<li>Search range [X, Y, Z] (-180, 180): Orientation angles to search when aligning images.</li>
-<li>Transform matrix: If previously computed, the matrix which maps from the original image to the reference image.</li>
+<li>The 3D image which is to be transformed.</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+<dt>Reference image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>Registered image: The input image aligned to the reference image space.</li>
-<li>Transform matrix: If not previously computed, the matrix which maps from the original image to the reference image.</li>
+<li>The 3D image which will be the target of the transformation.</li>
+</ul>
+</dd>
+<dt>Search range: [2x float] (default = -180 180)</dt>
+<dd><ul class="first last simple">
+<li>Orientation angles to search when aligning images.</li>
+</ul>
+</dd>
+<dt>Transform matrix: [xfm] -optional</dt>
+<dd><ul class="first last simple">
+<li>If previously computed, the matrix which maps from the original image to the reference image.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Registered image: [nifti]</dt>
+<dd><ul class="first last simple">
+<li>The input image aligned to the reference image space.</li>
+</ul>
+</dd>
+<dt>Transform matrix: [xfm] -optional</dt>
+<dd><ul class="first last simple">
+<li>The matrix which maps from the original image to the reference image. This option and the input transformation matrix are mutually exclusive.</li>
 </ul>
 </dd>
 </dl>

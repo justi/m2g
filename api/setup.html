@@ -203,17 +203,27 @@
 <dt id="packages.utils.setup">
 <code class="descclassname">packages.utils.</code><code class="descname">setup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.utils.setup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial script for setting up m2g</p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>(Indirect) $M2G_HOME: [string]</dt>
 <dd><ul class="first last simple">
-<li>(Indirect) $M2G_HOME: system variable needs to be set to the base directory of the cloned m2g repo.</li>
+<li>System variable needs to be set to the base directory of the cloned m2g repo.</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>data/: [directory]</dt>
 <dd><ul class="first last simple">
-<li>data/: directory containing atlas labels and template images.</li>
-<li>zindex.c: compiled cython script used in the framework.</li>
+<li>Directory containing atlas labels and template images.</li>
+</ul>
+</dd>
+<dt>zindex.c: [c]</dt>
+<dd><ul class="first last simple">
+<li>Compiled cython script used in the framework.</li>
 </ul>
 </dd>
 </dl>
