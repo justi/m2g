@@ -113,7 +113,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#dti-preprocessing">DTI Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#registration">Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#diffusion-processing">Diffusion Processing</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
@@ -201,19 +206,37 @@
 <dd><p>Computes tensors from DTI image</p>
 <p>We leverage Camino&#8217;s tensor estimation tool to compute the tensors at each voxel within the DTI volumes. The tensors are computed using standard methods of estimation: performing multiple linear regression on the equation relating the diffusion direction matrix of the voxel, the b-vectors, and the voxel intensities across different imposed b-fields.</p>
 <p>Camino&#8217;s dtfit documentation: <a class="reference external" href="http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Dtfit">http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Dtfit</a></p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>DTI Image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>DTI Image: Corrected DTI X x Y x Z x D volume</li>
-<li>B-vectors: Field direction vectors for each volume in DTI image.</li>
-<li>B-values: List of b-values corresponding to the b-vectors.</li>
-<li>Brain mask: Binary labels identifying region of the image which contains brain tissue.</li>
+<li>Corrected DTI X x Y x Z x D volume</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+<dt>B-vectors: [ASCII]</dt>
 <dd><ul class="first last simple">
-<li>Tensors: List of tensors for each voxel in the source DTI image.</li>
+<li>Field direction vectors for each volume in DTI image.</li>
+</ul>
+</dd>
+<dt>B-values: [ASCII]</dt>
+<dd><ul class="first last simple">
+<li>List of b-values corresponding to the b-vectors.</li>
+</ul>
+</dd>
+<dt>Brain mask: [nifti]</dt>
+<dd><ul class="first last simple">
+<li>Binary labels identifying region of the image which contains brain tissue.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Tensors: [Bfloat]</dt>
+<dd><ul class="first last simple">
+<li>List of tensors for each voxel in the source DTI image.</li>
 </ul>
 </dd>
 </dl>

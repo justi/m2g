@@ -113,7 +113,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#dti-preprocessing">DTI Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#registration">Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#diffusion-processing">Diffusion Processing</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
@@ -201,19 +206,37 @@
 <dd><p>Computes fiber streamlines from diffusion tensor data.</p>
 <p>Using Camino&#8217;s implementation of the FACT algorithm, published by Mori et al. (2001), we compute fiber tracts throughout the brain from the previously calculated tensors for a given brain.</p>
 <p>Camino&#8217;s track documentation: <a class="reference external" href="http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Track">http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Track</a></p>
+<p><strong>Inputs</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Inputs</dt>
+<dt>Tensors: [BDouble]</dt>
 <dd><ul class="first last simple">
-<li>Tensors: The Camino formatted file containing voxel diffusion tensor information.</li>
-<li>Brain mask: Binary mask of the brain which will be used to limiting tractography to brain-occupied regions of the image.</li>
-<li>Anisotropy threshold (0.2): Stopping threshold for fiber tractography.</li>
-<li>Curve threshold (70): Angular stopping threshold for fiber tractography.</li>
+<li>The Camino formatted file containing voxel diffusion tensor information.</li>
 </ul>
 </dd>
-<dt>Outputs</dt>
+<dt>Brain mask: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>Fibers: Camino formatted fiber streamlines</li>
+<li>Binary mask of the brain which will be used to limiting tractography to brain-occupied regions of the image.</li>
+</ul>
+</dd>
+<dt>Anisotropy threshold: [float] (default = 0.2)</dt>
+<dd><ul class="first last simple">
+<li>Stopping threshold for fiber tractography.</li>
+</ul>
+</dd>
+<dt>Curve threshold: [float] (default = 70)</dt>
+<dd><ul class="first last simple">
+<li>Angular stopping threshold for fiber tractography.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Outputs</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Fibers: [Bfloat]</dt>
+<dd><ul class="first last simple">
+<li>Camino formatted fiber streamlines</li>
 </ul>
 </dd>
 </dl>

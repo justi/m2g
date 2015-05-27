@@ -112,7 +112,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#dti-preprocessing">DTI Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#registration">Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#diffusion-processing">Diffusion Processing</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
@@ -284,7 +289,7 @@ make
 <span class="c"># a server for convenience.</span>
 <span class="c"># FSL website: http://fsl.fmrib.ox.ac.uk/fsldownloads/</span>
 <span class="nb">cd</span> <span class="nv">$m2g</span>/src/
-wget http://openconnecto.me/data/public/MR/startup_m2g/fsl-5.0.8-centos6_64.tar.gz
+wget http://openconnecto.me/data/public/MR/m2g_v1_1_0/devs/fsl-5.0.8-centos6_64.tar.gz
 tar zxvf fsl-5.0.8-centos6_64.tar.gz
 <span class="c">#Delete raw targz if space is tight</span>
 </pre></div>
@@ -330,21 +335,21 @@ python <span class="nv">$M2G_HOME</span>/packages/utils/setup.py
 
 mkdir <span class="nv">$m2g</span>/data
 <span class="nb">cd</span> <span class="nv">$m2g</span>/data
-wget http://openconnecto.me/data/public/MR/startup_m2g/KKI2009-22.tar.gz
+wget http://openconnecto.me/data/public/MR/m2g_v1_1_0/devs/KKI2009-22.tar.gz
 tar zxvf KKI2009-22.tar.gz
 
 <span class="nb">cd</span> <span class="nv">$m2g</span>/src
-wget http://openconnecto.me/data/public/MR/startup_m2g/Pipeline-6.0.1-unix.tar.bz2
+wget http://openconnecto.me/data/public/MR/m2g_v1_1_0/devs/Pipeline-6.0.1-unix.tar.bz2
 mkdir loni
 tar -xvf Pipeline-6.0.1-unix.tar.bz2 -C loni
 
-<span class="c">#Get workflow</span>
+<span class="c">#Get demo workflow</span>
 <span class="nb">cd</span> <span class="nv">$m2g</span>/src/m2g/library/workflows/
-wget http://openconnecto.me/data/public/MR/startup_m2g/m2g_test.pipe
+wget http://openconnecto.me/data/public/MR/m2g_v1_1_0/devs/m2g_test.pipe
 
 mkdir <span class="nv">$HOME</span>/.pipeline
 <span class="nb">cd</span> <span class="nv">$HOME</span>/.pipeline
-wget --no-check-certificate http://openconnecto.me/data/public/MR/startup_m2g/preferences.xml
+wget http://openconnecto.me/data/public/MR/m2g_v1_1_0/devs/preferences.xml
 </pre></div>
 </div>
 </div>
