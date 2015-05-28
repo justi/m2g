@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Graph Generation &mdash; m2g v1.1.0 documentation</title>
+  <title>Graph Generation &mdash; m2g v1.1.1 documentation</title>
   
 
   
@@ -32,9 +32,9 @@
   
 
   
-    <link rel="top" title="m2g v1.1.0 documentation" href="../index.html"/>
+    <link rel="top" title="m2g v1.1.1 documentation" href="../index.html"/>
         <link rel="up" title="Function Reference" href="functions.html"/>
-        <link rel="next" title="Setup" href="setup.html"/>
+        <link rel="next" title="Create Atlas" href="create_atlas.html"/>
         <link rel="prev" title="Fiber Converter" href="fiber_convert.html"/> 
 
   
@@ -127,32 +127,20 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="functions.html">Function Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="bet.html">FSL Brain Extraction Tool</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="bet.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bet.html#references">References</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="bet.html">FSL Brain Extraction Tool</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flirt.html">FSL Linear Registration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parse_b.html">Parse B-values/vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extract_b0.html">Extract B0 Volume</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eddycorrect.html">FSL Eddy Correction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tensor_gen.html">DTI Tensor Estimation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tensor_gen.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tensor_gen.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="fiber_gen.html">Fiber Tractography</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="fiber_gen.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fiber_gen.html#references">References</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="tensor_gen.html">DTI Tensor Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fiber_gen.html">Fiber Tractography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fiber_convert.html">Fiber Converter</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Graph Generation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pseudocode">Pseudocode</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_atlas.html">Create Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
@@ -271,9 +259,6 @@
 <a class="reference internal image-reference" href="../_images/graph_construction.png"><img alt="../_images/graph_construction.png" src="../_images/graph_construction.png" style="width: 800px;" /></a>
 </div>
 </div>
-<div class="section" id="pseudocode">
-<h2>Pseudocode<a class="headerlink" href="#pseudocode" title="Permalink to this headline">¶</a></h2>
-</div>
 </div>
 
 
@@ -282,7 +267,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="setup.html" class="btn btn-neutral float-right" title="Setup" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="create_atlas.html" class="btn btn-neutral float-right" title="Create Atlas" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="fiber_convert.html" class="btn btn-neutral" title="Fiber Converter" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -315,7 +300,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v1.1.0',
+            VERSION:'v1.1.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

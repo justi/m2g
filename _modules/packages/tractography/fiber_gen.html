@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>packages.tractography.tensor_gen &mdash; m2g v1.1.1 documentation</title>
+  <title>packages.tractography.fiber_gen &mdash; m2g v1.1.1 documentation</title>
   
 
   
@@ -171,7 +171,7 @@
       
           <li><a href="../../index.html">Module code</a> &raquo;</li>
       
-    <li>packages.tractography.tensor_gen</li>
+    <li>packages.tractography.fiber_gen</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -182,7 +182,7 @@
 </div>
           <div role="main" class="document">
             
-  <h1>Source code for packages.tractography.tensor_gen</h1><div class="highlight"><pre>
+  <h1>Source code for packages.tractography.fiber_gen</h1><div class="highlight"><pre>
 <span class="c">#!/usr/bin/env python</span>
 
 <span class="c"># Copyright 2015 Open Connectome Project (http://openconnecto.me)</span>
@@ -200,7 +200,7 @@
 <span class="c"># limitations under the License.</span>
 <span class="c">#</span>
 
-<span class="c"># dti2tens.py</span>
+<span class="c"># tens2fibs.py</span>
 <span class="c"># Created by Greg Kiar on 2015-01-09.</span>
 <span class="c"># Email: gkiar@jhu.edu</span>
 <span class="c"># Copyright (c) 2015. All rights reserved.</span>
@@ -208,71 +208,63 @@
 
 
 
-<span class="c"># Load necessary packages</span>
-<span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
-<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">system</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">basename</span><span class="p">,</span> <span class="n">splitext</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">basename</span>
 
-
-<div class="viewcode-block" id="make_tens"><a class="viewcode-back" href="../../../api/tensor_gen.html#packages.tractography.tensor_gen.make_tens">[docs]</a><span class="k">def</span> <span class="nf">make_tens</span><span class="p">(</span><span class="n">dti</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">bval</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">dti_bfloat</span><span class="p">,</span> <span class="n">tensors</span><span class="p">):</span> <span class="c">#, fa, md, eigs):</span>
-
+<div class="viewcode-block" id="make_fibs"><a class="viewcode-back" href="../../../api/fiber_gen.html#packages.tractography.fiber_gen.make_fibs">[docs]</a><span class="k">def</span> <span class="nf">make_fibs</span><span class="p">(</span><span class="n">tensors</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">anis</span><span class="p">,</span> <span class="n">curve</span><span class="p">,</span> <span class="n">fibers</span><span class="p">,</span> <span class="n">vtk</span><span class="p">,</span><span class="n">log</span><span class="p">):</span>
 	<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">	Computes tensors from DTI image</span>
+<span class="sd">	Computes fiber streamlines from diffusion tensor data.</span>
 <span class="sd">	</span>
-<span class="sd">	We leverage Camino&#39;s tensor estimation tool to compute the tensors at each voxel within the DTI volumes. The tensors are computed using standard methods of estimation: performing multiple linear regression on the equation relating the diffusion direction matrix of the voxel, the b-vectors, and the voxel intensities across different imposed b-fields.</span>
+<span class="sd">	Using Camino&#39;s implementation of the FACT algorithm, published by Mori et al. (2001), we compute fiber tracts throughout the brain from the previously calculated tensors for a given brain.</span>
 <span class="sd">	</span>
-<span class="sd">	Camino&#39;s dtfit documentation: http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Dtfit</span>
+<span class="sd">	</span>
+<span class="sd">	Camino&#39;s track documentation: http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Track</span>
 <span class="sd">	</span>
 <span class="sd">	**Positional Arguments**</span>
 <span class="sd">	</span>
-<span class="sd">			DTI Image: [nifti]</span>
-<span class="sd">					- Corrected DTI volume.</span>
-<span class="sd">			B-vectors: [ASCII]</span>
-<span class="sd">					- Field direction vectors for each volume in DTI image.</span>
-<span class="sd">			B-values: [ASCII]</span>
-<span class="sd">					- List of b-values corresponding to the b-vectors.</span>
+<span class="sd">			Tensors: [BDouble]</span>
+<span class="sd">					- The Camino formatted file containing voxel diffusion tensor information.</span>
 <span class="sd">			Brain mask: [nifti]</span>
-<span class="sd">					- Binary labels identifying region of the image which contains brain tissue.</span>
-<span class="sd">			Tensors: [Bdouble]</span>
-<span class="sd">					- List of tensors for each voxel in the source DTI image.</span>
+<span class="sd">					- Binary mask of the brain which will be used to limiting tractography to brain-occupied regions of the image.</span>
+<span class="sd">			Anisotropy threshold: [float] (default = 0.2)</span>
+<span class="sd">					- Stopping threshold for fiber tractography.</span>
+<span class="sd">			Curve threshold: [float] (default = 70)</span>
+<span class="sd">					- Angular stopping threshold for fiber tractography.</span>
+<span class="sd">			Fibers: [Bfloat]</span>
+<span class="sd">					- Camino formatted fiber streamlines</span>
 <span class="sd">	&quot;&quot;&quot;</span>
-	<span class="c"># Create scheme file</span>
-	<span class="n">system</span><span class="p">(</span><span class="s">&#39;pointset2scheme -inputfile &#39;</span><span class="o">+</span><span class="n">grad</span><span class="o">+</span><span class="s">&#39; -bvalue &#39;</span><span class="o">+</span><span class="n">bval</span><span class="o">+</span><span class="s">&#39; -outputfile &#39;</span><span class="o">+</span><span class="n">scheme</span><span class="p">)</span>
+	<span class="p">[</span><span class="n">root</span><span class="p">,</span> <span class="n">ext</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">basename</span><span class="p">(</span><span class="n">fibers</span><span class="p">))</span>
 	
-	<span class="c"># Maps the DTI image to a Camino compatible Bfloat format</span>
-	<span class="n">system</span><span class="p">(</span><span class="s">&#39;image2voxel -4dimage &#39;</span><span class="o">+</span><span class="n">dti</span><span class="o">+</span><span class="s">&#39; -outputfile &#39;</span><span class="o">+</span><span class="n">dti_bfloat</span><span class="p">)</span>
+	<span class="c"># Perfoms fiber tractography in voxelspace on the given tensors</span>
+	<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&#39;track -inputmodel dt -seedfile &#39;</span><span class="o">+</span><span class="n">mask</span><span class="o">+</span><span class="s">&#39; -anisthresh &#39;</span><span class="o">+</span><span class="n">anis</span><span class="o">+</span><span class="s">&#39; -curvethresh &#39;</span><span class="o">+</span><span class="n">curve</span><span class="o">+</span><span class="s">&#39; -inputfile &#39;</span><span class="o">+</span><span class="n">tensors</span><span class="o">+</span><span class="s">&#39; &gt; &#39;</span><span class="o">+</span><span class="n">fibers</span><span class="o">+</span><span class="s">&#39; -outputinvoxelspace 2&gt;&#39;</span><span class="o">+</span><span class="n">log</span><span class="p">)</span>
 	
-	<span class="c"># Produce tensors from image</span>
-	<span class="n">system</span><span class="p">(</span><span class="s">&#39;dtfit &#39;</span><span class="o">+</span><span class="n">dti_bfloat</span><span class="o">+</span><span class="s">&#39; &#39;</span><span class="o">+</span><span class="n">scheme</span><span class="o">+</span><span class="s">&#39; -bgmask &#39;</span><span class="o">+</span><span class="n">mask</span><span class="o">+</span><span class="s">&#39; -outputfile &#39;</span><span class="o">+</span><span class="n">tensors</span><span class="p">)</span>
+	<span class="c">#Removes small fibers</span>
+	<span class="c">#os.system(&#39;procstreamlines -mintractlength&#39;)</span>
 	
-	<span class="c"># In order to visualize, and just &#39;cause it&#39;s fun anyways, we get some stats</span>
-
-	<span class="c">#[fa_base, ext] = splitext(basename(fa))</span>
-	<span class="c">#[md_base, ext] = splitext(basename(md))</span>
-	<span class="c">#system(&#39;for PROG in &#39;+fa+&#39; &#39;+md+&#39;; do cat &#39;+tensors+&#39; | ${PROG} | voxel2image -outputroot ${PROG} -header &#39;+dti+&#39;; done&#39;)</span>
-
-	<span class="c"># We also need the eigen system to visualize</span>
-	<span class="c">#system(&#39;cat &#39;+tensors+&#39; | dteig &gt; &#39;+eigs)</span>
+	<span class="c"># Converts the fibers to an easy-to-view format</span>
+	<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&#39;vtkstreamlines -colourorient &lt; &#39;</span><span class="o">+</span><span class="n">fibers</span><span class="o">+</span><span class="s">&#39; &gt; &#39;</span><span class="o">+</span><span class="n">vtk</span><span class="p">)</span>
 </div>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-  <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;dti&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The DTI image, not skull stripped (.nii)&quot;</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;grad&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The gradient directions corresponding to the DTI image (.grad)&quot;</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;bval&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The bvalue corresponding to the DTI image  (default 700)&quot;</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;mask&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The brain mask of the DTI image (.nii, .nii.gz)&quot;</span><span class="p">)</span> 
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;scheme&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The scheme file (.scheme)&quot;</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;dti_bfloat&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The Bfloat format equivalent of the DTI image (.Bfloat)&quot;</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;tensors&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The produced tensors in Bdouble format (.Bdouble)&quot;</span><span class="p">)</span>
-  <span class="c">#parser.add_argument(&quot;fa&quot;, action=&quot;store&quot;, help=&quot;The fractional anisotropy statistic (.nii)&quot;)</span>
-  <span class="c">#parser.add_argument(&quot;md&quot;, action=&quot;store&quot;, help=&quot;The mean diffusivity statistic (.nii)&quot;)</span>
-  <span class="c">#parser.add_argument(&quot;eigs&quot;, action=&quot;store&quot;, help=&quot;The eigen values of the system (.Bdouble)&quot;)</span>
-
+  <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;tensors&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The tensors produced from the DTI image (.Bdouble)&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;mask&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The brain mask of DTI image (.nii, .nii.gz)&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;anis&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The anisotropic threshold value (default =0.2)&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;curve&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The curvature threshold value (default =60)&quot;</span><span class="p">)</span> 
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;fibers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The produced fiber tracts (.Bfloat)&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;vtk&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The fibers in another format (.vtk)&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;log&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The output log file&quot;</span><span class="p">)</span>
+  
+  
   <span class="n">result</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-  <span class="n">make_tens</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">dti</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">grad</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">bval</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">dti_bfloat</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">tensors</span><span class="p">)</span><span class="c">#, result.fa, result.md, result.eigs)</span>
+  <span class="n">make_fibs</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">tensors</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">anis</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">curve</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">fibers</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">vtk</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
   <span class="n">main</span><span class="p">()</span>
 </pre></div>
 

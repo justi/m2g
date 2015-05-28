@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extract B0 Volume &mdash; m2g v1.1.1 documentation</title>
+  <title>Downsample Graph &mdash; m2g v1.1.1 documentation</title>
   
 
   
@@ -34,8 +34,7 @@
   
     <link rel="top" title="m2g v1.1.1 documentation" href="../index.html"/>
         <link rel="up" title="Function Reference" href="functions.html"/>
-        <link rel="next" title="FSL Eddy Correction" href="eddycorrect.html"/>
-        <link rel="prev" title="Parse B-values/vectors" href="parse_b.html"/> 
+        <link rel="prev" title="Create Atlas" href="create_atlas.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -130,7 +129,7 @@
 <li class="toctree-l2"><a class="reference internal" href="bet.html">FSL Brain Extraction Tool</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flirt.html">FSL Linear Registration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parse_b.html">Parse B-values/vectors</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Extract B0 Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extract_b0.html">Extract B0 Volume</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eddycorrect.html">FSL Eddy Correction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tensor_gen.html">DTI Tensor Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fiber_gen.html">Fiber Tractography</a></li>
@@ -140,7 +139,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="create_atlas.html">Create Atlas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="downsample.html">Downsample Graph</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Downsample Graph</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
@@ -173,11 +172,11 @@
       
           <li><a href="functions.html">Function Reference</a> &raquo;</li>
       
-    <li>Extract B0 Volume</li>
+    <li>Downsample Graph</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/api/extract_b0.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/downsample.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -186,32 +185,39 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="extract-b0-volume">
-<h1>Extract B0 Volume<a class="headerlink" href="#extract-b0-volume" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="downsample-graph">
+<h1>Downsample Graph<a class="headerlink" href="#downsample-graph" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="packages.dtipreproc.extract_b0.extract_vol">
-<code class="descclassname">packages.dtipreproc.extract_b0.</code><code class="descname">extract_vol</code><span class="sig-paren">(</span><em>dti_img</em>, <em>b0</em>, <em>b0_vol</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/packages/dtipreproc/extract_b0.html#extract_vol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#packages.dtipreproc.extract_b0.extract_vol" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extracts and saves the B0 volume from a DTI volume stack.</p>
-<p>When performing DTI registration, eddy correction, and multi-modal registration, the B0 scan of a DTI volume is often needed. Given the set of b-values used by the scanner and the DTI volume set, we can extract the B0 volume and save it as a niftii image for easier access in further processing.</p>
+<dt id="mrcap.utils.downsample.downsample">
+<code class="descclassname">mrcap.utils.downsample.</code><code class="descname">downsample</code><span class="sig-paren">(</span><em>g</em>, <em>factor=-1</em>, <em>ds_atlas=None</em>, <em>ignore_zero=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mrcap/utils/downsample.html#downsample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mrcap.utils.downsample.downsample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downsample a graph by a scale factor.</p>
+<blockquote>
+<div><p>Downsamples by collapsing regions using an dynamically generated downsampled atlas. Rebuilding the graph takes on the order of a few minutes.</p>
 <p><strong>Positional Arguments</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>DTI Image: [nifti]</dt>
+<dt>g: [graphml]</dt>
 <dd><ul class="first last simple">
-<li>Original DTI volume stack from scanner</li>
+<li>A full sized big graph.</li>
 </ul>
 </dd>
-<dt>B0 Index: [int] (default = 0)</dt>
+<dt>factor: [int] (default = 1)</dt>
 <dd><ul class="first last simple">
-<li>Location of b=0 volume in the DTI stack</li>
+<li>The downsampling factor.</li>
 </ul>
 </dd>
-<dt>B0 Volume: [nifti]</dt>
+<dt>ds_atlas: [nifti] (default = MNI152)</dt>
 <dd><ul class="first last simple">
-<li>Output volume containing the DTI volume corresponding to a b0 index</li>
+<li>A prebuilt downsampled nifti atlas with which to downsample.</li>
+</ul>
+</dd>
+<dt>ignore_zero: [boolean] (default = True)</dt>
+<dd><ul class="first last simple">
+<li>We assume the zeroth label is outside the brain.</li>
 </ul>
 </dd>
 </dl>
+</div></blockquote>
 </div></blockquote>
 </dd></dl>
 
@@ -223,10 +229,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="eddycorrect.html" class="btn btn-neutral float-right" title="FSL Eddy Correction" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="parse_b.html" class="btn btn-neutral" title="Parse B-values/vectors" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="create_atlas.html" class="btn btn-neutral" title="Create Atlas" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>FSL Linear Registration &mdash; m2g v1.1.0 documentation</title>
+  <title>FSL Linear Registration &mdash; m2g v1.1.1 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="m2g v1.1.0 documentation" href="../index.html"/>
+    <link rel="top" title="m2g v1.1.1 documentation" href="../index.html"/>
         <link rel="up" title="Function Reference" href="functions.html"/>
         <link rel="next" title="Parse B-values/vectors" href="parse_b.html"/>
         <link rel="prev" title="FSL Brain Extraction Tool" href="bet.html"/> 
@@ -127,32 +127,20 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="functions.html">Function Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="bet.html">FSL Brain Extraction Tool</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="bet.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bet.html#references">References</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="bet.html">FSL Brain Extraction Tool</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">FSL Linear Registration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parse_b.html">Parse B-values/vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extract_b0.html">Extract B0 Volume</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eddycorrect.html">FSL Eddy Correction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tensor_gen.html">DTI Tensor Estimation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tensor_gen.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tensor_gen.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="fiber_gen.html">Fiber Tractography</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="fiber_gen.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fiber_gen.html#references">References</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="tensor_gen.html">DTI Tensor Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fiber_gen.html">Fiber Tractography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fiber_convert.html">Fiber Converter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gengraph.html">Graph Generation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gengraph.html#pseudocode">Pseudocode</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_atlas.html">Create Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
@@ -206,7 +194,7 @@
 <dd><p>FSL&#8217;s linear registration tool for aligning multimodal MRI images.</p>
 <p>The linear registration tool in FSL, FLIRT, allows us to both compute and apply registration transforms between image spaces. This tool uses affine registration, and is implemented here to transform DTI data into structural MPRAGE space, as well as the MPRAGE image into standard MNI space.</p>
 <p>FSL&#8217;s FLIRT documentation: <a class="reference external" href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FLIRT">http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FLIRT</a></p>
-<p><strong>Inputs</strong></p>
+<p><strong>Positional Arguments</strong></p>
 <blockquote>
 <div><dl class="docutils">
 <dt>Input image: [nifti]</dt>
@@ -219,29 +207,24 @@
 <li>The 3D image which will be the target of the transformation.</li>
 </ul>
 </dd>
+<dt>Output image: [nifti]</dt>
+<dd><ul class="first last simple">
+<li>The input image aligned to the reference image space.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Optional Arguments</strong></p>
+<blockquote>
+<div><dl class="docutils">
 <dt>Search range: [2x float] (default = -180 180)</dt>
 <dd><ul class="first last simple">
 <li>Orientation angles to search when aligning images.</li>
 </ul>
 </dd>
-<dt>Transform matrix: [xfm] -optional</dt>
+<dt>Transform matrix: [xfm] </dt>
 <dd><ul class="first last simple">
-<li>If previously computed, the matrix which maps from the original image to the reference image.</li>
-</ul>
-</dd>
-</dl>
-</div></blockquote>
-<p><strong>Outputs</strong></p>
-<blockquote>
-<div><dl class="docutils">
-<dt>Registered image: [nifti]</dt>
-<dd><ul class="first last simple">
-<li>The input image aligned to the reference image space.</li>
-</ul>
-</dd>
-<dt>Transform matrix: [xfm] -optional</dt>
-<dd><ul class="first last simple">
-<li>The matrix which maps from the original image to the reference image. This option and the input transformation matrix are mutually exclusive.</li>
+<li>Using different flags, this can be either an input or an output parameter which maps the input image without recomputing the transform, or stores the transform, respectively.</li>
 </ul>
 </dd>
 </dl>
@@ -289,7 +272,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v1.1.0',
+            VERSION:'v1.1.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

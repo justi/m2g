@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; m2g v1.1.0 documentation</title>
+  <title>Index &mdash; m2g v1.1.1 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
   
 
   
-    <link rel="top" title="m2g v1.1.0 documentation" href="index.html"/> 
+    <link rel="top" title="m2g v1.1.1 documentation" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -125,32 +125,20 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/modules.html">Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/functions.html">Function Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/bet.html">FSL Brain Extraction Tool</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/bet.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/bet.html#references">References</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="api/bet.html">FSL Brain Extraction Tool</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/flirt.html">FSL Linear Registration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/parse_b.html">Parse B-values/vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/extract_b0.html">Extract B0 Volume</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/eddycorrect.html">FSL Eddy Correction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/tensor_gen.html">DTI Tensor Estimation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/tensor_gen.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/tensor_gen.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/fiber_gen.html">Fiber Tractography</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/fiber_gen.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/fiber_gen.html#references">References</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="api/tensor_gen.html">DTI Tensor Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/fiber_gen.html">Fiber Tractography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/fiber_convert.html">Fiber Converter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/gengraph.html">Graph Generation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/gengraph.html#pseudocode">Pseudocode</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="api/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/create_atlas.html">Create Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
@@ -197,12 +185,14 @@
 
 <div class="genindex-jumpbox">
  <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#M"><strong>M</strong></a>
- | <a href="#P"><strong>P</strong></a>
- | <a href="#S"><strong>S</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#R"><strong>R</strong></a>
  
 </div>
 <h2 id="B">B</h2>
@@ -210,6 +200,26 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="api/bet.html#docs.scripts.bet">bet() (in module docs.scripts)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="api/create_atlas.html#mrcap.utils.create_atlas.create">create() (in module mrcap.utils.create_atlas)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="api/downsample.html#mrcap.utils.downsample.downsample">downsample() (in module mrcap.utils.downsample)</a>
   </dt>
 
   </dl></td>
@@ -225,7 +235,7 @@
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api/extract_b0.html#packages.dtipreproc.extract_b0">extract_b0() (in module packages.dtipreproc)</a>
+  <dt><a href="api/extract_b0.html#packages.dtipreproc.extract_b0.extract_vol">extract_vol() (in module packages.dtipreproc.extract_b0)</a>
   </dt>
 
   </dl></td>
@@ -235,17 +245,13 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api/fiber_convert.html#packages.tractography.fiber_convert">fiber_convert() (in module packages.tractography)</a>
-  </dt>
-
-      
-  <dt><a href="api/fiber_gen.html#packages.tractography.fiber_gen">fiber_gen() (in module packages.tractography)</a>
+  <dt><a href="api/flirt.html#docs.scripts.flirt">flirt() (in module docs.scripts)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api/flirt.html#docs.scripts.flirt">flirt() (in module docs.scripts)</a>
+  <dt><a href="api/parse_b.html#packages.dtipreproc.parse_b.format_bvec">format_bvec() (in module packages.dtipreproc.parse_b)</a>
   </dt>
 
   </dl></td>
@@ -272,10 +278,14 @@
   <dt><a href="tutorials/basic_usage.html#docs.scripts.m2g_diffusion">m2g_diffusion() (in module docs.scripts)</a>
   </dt>
 
+      
+  <dt><a href="tutorials/basic_usage.html#docs.scripts.m2g_registration">m2g_registration() (in module docs.scripts)</a>
+  </dt>
+
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="tutorials/basic_usage.html#docs.scripts.m2g_registration">m2g_registration() (in module docs.scripts)</a>
+  <dt><a href="api/fiber_gen.html#packages.tractography.fiber_gen.make_fibs">make_fibs() (in module packages.tractography.fiber_gen)</a>
   </dt>
 
       
@@ -285,21 +295,21 @@
   </dl></td>
 </tr></table>
 
-<h2 id="P">P</h2>
+<h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api/parse_b.html#packages.dtipreproc.parse_b">parse_b() (in module packages.dtipreproc)</a>
+  <dt><a href="api/fiber_convert.html#packages.tractography.fiber_convert.offset">offset() (in module packages.tractography.fiber_convert)</a>
   </dt>
 
   </dl></td>
 </tr></table>
 
-<h2 id="S">S</h2>
+<h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api/setup.html#packages.utils.setup">setup() (in module packages.utils)</a>
+  <dt><a href="api/parse_b.html#packages.dtipreproc.parse_b.read_bvals">read_bvals() (in module packages.dtipreproc.parse_b)</a>
   </dt>
 
   </dl></td>
@@ -336,7 +346,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v1.1.0',
+            VERSION:'v1.1.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
