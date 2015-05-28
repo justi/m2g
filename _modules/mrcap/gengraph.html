@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mrcap.gengraph &mdash; m2g v1.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/ocp_favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="m2g v1.1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../index.html" class="icon icon-home"> m2g
+        
+
+        
+          
+          <img src="../../_static/ocp_main.png" class="logo" />
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/local_config.html">Single Node Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/local_config.html#basic-package-update-and-install">Basic Package Update and Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/local_config.html#install-and-configure-python-2-7">Install and Configure Python 2.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/local_config.html#basics-for-development">Basics for Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/local_config.html#oracle-java-install">Oracle Java Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/local_config.html#java-setup">Java Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/local_config.html#camino-and-fsl">Camino and FSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/local_config.html#igraph">igraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/local_config.html#m2g-setup">m2g setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/local_config.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/cloud_computing.html">Cloud Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/style.html">Style Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/faq.html">Frequently Asked Questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/input_data.html">Data Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/input_data.html#input-data">Input Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/input_data.html#output-data">Output Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/available_data.html">Public Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/basic_usage.html">Basic Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_usage.html#m2g-complete-pipeline">m2g Complete Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_usage.html#m2g-registration-pipeline">m2g Registration Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_usage.html#m2g-diffusion-processing-pipeline">m2g Diffusion Processing Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/advanced_usage.html">Advanced Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/advanced_usage.html#dti-preprocessing">DTI Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/advanced_usage.html#registration">Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/advanced_usage.html#diffusion-processing">Diffusion Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Further Reading</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/functions.html">Function Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bet.html">FSL Brain Extraction Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bet.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bet.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/flirt.html">FSL Linear Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/parse_b.html">Parse B-values/vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/extract_b0.html">Extract B0 Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/eddycorrect.html">FSL Eddy Correction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/tensor_gen.html">DTI Tensor Estimation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/tensor_gen.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/tensor_gen.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/fiber_gen.html">Fiber Tractography</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/fiber_gen.html#pseudocode">Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/fiber_gen.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/fiber_convert.html">Fiber Converter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/gengraph.html">Graph Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/gengraph.html#pseudocode">Pseudocode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/setup.html">Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Mailing List</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://openconnectome.github.io/m2g/">Project page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/graphs/contributors">Contributors</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">m2g</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>mrcap.gengraph</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for mrcap.gengraph</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python </span>
+
+<span class="c"># Copyright 2014 Open Connectome Project (http://openconnecto.me)</span>
+<span class="c">#</span>
+<span class="c"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c"># you may not use this file except in compliance with the License.</span>
+<span class="c"># You may obtain a copy of the License at</span>
+<span class="c">#</span>
+<span class="c">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c">#</span>
+<span class="c"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c"># See the License for the specific language governing permissions and</span>
+<span class="c"># limitations under the License.</span>
+<span class="c">#</span>
+
+<span class="c"># Read a fiber file and generate the corresponding sparse graph</span>
+<span class="c"># @author Randal Burns, Disa Mhembere</span>
+
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">mrcap.fiber</span> <span class="kn">import</span> <span class="n">FiberReader</span>
+<span class="kn">import</span> <span class="nn">mrcap.roi</span> <span class="kn">as</span> <span class="nn">roi</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">computation.utils.cmdline</span> <span class="kn">import</span> <span class="n">parse_dict</span>
+
+<div class="viewcode-block" id="genGraph"><a class="viewcode-back" href="../../api/gengraph.html#mrcap.gengraph.genGraph">[docs]</a><span class="k">def</span> <span class="nf">genGraph</span><span class="p">(</span><span class="n">infname</span><span class="p">,</span> <span class="n">data_atlas_fn</span><span class="p">,</span> <span class="n">outfname</span><span class="p">,</span> <span class="n">bigGraph</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> \
+    <span class="n">outformat</span><span class="o">=</span><span class="s">&quot;graphml&quot;</span><span class="p">,</span> <span class="n">numfibers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">centroids</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">graph_attrs</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">atlases</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Generate a sparse igraph from an MRI file based on input and output names.</span>
+<span class="sd">  </span>
+<span class="sd">	We traverse fiber streamlines and map the voxels which they pass through to a brain region, as determined by an atlas. Big graphs have ROIs which are single voxels, whereas small graphs&#39; ROIs are much larger and can be determined either by size, function, or any other method. Outputs a graphml formatted graph by default.</span>
+
+<span class="sd">	**Positional Arguments**</span>
+
+<span class="sd">			infname: [dat]</span>
+<span class="sd">					- MRIStudio format fiber streamlines.</span>
+<span class="sd">			data_atlas_fn: [nifti]</span>
+<span class="sd">					- Region labels which will be used to parcellate the fibers.</span>
+<span class="sd">			outfname: [file] (default = graphml)</span>
+<span class="sd">					- Generated graph from fiber tracts.</span>
+
+<span class="sd">	**Optional Arguments**</span>
+<span class="sd">	</span>
+<span class="sd">			bigGraph: [boolean] (default = False)</span>
+<span class="sd">					- Flag indicating where to process a bigGraph=True or smallGraph=False.</span>
+<span class="sd">			outformat: [string] (default = graphml)</span>
+<span class="sd">					- Requested output format of graph. 	</span>
+<span class="sd">			numfibers: [int] (default = 0)</span>
+<span class="sd">					- The number of fibers to read/process. If 0, process all fibers.</span>
+<span class="sd">			centroids: [boolean] (default = True)</span>
+<span class="sd">					- Flag indicating whether to add centroids for the graph.</span>
+<span class="sd">			graph_attrs: [dict] (default = {})</span>
+<span class="sd">					- Dict with graph attributes to be added with key=attr_name, value=attr_value.</span>
+<span class="sd">			atlases: [dict] (default = {})</span>
+<span class="sd">					- Dict with key=atlas_fn, value=region_name_fn</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+  <span class="c"># Determine size of graph to be processed i.e pick a fibergraph module to import</span>
+  <span class="k">if</span> <span class="n">bigGraph</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">fibergraph_bg</span> <span class="kn">import</span> <span class="n">FiberGraph</span>
+  <span class="k">else</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">fibergraph_sm</span> <span class="kn">import</span> <span class="n">FiberGraph</span>
+
+  <span class="c"># This ensures there is at least one atlas by default now</span>
+  <span class="k">if</span> <span class="n">data_atlas_fn</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">atlases</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Adding default atlas&quot;</span>
+    <span class="n">atlases</span><span class="p">[</span><span class="n">data_atlas_fn</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+
+  <span class="n">rois</span> <span class="o">=</span> <span class="n">roi</span><span class="o">.</span><span class="n">ROIData</span><span class="p">(</span><span class="n">data_atlas_fn</span><span class="p">)</span>
+
+  <span class="c"># Create fiber reader</span>
+  <span class="n">reader</span> <span class="o">=</span> <span class="n">FiberReader</span><span class="p">(</span><span class="n">infname</span><span class="p">)</span>
+
+  <span class="c"># DM FIXME: Hacky -- we no longer read shape from fiber file so this happens :-/</span>
+  <span class="n">reader</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">rois</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+
+  <span class="c"># Create the graph object</span>
+  <span class="c"># get dims from reader</span>
+  <span class="n">fbrgraph</span> <span class="o">=</span> <span class="n">FiberGraph</span> <span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">rois</span><span class="p">)</span>
+
+  <span class="k">print</span> <span class="s">&quot;Parsing MRI studio file {0}&quot;</span><span class="o">.</span><span class="n">format</span> <span class="p">(</span><span class="n">infname</span><span class="p">)</span>
+
+  <span class="c"># Print the high-level fiber information</span>
+  <span class="k">print</span> <span class="s">&quot;Reader Header&quot;</span><span class="p">,</span> <span class="n">reader</span>
+
+  <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="c"># iterate over all fibers</span>
+  <span class="k">for</span> <span class="n">fiber</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c"># add the contribution of this fiber to the</span>
+    <span class="n">fbrgraph</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fiber</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">numfibers</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="n">numfibers</span><span class="p">:</span>
+      <span class="k">break</span>
+    <span class="k">if</span> <span class="n">count</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Processed {0} fibers&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+
+  <span class="k">del</span> <span class="n">reader</span>
+  <span class="c"># Done adding edges</span>
+  <span class="n">fbrgraph</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span><span class="n">centroids</span><span class="p">,</span> <span class="n">graph_attrs</span><span class="p">,</span> <span class="n">atlases</span><span class="p">)</span>
+
+  <span class="n">fbrgraph</span><span class="o">.</span><span class="n">saveToIgraph</span><span class="p">(</span><span class="n">outfname</span><span class="p">,</span> <span class="n">gformat</span><span class="o">=</span><span class="n">outformat</span><span class="p">)</span>
+
+  <span class="k">del</span> <span class="n">fbrgraph</span>
+  <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Graph building complete in </span><span class="si">%.3f</span><span class="s"> secs&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+  <span class="k">return</span>
+</div>
+<span class="k">def</span> <span class="nf">main</span> <span class="p">():</span>
+
+  <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">&quot;Read the contents of MRI Studio file </span><span class="se">\</span>
+<span class="s">      and generate a sparse connectivity graph using igraph with default </span><span class="se">\</span>
+<span class="s">      output format &#39;graphML&#39;&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;fbrfile&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The fiber file name&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;data_atlas&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;The atlas with region data&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;output&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;resulting name of graph&quot;</span><span class="p">)</span>
+
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span> <span class="s">&quot;--outformat&quot;</span><span class="p">,</span> <span class="s">&quot;-f&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;graphml&quot;</span><span class="p">,</span> \
+      <span class="n">help</span><span class="o">=</span><span class="s">&quot;The output graph format i.e. graphml, gml, dot, pajek etc..&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span> <span class="s">&quot;--isbig&quot;</span><span class="p">,</span> <span class="s">&quot;-b&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> \
+      <span class="n">help</span><span class="o">=</span><span class="s">&quot;Is the graph big? If so use this flag&quot;</span> <span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;-a&quot;</span><span class="p">,</span> <span class="s">&quot;--atlas&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s">&quot;*&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[],</span> \
+      <span class="n">help</span> <span class="o">=</span><span class="s">&quot;Pass atlas filename(s). If regions are named then pass region </span><span class="se">\</span>
+<span class="s">      naming file as well in the format: &#39;-a atlas0 atlas1,atlas1_region_names </span><span class="se">\</span>
+<span class="s">      atlas2 atlas3,atlas3_region_names&#39; etc.&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span> <span class="s">&quot;--centroids&quot;</span><span class="p">,</span> <span class="s">&quot;-C&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store_true&quot;</span><span class="p">,</span> \
+      <span class="n">help</span><span class="o">=</span><span class="s">&quot;Pass to *NOT* include centroids&quot;</span> <span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span> <span class="s">&quot;-G&quot;</span><span class="p">,</span> <span class="s">&quot;--graph_attrs&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s">&quot;*&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> \
+      <span class="n">help</span><span class="o">=</span><span class="s">&quot;Add (a) graph attribute(s). Quote, use colon for key:value and spaces </span><span class="se">\</span>
+<span class="s">      for multiple e.g &#39;attr1:value1&#39; &#39;attr2:value2&#39;&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;--numfib&quot;</span><span class="p">,</span> <span class="s">&quot;-n&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> \
+      <span class="n">help</span><span class="o">=</span><span class="s">&quot;The number of fibers to process before exit&quot;</span><span class="p">)</span>
+
+  <span class="n">result</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+  <span class="c"># Add atlases to a dict</span>
+  <span class="n">atlas_d</span> <span class="o">=</span> <span class="p">{}</span>
+  <span class="k">for</span> <span class="n">atl</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">atlas</span><span class="p">:</span>
+    <span class="n">sp_atl</span> <span class="o">=</span> <span class="n">atl</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sp_atl</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="n">atlas_d</span><span class="p">[</span><span class="n">sp_atl</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">sp_atl</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">sp_atl</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="n">atlas_d</span><span class="p">[</span><span class="n">sp_atl</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="bp">None</span>
+
+  <span class="c"># Parse dict</span>
+  <span class="n">result</span><span class="o">.</span><span class="n">graph_attrs</span> <span class="o">=</span> <span class="n">parse_dict</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">graph_attrs</span><span class="p">)</span>
+
+  <span class="n">genGraph</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fbrfile</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">data_atlas</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">isbig</span><span class="p">,</span> 
+      <span class="n">result</span><span class="o">.</span><span class="n">outformat</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">numfib</span><span class="p">,</span> <span class="ow">not</span> <span class="n">result</span><span class="o">.</span><span class="n">centroids</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">graph_attrs</span><span class="p">,</span> <span class="o">**</span><span class="n">atlas_d</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+  <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Open Connectome Project.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'v1.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

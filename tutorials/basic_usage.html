@@ -109,7 +109,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#m2g-complete-pipeline">m2g Complete Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#m2g-registration-pipeline">m2g Registration Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#m2g-diffusion-processing-pipeline">m2g Diffusion Processing Pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_usage.html">Advanced Usage</a><ul>
@@ -145,8 +144,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../api/fiber_convert.html">Fiber Converter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/gengraph.html">Graph Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/gengraph.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/gengraph.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../api/setup.html">Setup</a></li>
@@ -362,13 +361,6 @@
 </dd></dl>
 
 <hr/></div>
-<div class="section" id="intuition-behind-graph-generation">
-<h2>Intuition Behind Graph Generation<a class="headerlink" href="#intuition-behind-graph-generation" title="Permalink to this headline">¶</a></h2>
-<p>To generate a graph, we first form an empty graph (A), with rows and columns corresponding to nodes (atlas regions).  For each fiber streamline, we find all connected regions; for each pair of regions (i,j) in the streamline, we increment the A(i,j).  Because these connections are undirected, we also increment A(j,i) - or equivalently store only the upper triangular matrix.</p>
-<div class="figure align-center">
-<a class="reference internal image-reference" href="../_images/graph_construction.png"><img alt="../_images/graph_construction.png" src="../_images/graph_construction.png" style="width: 800px;" /></a>
-</div>
-</div>
 </div>
 
 

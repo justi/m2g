@@ -110,7 +110,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-complete-pipeline">m2g Complete Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-registration-pipeline">m2g Registration Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-diffusion-processing-pipeline">m2g Diffusion Processing Pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a><ul>
@@ -146,8 +145,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="fiber_convert.html">Fiber Converter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gengraph.html">Graph Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gengraph.html#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gengraph.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
@@ -206,32 +205,32 @@
 <dd><p>Extracts brain content from whole head image.</p>
 <p>Using FSL&#8217;s BET, we extract the brain of the MPRAGE scans from the entirity of the image. The reason for this extraction is to aid in registration, as well as provide a mask which allows algorithm to identify voxels of interest further down the pipeline.</p>
 <p>FSL&#8217;s BET documentation: <a class="reference external" href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET">http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET</a></p>
-<p><strong>Inputs</strong></p>
+<p><strong>Positional Arguments</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>MPRAGE Image: [nifti]</dt>
+<dt>Input image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>X x Y x Z, Structural T1 image from the MRI scanner.</li>
+<li>Structural T1 (MPRAGE) image from the MRI scanner.</li>
 </ul>
 </dd>
-<dt>Fractional Intensity Threshold: [float] (default = 0.4)</dt>
+<dt>Output image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>Value used to influence aggressiveness of segmentation</li>
+<li>Structural T1 (MPRAGE) image in which all voxels not in the brain have been set to an intensity of zero.</li>
+</ul>
+</dd>
+<dt>Output mask: [nifti]</dt>
+<dd><ul class="first last simple">
+<li>Binary representation of the brain image</li>
 </ul>
 </dd>
 </dl>
 </div></blockquote>
-<p><strong>Outputs</strong></p>
+<p><strong>Optional Arguments</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Brain image: [nifti]</dt>
+<dt>Fractional intensity threshold: [float] (default = 0.4)</dt>
 <dd><ul class="first last simple">
-<li>X x Y x Z, Structural T1 image in which all voxels not in the brain have been set to an intensity of zero.</li>
-</ul>
-</dd>
-<dt>Brain mask: [nifti]</dt>
-<dd><ul class="first last simple">
-<li>Binary representation of the Brain image</li>
+<li>Value used to influence aggressiveness of segmentation</li>
 </ul>
 </dd>
 </dl>

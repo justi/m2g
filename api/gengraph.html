@@ -110,7 +110,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-complete-pipeline">m2g Complete Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-registration-pipeline">m2g Registration Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-diffusion-processing-pipeline">m2g Diffusion Processing Pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced_usage.html">Advanced Usage</a><ul>
@@ -146,8 +145,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="fiber_convert.html">Fiber Converter</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Graph Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pseudocode">Pseudocode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
@@ -201,47 +200,78 @@
   <div class="section" id="graph-generation">
 <h1>Graph Generation<a class="headerlink" href="#graph-generation" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="mrcap.gengraph">
-<code class="descclassname">mrcap.</code><code class="descname">gengraph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mrcap.gengraph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates graphs from fiber tracts</p>
-<p>We traverse fiber streamlines and map the voxels which they pass through to a brain region, as determined by an atlas. Big graphs have ROIs which are single voxels, whereas small graphs&#8217; ROIs are much larger and can be determined either by size, function, or any other method.</p>
-<p><strong>Inputs</strong></p>
+<dt id="mrcap.gengraph.genGraph">
+<code class="descclassname">mrcap.gengraph.</code><code class="descname">genGraph</code><span class="sig-paren">(</span><em>infname</em>, <em>data_atlas_fn</em>, <em>outfname</em>, <em>bigGraph=False</em>, <em>outformat='graphml'</em>, <em>numfibers=0</em>, <em>centroids=True</em>, <em>graph_attrs={}</em>, <em>**atlases</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mrcap/gengraph.html#genGraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mrcap.gengraph.genGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a sparse igraph from an MRI file based on input and output names.</p>
+<blockquote>
+<div><p>We traverse fiber streamlines and map the voxels which they pass through to a brain region, as determined by an atlas. Big graphs have ROIs which are single voxels, whereas small graphs&#8217; ROIs are much larger and can be determined either by size, function, or any other method. Outputs a graphml formatted graph by default.</p>
+<p><strong>Positional Arguments</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Fibers: [dat]</dt>
+<dt>infname: [dat]</dt>
 <dd><ul class="first last simple">
 <li>MRIStudio format fiber streamlines.</li>
 </ul>
 </dd>
-<dt>ROI Atlas: [nifti]</dt>
+<dt>data_atlas_fn: [nifti]</dt>
 <dd><ul class="first last simple">
 <li>Region labels which will be used to parcellate the fibers.</li>
 </ul>
 </dd>
-<dt>Format: [graphml, edgelist, pajek, gml, dot] (default = graphml)</dt>
+<dt>outfname: [file] (default = graphml)</dt>
+<dd><ul class="first last simple">
+<li>Generated graph from fiber tracts.</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Optional Arguments</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>bigGraph: [boolean] (default = False)</dt>
+<dd><ul class="first last simple">
+<li>Flag indicating where to process a bigGraph=True or smallGraph=False.</li>
+</ul>
+</dd>
+<dt>outformat: [string] (default = graphml)</dt>
 <dd><ul class="first last simple">
 <li>Requested output format of graph.</li>
 </ul>
 </dd>
-</dl>
-</div></blockquote>
-<p><strong>Outputs</strong></p>
-<blockquote>
-<div><dl class="docutils">
-<dt>Graph: [graphml, edgelist, pajek, gml, dot] (default = graphml)</dt>
+<dt>numfibers: [int] (default = 0)</dt>
 <dd><ul class="first last simple">
-<li>Generated graph from fiber tracts</li>
+<li>The number of fibers to read/process. If 0, process all fibers.</li>
+</ul>
+</dd>
+<dt>centroids: [boolean] (default = True)</dt>
+<dd><ul class="first last simple">
+<li>Flag indicating whether to add centroids for the graph.</li>
+</ul>
+</dd>
+<dt>graph_attrs: [dict] (default = {})</dt>
+<dd><ul class="first last simple">
+<li>Dict with graph attributes to be added with key=attr_name, value=attr_value.</li>
+</ul>
+</dd>
+<dt>atlases: [dict] (default = {})</dt>
+<dd><ul class="first last simple">
+<li>Dict with key=atlas_fn, value=region_name_fn</li>
 </ul>
 </dd>
 </dl>
 </div></blockquote>
+</div></blockquote>
 </dd></dl>
 
+<div class="section" id="intuition-behind-graph-generation">
+<h2>Intuition Behind Graph Generation<a class="headerlink" href="#intuition-behind-graph-generation" title="Permalink to this headline">¶</a></h2>
+<p>To generate a graph, we first form an empty graph (A), with rows and columns corresponding to nodes (atlas regions).  For each fiber streamline, we find all connected regions; for each pair of regions (i,j) in the streamline, we increment the A(i,j).  Because these connections are undirected, we also increment A(j,i) - or equivalently store only the upper triangular matrix.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/graph_construction.png"><img alt="../_images/graph_construction.png" src="../_images/graph_construction.png" style="width: 800px;" /></a>
+</div>
+</div>
 <div class="section" id="pseudocode">
 <h2>Pseudocode<a class="headerlink" href="#pseudocode" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
