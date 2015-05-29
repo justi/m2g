@@ -137,7 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../api/gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/create_atlas.html">Create Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/downsample_atlas.html">Downsample Atlas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
@@ -220,7 +220,7 @@
 	<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">	Computes tensors from DTI image</span>
 <span class="sd">	</span>
-<span class="sd">	We leverage Camino&#39;s tensor estimation tool to compute the tensors at each voxel within the DTI volumes. The tensors are computed using standard methods of estimation: performing multiple linear regression on the equation relating the diffusion direction matrix of the voxel, the b-vectors, and the voxel intensities across different imposed b-fields.</span>
+<span class="sd">	We leverage Camino&#39;s tensor estimation tool to compute the tensors at each voxel within the DTI volumes. The tensors are computed using standard methods of estimation: performing multiple linear regression on the equation relating the diffusion direction matrix of the voxel, the b-vectors, and the voxel intensities across different imposed b-fields. The Bdouble format is a Camino output which is a big-endian stored 8-byte double.</span>
 <span class="sd">	</span>
 <span class="sd">	Camino&#39;s dtfit documentation: http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Dtfit</span>
 <span class="sd">	</span>

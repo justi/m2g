@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mrcap.utils.create_atlas &mdash; m2g v1.1.1 documentation</title>
+  <title>mrcap.utils.downsample_atlas &mdash; m2g v1.1.1 documentation</title>
   
 
   
@@ -137,7 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../api/gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/create_atlas.html">Create Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/downsample_atlas.html">Downsample Atlas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
@@ -172,7 +172,7 @@
       
           <li><a href="../../index.html">Module code</a> &raquo;</li>
       
-    <li>mrcap.utils.create_atlas</li>
+    <li>mrcap.utils.downsample_atlas</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -183,7 +183,7 @@
 </div>
           <div role="main" class="document">
             
-  <h1>Source code for mrcap.utils.create_atlas</h1><div class="highlight"><pre>
+  <h1>Source code for mrcap.utils.downsample_atlas</h1><div class="highlight"><pre>
 <span class="c">#!/usr/bin/env python</span>
 
 <span class="c"># Copyright 2014 Open Connectome Project (http://openconnecto.me)</span>
@@ -221,10 +221,10 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">packages.utils.setup</span> <span class="kn">import</span> <span class="n">get_files</span>
 
-<div class="viewcode-block" id="create"><a class="viewcode-back" href="../../../api/create_atlas.html#mrcap.utils.create_atlas.create">[docs]</a><span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">roifn</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&quot;M2G_HOME&quot;</span><span class="p">],</span><span class="s">&quot;data&quot;</span><span class="p">,</span><span class="s">&quot;Atlas&quot;</span><span class="p">,</span> 
+<div class="viewcode-block" id="create"><a class="viewcode-back" href="../../../api/downsample_atlas.html#mrcap.utils.downsample_atlas.create">[docs]</a><span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">roifn</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&quot;M2G_HOME&quot;</span><span class="p">],</span><span class="s">&quot;data&quot;</span><span class="p">,</span><span class="s">&quot;Atlas&quot;</span><span class="p">,</span> 
           <span class="s">&quot;MNI152_T1_1mm_brain.nii&quot;</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">	Creates an Atlas from a template brain.</span>
+<span class="sd">	Downsamples an atlas from a template brain.</span>
 
 <span class="sd">	Create a new atlas given some scaling factor determined by the start index. Can be useful if looking for parcellation of certain scale for graph generation.</span>
 

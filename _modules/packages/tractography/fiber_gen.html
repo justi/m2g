@@ -137,7 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../api/gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/create_atlas.html">Create Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/downsample_atlas.html">Downsample Atlas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
@@ -217,8 +217,7 @@
 	<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">	Computes fiber streamlines from diffusion tensor data.</span>
 <span class="sd">	</span>
-<span class="sd">	Using Camino&#39;s implementation of the FACT algorithm, published by Mori et al. (2001), we compute fiber tracts throughout the brain from the previously calculated tensors for a given brain.</span>
-<span class="sd">	</span>
+<span class="sd">	Using Camino&#39;s implementation of the FACT algorithm, published by Mori et al. (2001), we compute fiber tracts throughout the brain from the previously calculated tensors for a given brain. The Bdouble and Bfloat formats are Camino outputs which are a big-endian stored 8-byte double, and 4-byte float, respectively.</span>
 <span class="sd">	</span>
 <span class="sd">	Camino&#39;s track documentation: http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Track</span>
 <span class="sd">	</span>

@@ -137,7 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../api/gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/create_atlas.html">Create Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/downsample_atlas.html">Downsample Atlas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
@@ -210,9 +210,9 @@
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
 <span class="c">#import igraph</span>
 <span class="kn">from</span> <span class="nn">mrcap.atlas</span> <span class="kn">import</span> <span class="n">Atlas</span> 
-<span class="c">#from mrcap.utils import igraph_io #deprecated; fix?</span>
+<span class="c">#from mrcap.utils import igraph_io</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
-<span class="kn">import</span> <span class="nn">create_atlas</span>
+<span class="kn">import</span> <span class="nn">downsample_atlas</span>
 <span class="kn">import</span> <span class="nn">nibabel</span> <span class="kn">as</span> <span class="nn">nib</span>
 <span class="kn">import</span> <span class="nn">zipfile</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span> <span class="o">+=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s">&quot;../&quot;</span><span class="p">)]</span>
@@ -225,7 +225,7 @@
   <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">	Downsample a graph by a scale factor.</span>
 
-<span class="sd">	Downsamples by collapsing regions using an dynamically generated downsampled atlas. Rebuilding the graph takes on the order of a few minutes.</span>
+<span class="sd">	Downsamples by collapsing regions using an dynamically generated downsampled atlas. Rebuilding the graph takes on the order of a few minutes on a standard desktop computer with &gt; 4GB of RAM.</span>
 <span class="sd">	</span>
 <span class="sd">	**Positional Arguments**</span>
 
@@ -249,7 +249,7 @@
 
   <span class="k">if</span> <span class="n">factor</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">&quot;Generating downsampled atlas ...&quot;</span> <span class="c"># TODO: Cythonize</span>
-    <span class="n">ds_atlas</span> <span class="o">=</span> <span class="n">create_atlas</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">factor</span><span class="p">)</span> <span class="c"># Create ds atlas and an atlas map for the original atlas</span>
+    <span class="n">ds_atlas</span> <span class="o">=</span> <span class="n">downsample_atlas</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">factor</span><span class="p">)</span> <span class="c"># Create ds atlas and an atlas map for the original atlas</span>
   
   <span class="n">ds_atlas</span> <span class="o">=</span> <span class="n">ds_atlas</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span> <span class="c"># don&#39;t care about other atlas data</span>
 

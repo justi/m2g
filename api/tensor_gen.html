@@ -139,7 +139,7 @@
 <li class="toctree-l3"><a class="reference internal" href="gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="create_atlas.html">Create Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="downsample_atlas.html">Downsample Atlas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
@@ -193,7 +193,7 @@
 <dt id="packages.tractography.tensor_gen.make_tens">
 <code class="descclassname">packages.tractography.tensor_gen.</code><code class="descname">make_tens</code><span class="sig-paren">(</span><em>dti</em>, <em>grad</em>, <em>bval</em>, <em>mask</em>, <em>scheme</em>, <em>dti_bfloat</em>, <em>tensors</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/packages/tractography/tensor_gen.html#make_tens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#packages.tractography.tensor_gen.make_tens" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes tensors from DTI image</p>
-<p>We leverage Camino&#8217;s tensor estimation tool to compute the tensors at each voxel within the DTI volumes. The tensors are computed using standard methods of estimation: performing multiple linear regression on the equation relating the diffusion direction matrix of the voxel, the b-vectors, and the voxel intensities across different imposed b-fields.</p>
+<p>We leverage Camino&#8217;s tensor estimation tool to compute the tensors at each voxel within the DTI volumes. The tensors are computed using standard methods of estimation: performing multiple linear regression on the equation relating the diffusion direction matrix of the voxel, the b-vectors, and the voxel intensities across different imposed b-fields. The Bdouble format is a Camino output which is a big-endian stored 8-byte double.</p>
 <p>Camino&#8217;s dtfit documentation: <a class="reference external" href="http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Dtfit">http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Dtfit</a></p>
 <p><strong>Positional Arguments</strong></p>
 <blockquote>

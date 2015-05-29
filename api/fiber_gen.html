@@ -139,7 +139,7 @@
 <li class="toctree-l3"><a class="reference internal" href="gengraph.html#intuition-behind-graph-generation">Intuition Behind Graph Generation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="create_atlas.html">Create Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="downsample_atlas.html">Downsample Atlas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
@@ -193,7 +193,7 @@
 <dt id="packages.tractography.fiber_gen.make_fibs">
 <code class="descclassname">packages.tractography.fiber_gen.</code><code class="descname">make_fibs</code><span class="sig-paren">(</span><em>tensors</em>, <em>mask</em>, <em>anis</em>, <em>curve</em>, <em>fibers</em>, <em>vtk</em>, <em>log</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/packages/tractography/fiber_gen.html#make_fibs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#packages.tractography.fiber_gen.make_fibs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes fiber streamlines from diffusion tensor data.</p>
-<p>Using Camino&#8217;s implementation of the FACT algorithm, published by Mori et al. (2001), we compute fiber tracts throughout the brain from the previously calculated tensors for a given brain.</p>
+<p>Using Camino&#8217;s implementation of the FACT algorithm, published by Mori et al. (2001), we compute fiber tracts throughout the brain from the previously calculated tensors for a given brain. The Bdouble and Bfloat formats are Camino outputs which are a big-endian stored 8-byte double, and 4-byte float, respectively.</p>
 <p>Camino&#8217;s track documentation: <a class="reference external" href="http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Track">http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Track</a></p>
 <p><strong>Positional Arguments</strong></p>
 <blockquote>
