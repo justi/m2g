@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#igraph">igraph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#m2g-setup">m2g setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#running-test-workflow">Running test workflow</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/cloud_computing.html">Cloud Services</a></li>
@@ -125,7 +126,6 @@
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="functions.html">Function Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="bet.html">FSL Brain Extraction Tool</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">FSL Linear Registration</a></li>
@@ -143,6 +143,7 @@
 <li class="toctree-l2"><a class="reference internal" href="downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
@@ -207,9 +208,14 @@
 <li>The 3D image which will be the target of the transformation.</li>
 </ul>
 </dd>
+</dl>
+</div></blockquote>
+<p><strong>Returns</strong></p>
+<blockquote>
+<div><dl class="docutils">
 <dt>Output image: [nifti]</dt>
 <dd><ul class="first last simple">
-<li>The input image aligned to the reference image space.</li>
+<li>The name of the output image, which is the input image aligned to the reference image space.</li>
 </ul>
 </dd>
 </dl>

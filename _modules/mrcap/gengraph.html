@@ -214,7 +214,7 @@
 <div class="viewcode-block" id="genGraph"><a class="viewcode-back" href="../../api/gengraph.html#mrcap.gengraph.genGraph">[docs]</a><span class="k">def</span> <span class="nf">genGraph</span><span class="p">(</span><span class="n">infname</span><span class="p">,</span> <span class="n">data_atlas_fn</span><span class="p">,</span> <span class="n">outfname</span><span class="p">,</span> <span class="n">bigGraph</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> \
     <span class="n">outformat</span><span class="o">=</span><span class="s">&quot;graphml&quot;</span><span class="p">,</span> <span class="n">numfibers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">centroids</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">graph_attrs</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">atlases</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  Generate a sparse igraph from an MRI file based on input and output names.</span>
+<span class="sd">	Generate a sparse igraph from an MRI file based on input and output names.</span>
 <span class="sd">  </span>
 <span class="sd">	We traverse fiber streamlines and map the voxels which they pass through to a brain region, as determined by an atlas. Big graphs have ROIs which are single voxels, whereas small graphs&#39; ROIs are much larger and can be determined either by size, function, or any other method. Outputs a graphml formatted graph by default.</span>
 
@@ -224,6 +224,9 @@
 <span class="sd">					- MRIStudio format fiber streamlines.</span>
 <span class="sd">			data_atlas_fn: [nifti]</span>
 <span class="sd">					- Region labels which will be used to parcellate the fibers.</span>
+<span class="sd">	</span>
+<span class="sd">	**Returns**</span>
+<span class="sd">	</span>
 <span class="sd">			outfname: [file] (default = graphml)</span>
 <span class="sd">					- Generated graph from fiber tracts.</span>
 

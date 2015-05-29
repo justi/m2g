@@ -223,7 +223,7 @@
 <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
 <div class="viewcode-block" id="downsample"><a class="viewcode-back" href="../../../api/downsample.html#mrcap.utils.downsample.downsample">[docs]</a><span class="k">def</span> <span class="nf">downsample</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">factor</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ds_atlas</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ignore_zero</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  Downsample a graph by a scale factor.</span>
+<span class="sd">	Downsample a graph by a scale factor.</span>
 
 <span class="sd">	Downsamples by collapsing regions using an dynamically generated downsampled atlas. Rebuilding the graph takes on the order of a few minutes.</span>
 <span class="sd">	</span>
@@ -237,6 +237,11 @@
 <span class="sd">					- A prebuilt downsampled nifti atlas with which to downsample.</span>
 <span class="sd">			ignore_zero: [boolean] (default = True)</span>
 <span class="sd">					- We assume the zeroth label is outside the brain.</span>
+<span class="sd">	</span>
+<span class="sd">	**Returns**</span>
+<span class="sd">	</span>
+<span class="sd">			new graph: [graphml]</span>
+<span class="sd">					- The input graph downsampled to the scale of the input atlas.</span>
 <span class="sd">  &quot;&quot;&quot;</span>
 
   <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>

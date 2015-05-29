@@ -193,8 +193,7 @@
 <dt id="mrcap.utils.downsample.downsample">
 <code class="descclassname">mrcap.utils.downsample.</code><code class="descname">downsample</code><span class="sig-paren">(</span><em>g</em>, <em>factor=-1</em>, <em>ds_atlas=None</em>, <em>ignore_zero=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mrcap/utils/downsample.html#downsample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mrcap.utils.downsample.downsample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Downsample a graph by a scale factor.</p>
-<blockquote>
-<div><p>Downsamples by collapsing regions using an dynamically generated downsampled atlas. Rebuilding the graph takes on the order of a few minutes.</p>
+<p>Downsamples by collapsing regions using an dynamically generated downsampled atlas. Rebuilding the graph takes on the order of a few minutes.</p>
 <p><strong>Positional Arguments</strong></p>
 <blockquote>
 <div><dl class="docutils">
@@ -220,6 +219,15 @@
 </dd>
 </dl>
 </div></blockquote>
+<p><strong>Returns</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>new graph: [graphml]</dt>
+<dd><ul class="first last simple">
+<li>The input graph downsampled to the scale of the input atlas.</li>
+</ul>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 

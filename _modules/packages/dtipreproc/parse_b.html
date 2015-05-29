@@ -222,6 +222,13 @@
 <span class="sd">	</span>
 <span class="sd">			B-values: [ASCII]</span>
 <span class="sd">					- Ordered list of b-values from the scanner</span>
+<span class="sd">	</span>
+<span class="sd">	**Returns**</span>
+<span class="sd">	</span>
+<span class="sd">			B0 Index: [int]</span>
+<span class="sd">					- Location of the first B0 volume</span>
+<span class="sd">			B: [int]</span>
+<span class="sd">					- Field intensity</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 	<span class="n">b</span> <span class="o">=</span> <span class="n">loadtxt</span><span class="p">(</span><span class="n">b_in</span><span class="p">)</span>
 	<span class="n">b0</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">where</span><span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
@@ -240,6 +247,9 @@
 <span class="sd">	</span>
 <span class="sd">			B-vectors: [ASCII]</span>
 <span class="sd">					- Gradient directions of scanner corresponding to the b-values</span>
+
+<span class="sd">	**Returns**</span>
+
 <span class="sd">			Gradients: [ASCII]</span>
 <span class="sd">					- Reformatted B-vectors file which is compatible with downstream processing algorithms</span>
 <span class="sd">	&quot;&quot;&quot;</span>

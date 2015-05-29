@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#igraph">igraph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#m2g-setup">m2g setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#running-test-workflow">Running test workflow</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/cloud_computing.html">Cloud Services</a></li>
@@ -125,7 +126,6 @@
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="functions.html">Function Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="bet.html">FSL Brain Extraction Tool</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flirt.html">FSL Linear Registration</a></li>
@@ -143,6 +143,7 @@
 <li class="toctree-l2"><a class="reference internal" href="downsample.html">Downsample Graph</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
@@ -192,8 +193,7 @@
 <dt id="mrcap.gengraph.genGraph">
 <code class="descclassname">mrcap.gengraph.</code><code class="descname">genGraph</code><span class="sig-paren">(</span><em>infname</em>, <em>data_atlas_fn</em>, <em>outfname</em>, <em>bigGraph=False</em>, <em>outformat='graphml'</em>, <em>numfibers=0</em>, <em>centroids=True</em>, <em>graph_attrs={}</em>, <em>**atlases</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mrcap/gengraph.html#genGraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mrcap.gengraph.genGraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a sparse igraph from an MRI file based on input and output names.</p>
-<blockquote>
-<div><p>We traverse fiber streamlines and map the voxels which they pass through to a brain region, as determined by an atlas. Big graphs have ROIs which are single voxels, whereas small graphs&#8217; ROIs are much larger and can be determined either by size, function, or any other method. Outputs a graphml formatted graph by default.</p>
+<p>We traverse fiber streamlines and map the voxels which they pass through to a brain region, as determined by an atlas. Big graphs have ROIs which are single voxels, whereas small graphs&#8217; ROIs are much larger and can be determined either by size, function, or any other method. Outputs a graphml formatted graph by default.</p>
 <p><strong>Positional Arguments</strong></p>
 <blockquote>
 <div><dl class="docutils">
@@ -207,6 +207,11 @@
 <li>Region labels which will be used to parcellate the fibers.</li>
 </ul>
 </dd>
+</dl>
+</div></blockquote>
+<p><strong>Returns</strong></p>
+<blockquote>
+<div><dl class="docutils">
 <dt>outfname: [file] (default = graphml)</dt>
 <dd><ul class="first last simple">
 <li>Generated graph from fiber tracts.</li>
@@ -248,7 +253,6 @@
 </ul>
 </dd>
 </dl>
-</div></blockquote>
 </div></blockquote>
 </dd></dl>
 
