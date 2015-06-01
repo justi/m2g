@@ -198,12 +198,12 @@
 <p><strong>Positional Arguments</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Input image: [nifti]</dt>
+<dt>Input image: [.nii; nifti image]</dt>
 <dd><ul class="first last simple">
 <li>The 3D image which is to be transformed.</li>
 </ul>
 </dd>
-<dt>Reference image: [nifti]</dt>
+<dt>Reference image: [.nii; nifti image]</dt>
 <dd><ul class="first last simple">
 <li>The 3D image which will be the target of the transformation.</li>
 </ul>
@@ -213,7 +213,7 @@
 <p><strong>Returns</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Output image: [nifti]</dt>
+<dt>Output image: [.nii; nifti image]</dt>
 <dd><ul class="first last simple">
 <li>The name of the output image, which is the input image aligned to the reference image space.</li>
 </ul>
@@ -228,7 +228,7 @@
 <li>Orientation angles to search when aligning images.</li>
 </ul>
 </dd>
-<dt>Transform matrix: [xfm] </dt>
+<dt>Transform matrix: [.xfm, .mat; binary file] </dt>
 <dd><ul class="first last simple">
 <li>Using different flags, this can be either an input or an output parameter which maps the input image without recomputing the transform, or stores the transform, respectively.</li>
 </ul>

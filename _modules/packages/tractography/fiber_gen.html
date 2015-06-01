@@ -217,15 +217,15 @@
 	<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">	Computes fiber streamlines from diffusion tensor data.</span>
 <span class="sd">	</span>
-<span class="sd">	Using Camino&#39;s implementation of the FACT algorithm, published by Mori et al. (2001), we compute fiber tracts throughout the brain from the previously calculated tensors for a given brain. The Bdouble and Bfloat formats are Camino outputs which are a big-endian stored 8-byte double, and 4-byte float, respectively.</span>
+<span class="sd">	Using Camino&#39;s implementation of the FACT algorithm, published by Mori et al. (2001), we compute fiber tracts throughout the brain from the previously calculated tensors for a given brain.</span>
 <span class="sd">	</span>
 <span class="sd">	Camino&#39;s track documentation: http://cmic.cs.ucl.ac.uk/camino/index.php?n=Man.Track</span>
 <span class="sd">	</span>
 <span class="sd">	**Positional Arguments**</span>
 <span class="sd">	</span>
-<span class="sd">			Tensors: [BDouble]</span>
+<span class="sd">			Tensors: [.Bdouble; big-endian double]</span>
 <span class="sd">					- The Camino formatted file containing voxel diffusion tensor information.</span>
-<span class="sd">			Brain mask: [nifti]</span>
+<span class="sd">			Brain mask: [.nii; nifti image]</span>
 <span class="sd">					- Binary mask of the brain which will be used to limiting tractography to brain-occupied regions of the image.</span>
 <span class="sd">			Anisotropy threshold: [float] (default = 0.2)</span>
 <span class="sd">					- Stopping threshold for fiber tractography.</span>
@@ -234,7 +234,7 @@
 <span class="sd">	</span>
 <span class="sd">	**Returns**</span>
 <span class="sd">	</span>
-<span class="sd">			Fibers: [Bfloat]</span>
+<span class="sd">			Fibers: [.Bfloat; big-endian float]</span>
 <span class="sd">					- Camino formatted fiber streamlines</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 	<span class="p">[</span><span class="n">root</span><span class="p">,</span> <span class="n">ext</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">basename</span><span class="p">(</span><span class="n">fibers</span><span class="p">))</span>

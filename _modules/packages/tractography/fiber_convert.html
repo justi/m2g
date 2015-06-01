@@ -231,12 +231,12 @@
 <span class="sd">	</span>
 <span class="sd">	**Positional Arguments**</span>
 <span class="sd">	</span>
-<span class="sd">			Camino fibers: [Bfloat]</span>
+<span class="sd">			Camino fibers: [.Bfloat; big-endian float]</span>
 <span class="sd">					- File generated containing fiber tracts computed from the diffusion tensors</span>
 <span class="sd">	</span>
 <span class="sd">	**Returns**</span>
 <span class="sd">	</span>
-<span class="sd">			MRIStudio fibers: [dat]</span>
+<span class="sd">			MRIStudio fibers: [.dat; binary file]</span>
 <span class="sd">					- Output file containing the reformated fibers in a data format consistent with MRIStudio&#39;s generated fibers.</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 	<span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">fiber_fn</span><span class="p">,</span> <span class="s">&quot;rb&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">fiber_f</span><span class="p">:</span>
