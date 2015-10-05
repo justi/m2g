@@ -144,6 +144,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ocp.me/graph-services/c4/">Web service</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/a/ocp.me/forum/#!forum/m2g">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
@@ -191,7 +192,7 @@
 <h1>Graph Generation<a class="headerlink" href="#graph-generation" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="mrcap.gengraph.genGraph">
-<code class="descclassname">mrcap.gengraph.</code><code class="descname">genGraph</code><span class="sig-paren">(</span><em>infname</em>, <em>data_atlas_fn</em>, <em>outfname</em>, <em>bigGraph=False</em>, <em>outformat='graphml'</em>, <em>numfibers=0</em>, <em>centroids=True</em>, <em>graph_attrs={}</em>, <em>**atlases</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mrcap/gengraph.html#genGraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mrcap.gengraph.genGraph" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">mrcap.gengraph.</code><code class="descname">genGraph</code><span class="sig-paren">(</span><em>infname</em>, <em>data_atlas_fn</em>, <em>outfname</em>, <em>bigGraph=False</em>, <em>outformat='graphml'</em>, <em>numfibers=0</em>, <em>centroids=True</em>, <em>graph_attrs={}</em>, <em>compress=False</em>, <em>**atlases</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mrcap/gengraph.html#genGraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mrcap.gengraph.genGraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a sparse igraph from an MRI file based on input and output names.</p>
 <p>We traverse fiber streamlines and map the voxels which they pass through to a brain region, as determined by an atlas. Big graphs have ROIs which are single voxels, whereas small graphs&#8217; ROIs are much larger and can be determined either by size, function, or any other method. Outputs a graphml formatted graph by default.</p>
 <p><strong>Positional Arguments</strong></p>
@@ -250,6 +251,11 @@
 <dt>atlases: [dictionary] (default = {})</dt>
 <dd><ul class="first last simple">
 <li>Dict with key=atlas_fn, value=region_name_fn</li>
+</ul>
+</dd>
+<dt>compress: [boolean] (default = False)</dt>
+<dd><ul class="first last simple">
+<li>Flag for compressing graphs (useful for processing large quantities of big graphs)</li>
 </ul>
 </dd>
 </dl>

@@ -224,47 +224,50 @@
 <span class="n">fiber_header_fmt</span> <span class="o">=</span> <span class="n">dtype</span><span class="p">([(</span><span class="s">&#39;nFiberLength&#39;</span><span class="p">,</span><span class="s">&#39;&gt;f4&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;nSelectFiberStartPoint&#39;</span><span class="p">,</span><span class="s">&#39;&gt;f4&#39;</span><span class="p">)])</span>
 <span class="n">fiber_data_fmt</span> <span class="o">=</span> <span class="n">dtype</span><span class="p">(</span><span class="s">&quot;&gt;3f4&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="offset"><a class="viewcode-back" href="../../../api/fiber_convert.html#packages.tractography.fiber_convert.offset">[docs]</a><span class="k">def</span> <span class="nf">offset</span><span class="p">(</span><span class="n">fiber_fn</span><span class="p">,</span> <span class="n">mristudio_obj</span><span class="p">):</span>
-	<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">	Converts fibers from Camino format to MRIStudio format</span>
-<span class="sd">	</span>
-<span class="sd">	Fibers produced by Camino are in a format which is incompatible with developed graph generation code, and thus are converted to the legacy MRIStudio format.</span>
-<span class="sd">	</span>
-<span class="sd">	**Positional Arguments**</span>
-<span class="sd">	</span>
-<span class="sd">			Camino fibers: [.Bfloat; big-endian float]</span>
-<span class="sd">					- File generated containing fiber tracts computed from the diffusion tensors</span>
-<span class="sd">	</span>
-<span class="sd">	**Returns**</span>
-<span class="sd">	</span>
-<span class="sd">			MRIStudio fibers: [.dat; binary file]</span>
-<span class="sd">					- Output file containing the reformated fibers in a data format consistent with MRIStudio&#39;s generated fibers.</span>
-<span class="sd">	&quot;&quot;&quot;</span>
-	<span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">fiber_fn</span><span class="p">,</span> <span class="s">&quot;rb&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">fiber_f</span><span class="p">:</span>
+<div class="viewcode-block" id="offset"><a class="viewcode-back" href="../../../api/fiber_convert.html#packages.tractography.fiber_convert.offset">[docs]</a><span class="k">def</span> <span class="nf">offset</span><span class="p">(</span><span class="n">fiber_fn</span><span class="p">,</span> <span class="n">mristudio_obj</span><span class="p">,</span> <span class="n">fibers</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Converts fibers from Camino format to MRIStudio format</span>
+<span class="sd">  </span>
+<span class="sd">  Fibers produced by Camino are in a format which is incompatible with developed graph generation code, and thus are converted to the legacy MRIStudio format.</span>
+<span class="sd">  </span>
+<span class="sd">  **Positional Arguments**</span>
+<span class="sd">  </span>
+<span class="sd">  		Camino fibers: [.Bfloat; big-endian float]</span>
+<span class="sd">  				- File generated containing fiber tracts computed from the diffusion tensors</span>
+<span class="sd">  </span>
+<span class="sd">  **Returns**</span>
+<span class="sd">  </span>
+<span class="sd">  		MRIStudio fibers: [.dat; binary file]</span>
+<span class="sd">  				- Output file containing the reformated fibers in a data format consistent with MRIStudio&#39;s generated fibers.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">fiber_fn</span><span class="p">,</span> <span class="s">&quot;rb&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">fiber_f</span><span class="p">:</span>
 
-		<span class="n">file_size</span> <span class="o">=</span> <span class="n">fstat</span><span class="p">(</span><span class="n">fiber_f</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span><span class="o">.</span><span class="n">st_size</span>
-		<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-		<span class="k">while</span> <span class="p">(</span><span class="n">fiber_f</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">file_size</span><span class="p">):</span>
-			<span class="n">fiber_header</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fiber_f</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">fiber_header_fmt</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-			<span class="k">if</span> <span class="n">fiber_header</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-				<span class="n">fiber_f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">fiber_f</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="o">+</span><span class="mi">12</span><span class="p">)</span> <span class="c"># Just skip ahead to account for 1-length </span>
-			<span class="k">elif</span> <span class="n">fiber_header</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-				<span class="n">path</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fiber_f</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">fiber_data_fmt</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="n">fiber_header</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-				<span class="n">mristudio_obj</span><span class="o">.</span><span class="n">write_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-				<span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-				<span class="k">if</span> <span class="n">count</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s"> fibers transformed ...&quot;</span> <span class="o">%</span> <span class="n">count</span>
-			<span class="k">else</span><span class="p">:</span>
-				<span class="k">assert</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;Unknown fiber header format&quot;</span>
-		<span class="k">print</span> <span class="s">&quot;Found </span><span class="si">%d</span><span class="s"> fiber(s) of length &gt; 1&quot;</span> <span class="o">%</span> <span class="n">count</span>
-		<span class="n">mristudio_obj</span><span class="o">.</span><span class="n">set_num_fibers</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="c"># For fiber header</span>
+  	<span class="n">file_size</span> <span class="o">=</span> <span class="n">fstat</span><span class="p">(</span><span class="n">fiber_f</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span><span class="o">.</span><span class="n">st_size</span>
+  	<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+  	<span class="k">while</span> <span class="p">(</span><span class="n">fiber_f</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">file_size</span><span class="p">):</span>
+  		<span class="n">fiber_header</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fiber_f</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">fiber_header_fmt</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  		<span class="k">if</span> <span class="n">fiber_header</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+  			<span class="n">fiber_f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">fiber_f</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="o">+</span><span class="mi">12</span><span class="p">)</span> <span class="c"># Just skip ahead to account for 1-length </span>
+  		<span class="k">elif</span> <span class="n">fiber_header</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+  			<span class="n">path</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fiber_f</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">fiber_data_fmt</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="n">fiber_header</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+  			<span class="n">mristudio_obj</span><span class="o">.</span><span class="n">write_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+  			<span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+  			<span class="k">if</span> <span class="n">count</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s"> fibers transformed ...&quot;</span> <span class="o">%</span> <span class="n">count</span>
+  		<span class="k">else</span><span class="p">:</span>
+  			<span class="k">assert</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;Unknown fiber header format&quot;</span>
+  		<span class="k">if</span> <span class="n">fibers</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">fibers</span><span class="p">:</span>
+  			<span class="k">break</span> 
+  	<span class="k">print</span> <span class="s">&quot;Found </span><span class="si">%d</span><span class="s"> fiber(s) of length &gt; 1&quot;</span> <span class="o">%</span> <span class="n">count</span>
+  	<span class="n">mristudio_obj</span><span class="o">.</span><span class="n">set_num_fibers</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="c"># For fiber header</span>
 </div>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
   <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
   <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;fiber_fn&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;fiber file&quot;</span><span class="p">)</span>
   <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;outfile&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;mri studio file&quot;</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;-f&quot;</span><span class="p">,</span> <span class="s">&quot;--fibers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;number of fibers&quot;</span><span class="p">)</span>
   <span class="n">result</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-  <span class="n">offset</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fiber_fn</span><span class="p">,</span> <span class="n">MRIstudio</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">outfile</span><span class="p">))</span>
+  <span class="n">offset</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fiber_fn</span><span class="p">,</span> <span class="n">MRIstudio</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">outfile</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">fibers</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
   <span class="n">main</span><span class="p">()</span>

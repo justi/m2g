@@ -230,13 +230,21 @@
 <span class="sd">					- Location of the first B0 volume</span>
 <span class="sd">			B: [int]</span>
 <span class="sd">					- Field intensity</span>
+<span class="sd">			Multiple B0s: [int]</span>
+<span class="sd">					- Acts as a flag indicating whether multiple B0 scans exist within the set.</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 	<span class="n">b</span> <span class="o">=</span> <span class="n">loadtxt</span><span class="p">(</span><span class="n">b_in</span><span class="p">)</span>
 	<span class="n">b0</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">where</span><span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 	<span class="n">bvalue</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">where</span><span class="p">(</span><span class="n">b</span><span class="o">!=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]])</span>
-	
+	<span class="n">lenb</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="n">where</span><span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+	<span class="k">if</span> <span class="n">lenb</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="n">lenb</span> <span class="o">=</span> <span class="mi">2</span>
+	<span class="k">else</span> <span class="p">:</span>
+		<span class="n">lenb</span> <span class="o">=</span> <span class="mi">1</span>
+
 	<span class="n">system</span><span class="p">(</span><span class="s">&quot;echo &#39;b0=(&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">b0</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;)&#39;&quot;</span><span class="p">)</span>
-	<span class="n">system</span><span class="p">(</span><span class="s">&quot;echo &#39;bvalue=(&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">bvalue</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;)&#39;&quot;</span><span class="p">)</span>
+	<span class="n">system</span><span class="p">(</span><span class="s">&quot;echo &#39;First bvalue=(&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">bvalue</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;)&#39;&quot;</span><span class="p">)</span>
+	<span class="n">system</span><span class="p">(</span><span class="s">&quot;echo &#39;Multiple B0s (1=no; 2=yes)=(&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">lenb</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;)&#39;&quot;</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="format_bvec"><a class="viewcode-back" href="../../../api/parse_b.html#packages.dtipreproc.parse_b.format_bvec">[docs]</a><span class="k">def</span> <span class="nf">format_bvec</span><span class="p">(</span><span class="n">b_in</span><span class="p">,</span> <span class="n">b_out</span><span class="p">):</span>	
 	<span class="sd">&quot;&quot;&quot;</span>
@@ -246,16 +254,16 @@
 <span class="sd">	</span>
 <span class="sd">	**Positional Arguments**</span>
 <span class="sd">	</span>
-<span class="sd">			B-vectors: [.bvec, .grad; ASCII file]</span>
+<span class="sd">			B-vectors: [(bvec), .grad; ASCII file]</span>
 <span class="sd">					- Gradient directions of scanner corresponding to the b-values</span>
 
 <span class="sd">	**Returns**</span>
 
-<span class="sd">			Gradients: [.grad; ASCII file]</span>
+<span class="sd">			Gradients: [(bvec); ASCII file]</span>
 <span class="sd">					- Reformatted B-vectors file which is compatible with downstream processing algorithms</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 	<span class="n">b</span> <span class="o">=</span> <span class="n">loadtxt</span><span class="p">(</span><span class="n">b_in</span><span class="p">)</span>
-	<span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+	<span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
 		<span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">T</span>
 	<span class="n">savetxt</span><span class="p">(</span><span class="n">b_out</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span>  <span class="n">fmt</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%.18f</span><span class="s">&#39;</span><span class="p">)</span>
 </div>

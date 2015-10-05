@@ -143,6 +143,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ocp.me/graph-services/c4/">Web service</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/a/ocp.me/forum/#!forum/m2g">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
@@ -189,27 +190,32 @@
 <p>This is a draft input/output specfication for processing MR data.</p>
 <div class="section" id="input-data">
 <h2>Input Data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
-<p>Data to process must be organized in the following hierarchical format, by dataset or series:</p>
-<p><strong>Dataset (series)</strong></p>
-<ul>
-<li><p class="first">Subject</p>
-<blockquote>
-<div><ul>
-<li><p class="first">Scan</p>
-<blockquote>
-<div><ul class="simple">
-<li>dti [Diffusion Tensor Imaging]</li>
-<li>dsi [Diffusion Spectrum Imaging]</li>
-<li>rest [Resting State functional scan]</li>
-<li>anat [Anatomical Scan, e.g., MPRAGE]</li>
-<li>params [b vals, gradients]</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
+<p>Data to process must be organized in the following hierarchical format, by dataset. Subject names must also follow the convention highlighted here. For datasets which only have 1 scan collected per subject, the scan id of 1 should be used.</p>
+<p><strong>Dataset</strong></p>
+<div class="highlight-none"><div class="highlight"><pre>./dataset/
+./dataset/raw/
+./dataset/raw/{subject_id}/
+./dataset/raw/{subject_id}/{scan_id}/
+./{dataset}/raw/{subject_id}/{scan_id}/{dataset}_{subject_id}_{scan_id}_{modality}.{extension}
+...
+</pre></div>
+</div>
+<p>For instance, this directory structure and naming convention can be seen for the first subject of the KKI2009 dataset as follows:</p>
+<div class="highlight-none"><div class="highlight"><pre>./KKI2009/
+./KKI2009/raw/
+./KKI2009/raw/113/
+./KKI2009/raw/113/113_1/
+./KKI2009/raw/113/113_1/KKI2009_113_1_DTI.b
+./KKI2009/raw/113/113_1/KKI2009_113_1_DTI.nii
+./KKI2009/raw/113/113_1/KKI2009_113_1_MPRAGE.nii
+./KKI2009/raw/113/113_1/KKI2009_113_1_DTI.grad
+./KKI2009/raw/113/113_2/KKI2009_113_2_DTI.b
+./KKI2009/raw/113/113_2/KKI2009_113_2_DTI.nii
+./KKI2009/raw/113/113_2/KKI2009_113_2_MPRAGE.nii
+./KKI2009/raw/113/113_2/KKI2009_113_2_DTI.grad
+...
+</pre></div>
+</div>
 </div>
 <div class="section" id="output-data">
 <h2>Output Data<a class="headerlink" href="#output-data" title="Permalink to this headline">¶</a></h2>

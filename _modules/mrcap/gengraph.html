@@ -213,7 +213,7 @@
 <span class="kn">from</span> <span class="nn">computation.utils.cmdline</span> <span class="kn">import</span> <span class="n">parse_dict</span>
 
 <div class="viewcode-block" id="genGraph"><a class="viewcode-back" href="../../api/gengraph.html#mrcap.gengraph.genGraph">[docs]</a><span class="k">def</span> <span class="nf">genGraph</span><span class="p">(</span><span class="n">infname</span><span class="p">,</span> <span class="n">data_atlas_fn</span><span class="p">,</span> <span class="n">outfname</span><span class="p">,</span> <span class="n">bigGraph</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> \
-    <span class="n">outformat</span><span class="o">=</span><span class="s">&quot;graphml&quot;</span><span class="p">,</span> <span class="n">numfibers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">centroids</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">graph_attrs</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">atlases</span><span class="p">):</span>
+    <span class="n">outformat</span><span class="o">=</span><span class="s">&quot;graphml&quot;</span><span class="p">,</span> <span class="n">numfibers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">centroids</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">graph_attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">compress</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">atlases</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">	Generate a sparse igraph from an MRI file based on input and output names.</span>
 <span class="sd">  </span>
@@ -245,6 +245,8 @@
 <span class="sd">					- Dict with graph attributes to be added with key=attr_name, value=attr_value.</span>
 <span class="sd">			atlases: [dictionary] (default = {})</span>
 <span class="sd">					- Dict with key=atlas_fn, value=region_name_fn</span>
+<span class="sd">			compress: [boolean] (default = False)</span>
+<span class="sd">					- Flag for compressing graphs (useful for processing large quantities of big graphs)</span>
 <span class="sd">  &quot;&quot;&quot;</span>
 
   <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
@@ -290,7 +292,7 @@
   <span class="c"># Done adding edges</span>
   <span class="n">fbrgraph</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span><span class="n">centroids</span><span class="p">,</span> <span class="n">graph_attrs</span><span class="p">,</span> <span class="n">atlases</span><span class="p">)</span>
 
-  <span class="n">fbrgraph</span><span class="o">.</span><span class="n">saveToIgraph</span><span class="p">(</span><span class="n">outfname</span><span class="p">,</span> <span class="n">gformat</span><span class="o">=</span><span class="n">outformat</span><span class="p">)</span>
+  <span class="n">fbrgraph</span><span class="o">.</span><span class="n">saveToIgraph</span><span class="p">(</span><span class="n">outfname</span><span class="p">,</span> <span class="n">gformat</span><span class="o">=</span><span class="n">outformat</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="n">compress</span><span class="p">)</span>
 
   <span class="k">del</span> <span class="n">fbrgraph</span>
   <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Graph building complete in </span><span class="si">%.3f</span><span class="s"> secs&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
@@ -320,7 +322,8 @@
 <span class="s">      for multiple e.g &#39;attr1:value1&#39; &#39;attr2:value2&#39;&quot;</span><span class="p">)</span>
   <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;--numfib&quot;</span><span class="p">,</span> <span class="s">&quot;-n&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> \
       <span class="n">help</span><span class="o">=</span><span class="s">&quot;The number of fibers to process before exit&quot;</span><span class="p">)</span>
-
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;--compress&quot;</span><span class="p">,</span> <span class="s">&quot;-c&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> \
+      <span class="n">help</span><span class="o">=</span><span class="s">&quot;Indicate if graph compression is desired&quot;</span><span class="p">)</span>
   <span class="n">result</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
   <span class="c"># Add atlases to a dict</span>
@@ -334,7 +337,7 @@
   <span class="n">result</span><span class="o">.</span><span class="n">graph_attrs</span> <span class="o">=</span> <span class="n">parse_dict</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">graph_attrs</span><span class="p">)</span>
 
   <span class="n">genGraph</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fbrfile</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">data_atlas</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">isbig</span><span class="p">,</span> 
-      <span class="n">result</span><span class="o">.</span><span class="n">outformat</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">numfib</span><span class="p">,</span> <span class="ow">not</span> <span class="n">result</span><span class="o">.</span><span class="n">centroids</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">graph_attrs</span><span class="p">,</span> <span class="o">**</span><span class="n">atlas_d</span><span class="p">)</span>
+      <span class="n">result</span><span class="o">.</span><span class="n">outformat</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">numfib</span><span class="p">,</span> <span class="ow">not</span> <span class="n">result</span><span class="o">.</span><span class="n">centroids</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">graph_attrs</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">compress</span><span class="p">,</span> <span class="o">**</span><span class="n">atlas_d</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
   <span class="n">main</span><span class="p">()</span>

@@ -280,7 +280,6 @@
 
       <span class="n">edge_dict</span><span class="p">[(</span><span class="n">src</span><span class="p">,</span> <span class="n">tgt</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">e</span><span class="p">[</span><span class="s">&quot;weight&quot;</span><span class="p">]</span>
 
-  <span class="c">#import pdb; pdb.set_trace()</span>
   <span class="k">del</span> <span class="n">g</span> <span class="c"># free me</span>
   <span class="n">new_graph</span> <span class="o">=</span> <span class="n">igraph</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">spatial_map</span><span class="p">),</span> <span class="n">directed</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="c"># len spatial_map is the # of vertices</span>
   <span class="n">new_graph</span><span class="o">.</span><span class="n">vs</span><span class="p">[</span><span class="s">&quot;spatial_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spatial_map</span>

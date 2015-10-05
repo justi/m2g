@@ -144,6 +144,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ocp.me/graph-services/c4/">Web service</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/a/ocp.me/forum/#!forum/m2g">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
@@ -218,6 +219,11 @@
 <li>Field intensity</li>
 </ul>
 </dd>
+<dt>Multiple B0s: [int]</dt>
+<dd><ul class="first last simple">
+<li>Acts as a flag indicating whether multiple B0 scans exist within the set.</li>
+</ul>
+</dd>
 </dl>
 </div></blockquote>
 </dd></dl>
@@ -230,7 +236,7 @@
 <p><strong>Positional Arguments</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>B-vectors: [.bvec, .grad; ASCII file]</dt>
+<dt>B-vectors: [(bvec), .grad; ASCII file]</dt>
 <dd><ul class="first last simple">
 <li>Gradient directions of scanner corresponding to the b-values</li>
 </ul>
@@ -240,7 +246,7 @@
 <p><strong>Returns</strong></p>
 <blockquote>
 <div><dl class="docutils">
-<dt>Gradients: [.grad; ASCII file]</dt>
+<dt>Gradients: [(bvec); ASCII file]</dt>
 <dd><ul class="first last simple">
 <li>Reformatted B-vectors file which is compatible with downstream processing algorithms</li>
 </ul>
