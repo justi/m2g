@@ -192,10 +192,10 @@
 <h2>Input Data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
 <p>Data to process must be organized in the following hierarchical format, by dataset. Subject names must also follow the convention highlighted here. For datasets which only have 1 scan collected per subject, the scan id of 1 should be used.</p>
 <p><strong>Dataset</strong></p>
-<div class="highlight-none"><div class="highlight"><pre>./dataset/
-./dataset/raw/
-./dataset/raw/{subject_id}/
-./dataset/raw/{subject_id}/{scan_id}/
+<div class="highlight-none"><div class="highlight"><pre>./{dataset}/
+./{dataset}/raw/
+./{dataset}/raw/{subject_id}/
+./{dataset}/raw/{subject_id}/{scan_id}/
 ./{dataset}/raw/{subject_id}/{scan_id}/{dataset}_{subject_id}_{scan_id}_{modality}.{extension}
 ...
 </pre></div>
