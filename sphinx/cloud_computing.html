@@ -92,7 +92,11 @@
 <li class="toctree-l2"><a class="reference internal" href="local_config.html#running-test-workflow">Running test workflow</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Cloud Services</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Cloud Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-m2g-in-an-ami">Using m2g in an AMI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-graphs">Downloading Graphs</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ocp.html">OCP</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ocp.html#contributing">Contributing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ocp.html#style-guides">Style Guides</a></li>
@@ -143,6 +147,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ocp.me/graph-services/c4/">Web service</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/a/ocp.me/forum/#!forum/m2g">Mailing List</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
@@ -186,8 +191,52 @@
             
   <div class="section" id="cloud-services">
 <h1>Cloud Services<a class="headerlink" href="#cloud-services" title="Permalink to this headline">¶</a></h1>
-<p>Coming soon.  This will be integrated with <a class="reference external" href="http://mrbrain.cs.jhu.edu/graph-services/welcome/">MROCP</a>.</p>
-<p>Users can use our cloud services to process single scans or series of scans.</p>
+<p>There are several options when using m2g in the cloud. We provide a user-facing preconfigured AMI on the Amazon Community Marketplace for users to access and launch, as well as host graph services users can access for direct data downloads. In the near future, an additional web service which allows users to simply supply an s3 bucket to us and received processed derivatives in return will be available - stay tuned.</p>
+<div class="section" id="using-m2g-in-an-ami">
+<h2>Using m2g in an AMI<a class="headerlink" href="#using-m2g-in-an-ami" title="Permalink to this headline">¶</a></h2>
+<p>Before beginning this guide, please ensure that you have the following:
+1. Amazon AWS credentials
+2. Your data organized in compliance with our <a class="reference external" href="http://m2g.io/tutorials/input_data.html">input specification</a></p>
+<p><strong>Creating and connecting to the workstation:</strong></p>
+<ul class="simple">
+<li>Log in to the AWS Console and navigate to EC2 services</li>
+<li>Create new EC2 instance</li>
+<li>Under &#8216;Community AMIs&#8217; search for &#8216;neurodata&#8217; and select the most recent version</li>
+<li>Proceed to select computer size, storage, and security preferences, and launch instance</li>
+<li>Once your instance is online, initiate an SSH tunnel through a terminal on your computer by running the following command with your ip address. You will be prompted to enter the password <cite>neurodata</cite>:</li>
+</ul>
+<div class="highlight-none"><div class="highlight"><pre>ssh -L 5901:127.0.0.1:5901 -N -f -l neurodata ${ip}
+</pre></div>
+</div>
+<ul class="simple">
+<li>Open a VNC client like RealVNC <a class="reference external" href="https://www.realvnc.com/products/chrome/">https://www.realvnc.com/products/chrome/</a></li>
+<li>Connect to 127.0.0.1:5901 and enter the password <cite>neurodata</cite></li>
+<li>Login to the workstation using the same password</li>
+</ul>
+<p><strong>Processing your data:</strong></p>
+<ul class="simple">
+<li>Move all of your data into your workstation (either through s3, or scp or equivalent). If you don&#8217;t have sufficient space then you may need to attach an additional harddrive during creation of your instance.</li>
+<li>Open terminal and type the following:</li>
+</ul>
+<div class="highlight-none"><div class="highlight"><pre>cd /share0/m2g/
+git pull
+cd /share0/src/loni/loni_6.0.1
+./PipelineGui.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li>A LONI Pipeline window will open. Decline any prompts to update this client upon load.</li>
+<li>Open the m2g workflow, located at <cite>/share0/m2g/library/m2g_sources_bc1_v4.pipe</cite></li>
+<li>Change variable to the base directory of your data</li>
+<li>Press run</li>
+<li>Find your graphs and other derivatives from the base directory you provided</li>
+<li>Enjoy!</li>
+</ul>
+</div>
+<div class="section" id="downloading-graphs">
+<h2>Downloading Graphs<a class="headerlink" href="#downloading-graphs" title="Permalink to this headline">¶</a></h2>
+<p>Our graph service engine, <a class="reference external" href="http://mrbrain.cs.jhu.edu/graph-services/welcome/">MROCP</a>, hosts graph data of a variety of species and scales, as well as enables downsampling and type conversion of graphs.</p>
+</div>
 </div>
 
 
