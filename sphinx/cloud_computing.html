@@ -191,7 +191,6 @@
             
   <div class="section" id="cloud-services">
 <h1>Cloud Services<a class="headerlink" href="#cloud-services" title="Permalink to this headline">¶</a></h1>
-<p>There are several options when using m2g in the cloud. We provide a user-facing preconfigured AMI on the Amazon Community Marketplace for users to access and launch, as well as host graph services users can access for direct data downloads. In the near future, an additional web service which allows users to simply supply an s3 bucket to us and received processed derivatives in return will be available - stay tuned.</p>
 <div class="section" id="using-m2g-in-an-ami">
 <h2>Using m2g in an AMI<a class="headerlink" href="#using-m2g-in-an-ami" title="Permalink to this headline">¶</a></h2>
 <p>Before beginning this guide, please ensure that you have the following:
@@ -215,7 +214,9 @@
 </ul>
 <p><strong>Processing your data:</strong></p>
 <ul class="simple">
-<li>Move all of your data into your workstation (either through s3, or scp or equivalent). If you don&#8217;t have sufficient space then you may need to attach an additional harddrive during creation of your instance.</li>
+<li>Mount an addtional harddrive with sufficient storage capacity for your data.</li>
+<li>Move all of your data into your new harddrive (either through s3, or scp or equivalent).</li>
+<li>Create a <cite>temp</cite> directory on this new harddrive, as well.</li>
 <li>Open terminal and type the following:</li>
 </ul>
 <div class="highlight-none"><div class="highlight"><pre>cd /share0/m2g/
@@ -227,9 +228,12 @@ cd /share0/src/loni/loni_6.0.1
 <ul class="simple">
 <li>A LONI Pipeline window will open. Decline any prompts to update this client upon load.</li>
 <li>Open the m2g workflow, located at <cite>/share0/m2g/library/m2g_sources_bc1_v4.pipe</cite></li>
-<li>Change variable to the base directory of your data</li>
-<li>Press run</li>
-<li>Find your graphs and other derivatives from the base directory you provided</li>
+<li>In LONI, open the <cite>Edit &gt; Preferences</cite> menu</li>
+<li>Change the Pipeline Cache to the <cite>temp</cite> folder you created earlier. Be sure that directory has permissions <cite>777</cite>.</li>
+<li>Change the number of simultaneous jobs in Local Execution to be approximately 90-95% of the total cores in your instance.</li>
+<li>Open the variables dialog from the wrench on the top right, and change the variables to point to your data and where you want your derivatives stored.</li>
+<li>Press run.</li>
+<li>Find your graphs and other derivatives from the base directory you provided.</li>
 <li>Enjoy!</li>
 </ul>
 </div>
