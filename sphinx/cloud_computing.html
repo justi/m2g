@@ -125,7 +125,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#diffusion-processing">Diffusion Processing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/validation.html#computing-reliability-on-your-data">Computing Reliability on your Data</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul>
@@ -214,9 +217,9 @@
 </ul>
 <p><strong>Processing your data:</strong></p>
 <ul class="simple">
-<li>Mount an addtional harddrive with sufficient storage capacity for your data.</li>
-<li>Move all of your data into your new harddrive (either through s3, or scp or equivalent).</li>
-<li>Create a <cite>temp</cite> directory on this new harddrive, as well.</li>
+<li>Mount an addtional harddrive with sufficient storage capacity for your data</li>
+<li>Move all of your data into your new harddrive (either through s3, or scp or equivalent)</li>
+<li>Create a <cite>temp</cite> directory on this new harddrive, as well</li>
 <li>Open terminal and type the following:</li>
 </ul>
 <div class="highlight-none"><div class="highlight"><pre>cd /share0/m2g/
@@ -226,14 +229,14 @@ cd /share0/src/loni/loni_6.0.1
 </pre></div>
 </div>
 <ul class="simple">
-<li>A LONI Pipeline window will open. Decline any prompts to update this client upon load.</li>
+<li>A LONI Pipeline window will open. Decline any prompts to update this client upon load</li>
 <li>Open the m2g workflow, located at <cite>/share0/m2g/library/m2g_sources_bc1_v4.pipe</cite></li>
 <li>In LONI, open the <cite>Edit &gt; Preferences</cite> menu</li>
-<li>Change the Pipeline Cache to the <cite>temp</cite> folder you created earlier. Be sure that directory has permissions <cite>777</cite>.</li>
-<li>Change the number of simultaneous jobs in Local Execution to be approximately 90-95% of the total cores in your instance.</li>
-<li>Open the variables dialog from the wrench on the top right, and change the variables to point to your data and where you want your derivatives stored.</li>
-<li>Press run.</li>
-<li>Find your graphs and other derivatives from the base directory you provided.</li>
+<li>Change the Pipeline Cache to the <cite>temp</cite> folder you created earlier. Be sure that directory has permissions <cite>777</cite></li>
+<li>Change the number of simultaneous jobs in Local Execution to be approximately 90-95% of the total cores in your instance</li>
+<li>Open the variables dialog from the wrench on the top right, and change the variables to point to your data and where you want your derivatives stored</li>
+<li>Press run</li>
+<li>Find your graphs and other derivatives from the base directory you provided</li>
 <li>Enjoy!</li>
 </ul>
 </div>
