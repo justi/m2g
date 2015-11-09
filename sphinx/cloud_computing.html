@@ -93,6 +93,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Cloud Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-m2g-on-captive-cluster">Using m2g on captive cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-m2g-in-an-ami">Using m2g in an AMI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#downloading-graphs">Downloading Graphs</a></li>
 </ul>
@@ -194,6 +195,26 @@
             
   <div class="section" id="cloud-services">
 <h1>Cloud Services<a class="headerlink" href="#cloud-services" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="using-m2g-on-captive-cluster">
+<h2>Using m2g on captive cluster<a class="headerlink" href="#using-m2g-on-captive-cluster" title="Permalink to this headline">¶</a></h2>
+<p>In order to run m2g on the captive cluster we run in house (braincloud1), we expect you to have the following requirements satisfied:
+1. A LONI client installed on your computer that is the same version as our sever (Currently v6.0.1)
+2. Your data organized in compliance with our <a class="reference external" href="http://m2g.io/tutorials/input_data.html">input specification</a></p>
+<p><strong>Moving your data:</strong></p>
+<ul class="simple">
+<li>scp/rsync or equivalently move your data to braincloud1:/data/MR/{datasetname}</li>
+<li>ensure that the data directory is readable and writeable by user pipeline. This is most easily achieved by applying chmod 777 -R to the base of your data directory</li>
+</ul>
+<p><strong>Processing your data:</strong></p>
+<ul class="simple">
+<li>On your computer, open the LONI client and connect to braincloud1</li>
+<li>Open the m2g workflow in m2g found at <cite>library/workflows/m2g_lists.pipe</cite></li>
+<li>Open the variables dialog from the wrench on the top right, and change the variables to point to your data and where you want your derivatives stored</li>
+<li>Press run</li>
+<li>Find your graphs and other derivatives from the base directory you provided</li>
+<li>Enjoy!</li>
+</ul>
+</div>
 <div class="section" id="using-m2g-in-an-ami">
 <h2>Using m2g in an AMI<a class="headerlink" href="#using-m2g-in-an-ami" title="Permalink to this headline">¶</a></h2>
 <p>Before beginning this guide, please ensure that you have the following:
