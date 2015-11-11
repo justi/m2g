@@ -197,21 +197,30 @@
 <h1>Cloud Services<a class="headerlink" href="#cloud-services" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="using-m2g-on-captive-cluster">
 <h2>Using m2g on captive cluster<a class="headerlink" href="#using-m2g-on-captive-cluster" title="Permalink to this headline">¶</a></h2>
-<p>In order to run m2g on the captive cluster we run in house (braincloud1), we expect you to have the following requirements satisfied:
-1. A LONI client installed on your computer that is the same version as our sever (Currently v6.0.1)
-2. Your data organized in compliance with our <a class="reference external" href="http://m2g.io/tutorials/input_data.html">input specification</a></p>
+<p>In order to run m2g on the captive cluster we run in house (braincloud1), we expect you to have the following requirements satisfied:</p>
+<ol class="arabic simple">
+<li>A LONI client installed on your computer that is the same version as our sever (Currently v6.0.1). If you cannot find this version on <a class="reference external" href="http://www.loni.usc.edu/Software/Pipeline">their website</a>, contact them and <a class="reference external" href="http://pipeline.loni.usc.edu/learn/contact/">request a copy</a>.</li>
+<li>Your data organized in compliance with our <a class="reference external" href="http://m2g.io/tutorials/input_data.html">input specification</a></li>
+<li>An account on the cluster. If you don&#8217;t have an account and would like one, you can email <a class="reference external" href="mailto:support&#37;&#52;&#48;neurodata&#46;io">support<span>&#64;</span>neurodata<span>&#46;</span>io</a> to see if you&#8217;re eligible.</li>
+</ol>
 <p><strong>Moving your data:</strong></p>
 <ul class="simple">
-<li>scp/rsync or equivalently move your data to braincloud1:/data/MR/{datasetname}</li>
-<li>ensure that the data directory is readable and writeable by user pipeline. This is most easily achieved by applying chmod 777 -R to the base of your data directory</li>
+<li>scp/rsync or equivalently move your data to braincloud1:/brainstore/MR/</li>
+<li>ensure that the data directory is readable and writeable by user pipeline. An example of this is done below</li>
 </ul>
+<div class="highlight-none"><div class="highlight"><pre>rsync -rv --progress /path/to/mydata ${user}@braincloud1.cs.jhu.edu:/brainstore/MR/mydata
+ssh ${user}@braincloud1.cs.jhu.edu
+cd /brainstore/MR/mydata
+chmod -R 775 ./
+</pre></div>
+</div>
 <p><strong>Processing your data:</strong></p>
 <ul class="simple">
 <li>On your computer, open the LONI client and connect to braincloud1</li>
-<li>Open the m2g workflow in m2g found at <cite>library/workflows/m2g_lists.pipe</cite></li>
-<li>Open the variables dialog from the wrench on the top right, and change the variables to point to your data and where you want your derivatives stored</li>
+<li>Open the m2g workflow found in your local cloned copy of the m2g repo at subdirectory <cite>library/workflows/m2g_lists.pipe</cite></li>
+<li>Open the variables dialog from the wrench on the top right. The <cite>inputDir</cite> variable should be set to the location of your data. The <cite>outputBaseDir</cite> should be the location you would like derivates to be stored. The <cite>sglabels</cite> variable points to a file which contains a list of parcelations to process your data with. You can open this file on braincloud to see the atlases chosen, and if you wish to adjust the atlases used you can create a new file in your data directory containing paths to the atlases you wish to use (if they don&#8217;t exist in m2g already, you will need to copy them as well like was done above). If you wish to process in a space other than the MNI152 template, then you will also need to provide new paths for the remaining variables to the atlas space you wish to use.</li>
 <li>Press run</li>
-<li>Find your graphs and other derivatives from the base directory you provided</li>
+<li>Find your <a class="reference external" href="http://m2g.io/tutorials/input_data.html#output-data">graphs and other derivatives</a> from the base directory you provided</li>
 <li>Enjoy!</li>
 </ul>
 </div>
