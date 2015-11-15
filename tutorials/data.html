@@ -98,10 +98,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/services.html#downloading-graphs">Downloading Graphs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../sphinx/ocp.html">OCP</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/ocp.html">NeuroData</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/ocp.html#contributing">Contributing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/ocp.html#style-guides">Style Guides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sphinx/ocp.html#ocp-support-forums">OCP Support Forums</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/faq.html">Frequently Asked Questions (FAQ)</a></li>
@@ -127,6 +126,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#benchmark-evaluation">Benchmark Evaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="validation.html#computing-reliability-on-your-data">Computing Reliability on your Data</a></li>
 </ul>
 </li>
@@ -151,9 +151,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference external" href="http://ocp.me/graph-services/c4/">Web service</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/a/ocp.me/forum/#!forum/m2g">Mailing List</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://openconnecto.me/graph-services/c4/">Web service</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
@@ -229,10 +227,10 @@
 <h2>Output Data<a class="headerlink" href="#output-data" title="Permalink to this headline">¶</a></h2>
 <p>Data derivatives for processed brains include the following data, tagged with its quarterly release.  For each data product, users select the product, the atlas (parcellation scheme) and data format:</p>
 <ol class="arabic simple">
-<li>The <cite>reg</cite> directory contains image aligned DTI and MPRAGE volumes to the atlas space (default is MNI152). These are in the compressed nifti format.</li>
-<li>The <cite>fibers</cite> directory contains fiber streamlines for the entire brain volume. These are in the MRIStudio format.</li>
-<li>The <cite>bg</cite> directory contains big graphs (i.e. voxelwise graphs) in the graphml format.</li>
-<li>The <cite>sg</cite> directory contains small graphs (i.e. parcellated by the input atlases) in the graphml format.</li>
+<li>The <code class="docutils literal"><span class="pre">reg</span></code> directory contains image aligned DTI and MPRAGE volumes to the atlas space (default is MNI152). These are in the compressed nifti format.</li>
+<li>The <code class="docutils literal"><span class="pre">fibers</span></code> directory contains fiber streamlines for the entire brain volume. These are in the MRIStudio format.</li>
+<li>The <code class="docutils literal"><span class="pre">bg</span></code> directory contains big graphs (i.e. voxelwise graphs) in the graphml format.</li>
+<li>The <code class="docutils literal"><span class="pre">sg</span></code> directory contains small graphs (i.e. parcellated by the input atlases) in the graphml format.</li>
 </ol>
 <p>Graphs range in size from O(10^1) to O(10^6), and intermediate products include graph invariants and processing artifacts (e.g., fibers, tensors).</p>
 </div>

@@ -34,7 +34,7 @@
   
     <link rel="top" title="m2g v1.1.1 documentation" href="../index.html"/>
         <link rel="next" title="Basic Usage" href="basic_usage.html"/>
-        <link rel="prev" title="Data Formats" href="input_data.html"/> 
+        <link rel="prev" title="Data Formats" href="data.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -92,20 +92,24 @@
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/local_config.html#running-test-workflow">Running test workflow</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../sphinx/cloud_computing.html">Cloud Services</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sphinx/ocp.html">OCP</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/services.html">Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/services.html#using-m2g-on-captive-cluster">Using m2g on captive cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/services.html#using-m2g-in-an-ami">Using m2g in an AMI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/services.html#downloading-graphs">Downloading Graphs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/ocp.html">NeuroData</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/ocp.html#contributing">Contributing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/ocp.html#style-guides">Style Guides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sphinx/ocp.html#ocp-support-forums">OCP Support Forums</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/faq.html">Frequently Asked Questions (FAQ)</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="input_data.html">Data Formats</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="input_data.html#input-data">Input Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="input_data.html#output-data">Output Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data.html#input-data">Input Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#output-data">Output Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Public Data</a></li>
@@ -121,7 +125,11 @@
 <li class="toctree-l2"><a class="reference internal" href="advanced_usage.html#diffusion-processing">Diffusion Processing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#benchmark-evaluation">Benchmark Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#computing-reliability-on-your-data">Computing Reliability on your Data</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul>
@@ -143,8 +151,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/a/ocp.me/forum/#!forum/m2g">Mailing List</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://openconnecto.me/graph-services/c4/">Web service</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
@@ -186,15 +193,7 @@
             
   <div class="section" id="public-data">
 <h1>Public Data<a class="headerlink" href="#public-data" title="Permalink to this headline">¶</a></h1>
-<p>The datasets we have available for download and processing are:</p>
-<blockquote>
-<div><ul class="simple">
-<li><a class="reference external" href="https://www.nitrc.org/frs/?group_id=404">NKI</a></li>
-<li><a class="reference external" href="http://fcon_1000.projects.nitrc.org/indi/CoRR/html/swu_4.html">CORR</a></li>
-<li><a class="reference external" href="https://www.nitrc.org/frs/?group_id=404">KKI</a></li>
-</ul>
-</div></blockquote>
-<p>We are always welcoming more data, and would be happy to help you analyze yours.</p>
+<p>We process all publicly available data we can find, and put the derivatives in our <a class="reference external" href="http://http://openconnecto.me/graph-services/">graph servies</a> engine as well as an s3 bucket which you can gain access to by contacting our user <a class="reference external" href="mailto:support&#37;&#52;&#48;neurodata&#46;io">support</a>.</p>
 </div>
 
 
@@ -206,7 +205,7 @@
         <a href="basic_usage.html" class="btn btn-neutral float-right" title="Basic Usage" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="input_data.html" class="btn btn-neutral" title="Data Formats" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="data.html" class="btn btn-neutral" title="Data Formats" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

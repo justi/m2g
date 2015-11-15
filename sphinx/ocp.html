@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>OCP &mdash; m2g v1.1.1 documentation</title>
+  <title>NeuroData &mdash; m2g v1.1.1 documentation</title>
   
 
   
@@ -34,7 +34,7 @@
   
     <link rel="top" title="m2g v1.1.1 documentation" href="../index.html"/>
         <link rel="next" title="Frequently Asked Questions (FAQ)" href="faq.html"/>
-        <link rel="prev" title="Cloud Services" href="cloud_computing.html"/> 
+        <link rel="prev" title="Services" href="services.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -92,20 +92,24 @@
 <li class="toctree-l2"><a class="reference internal" href="local_config.html#running-test-workflow">Running test workflow</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cloud_computing.html">Cloud Services</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">OCP</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="services.html">Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="services.html#using-m2g-on-captive-cluster">Using m2g on captive cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html#using-m2g-in-an-ami">Using m2g in an AMI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html#downloading-graphs">Downloading Graphs</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">NeuroData</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#style-guides">Style Guides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ocp-support-forums">OCP Support Forums</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ)</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/input_data.html">Data Formats</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/input_data.html#input-data">Input Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/input_data.html#output-data">Output Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/data.html">Data Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/data.html#input-data">Input Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/data.html#output-data">Output Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/available_data.html">Public Data</a></li>
@@ -121,7 +125,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#diffusion-processing">Diffusion Processing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/validation.html#benchmark-evaluation">Benchmark Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/validation.html#computing-reliability-on-your-data">Computing Reliability on your Data</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul>
@@ -143,8 +151,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/a/ocp.me/forum/#!forum/m2g">Mailing List</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://openconnecto.me/graph-services/c4/">Web service</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
@@ -171,7 +178,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>OCP</li>
+    <li>NeuroData</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -184,9 +191,9 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="ocp">
-<h1>OCP<a class="headerlink" href="#ocp" title="Permalink to this headline">¶</a></h1>
-<p>This project is part of the <a class="reference external" href="openconnecto.me/">Open Connectome Project</a>.  The following information that applies across our projects.</p>
+  <div class="section" id="neurodata">
+<h1>NeuroData<a class="headerlink" href="#neurodata" title="Permalink to this headline">¶</a></h1>
+<p>This project is part of <a class="reference external" href="http://neurodata.io">NeuroData</a>.  The following information that applies across our projects.</p>
 <div class="section" id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
 <p>m2g is under active development.  To contribute new algoirthms, either get in touch with us directly, or clone our git repo and issue a pull request. Prior to contributing, checkout some of our dev branches to see if some of your suggestions are already being implemented. To issue a pull request, head over to our repository and select the pull requests option on the righthand side, then issue a new pull request. If you&#8217;re unfamiliar with github, there are many google-able guides available which are very helpful.</p>
@@ -198,13 +205,8 @@
 <blockquote>
 <div><ul class="simple">
 <li><a class="reference external" href="http://legacy.python.org/dev/peps/pep-0008/">Python code complies with PEP-8</a></li>
-<li>m2g follows the <a class="reference external" href="http://w.ocp.me/style">style guidelines</a> used by the Open Connectome Project</li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="ocp-support-forums">
-<h2>OCP Support Forums<a class="headerlink" href="#ocp-support-forums" title="Permalink to this headline">¶</a></h2>
-<p>Information on making a support request and archived questions and answers may be found <a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support/">here</a>.</p>
 </div>
 </div>
 
@@ -217,7 +219,7 @@
         <a href="faq.html" class="btn btn-neutral float-right" title="Frequently Asked Questions (FAQ)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="cloud_computing.html" class="btn btn-neutral" title="Cloud Services" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="services.html" class="btn btn-neutral" title="Services" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -33,8 +33,8 @@
 
   
     <link rel="top" title="m2g v1.1.1 documentation" href="../index.html"/>
-        <link rel="next" title="Data Formats" href="../tutorials/input_data.html"/>
-        <link rel="prev" title="OCP" href="ocp.html"/> 
+        <link rel="next" title="Data Formats" href="../tutorials/data.html"/>
+        <link rel="prev" title="NeuroData" href="ocp.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -92,20 +92,24 @@
 <li class="toctree-l2"><a class="reference internal" href="local_config.html#running-test-workflow">Running test workflow</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cloud_computing.html">Cloud Services</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ocp.html">OCP</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="services.html">Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="services.html#using-m2g-on-captive-cluster">Using m2g on captive cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html#using-m2g-in-an-ami">Using m2g in an AMI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html#downloading-graphs">Downloading Graphs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ocp.html">NeuroData</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ocp.html#contributing">Contributing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ocp.html#style-guides">Style Guides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ocp.html#ocp-support-forums">OCP Support Forums</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Frequently Asked Questions (FAQ)</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/input_data.html">Data Formats</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/input_data.html#input-data">Input Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/input_data.html#output-data">Output Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/data.html">Data Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/data.html#input-data">Input Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/data.html#output-data">Output Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/available_data.html">Public Data</a></li>
@@ -121,7 +125,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_usage.html#diffusion-processing">Diffusion Processing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/validation.html">Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/validation.html#benchmark-evaluation">Benchmark Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/validation.html#computing-reliability-on-your-data">Computing Reliability on your Data</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Further Reading</span></p>
 <ul>
@@ -143,8 +151,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api/modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://gitter.im/openconnectome/m2g">Gitter chatroom</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/a/ocp.me/forum/#!forum/m2g">Mailing List</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://openconnecto.me/graph-services/c4/">Web service</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g">Github repo</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/openconnectome/m2g/releases/">Release Notes</a></li>
 </ul>
@@ -186,12 +193,12 @@
             
   <div class="section" id="frequently-asked-questions-faq">
 <h1>Frequently Asked Questions (FAQ)<a class="headerlink" href="#frequently-asked-questions-faq" title="Permalink to this headline">¶</a></h1>
-<p>This page will be updated to reflect commonly asked questions to provide a common reference point for questions and answers.  Users may also wish to search for answers on the general <a class="reference external" href="https://groups.google.com/forum/#!forum/ocp-support">OCP Support mailing list</a> archives.</p>
-<p>New questions should be asked on  <a class="reference external" href="mailto:ocp-support&#37;&#52;&#48;googlegroups&#46;com">our support pages</a>.</p>
+<p>This page will be updated to reflect commonly asked questions to provide a common reference point for questions and answers.  Users may also wish to search for answers on the general <a class="reference external" href="https://groups.google.com/a/neurodata.io/forum/#!forum/support">NeuroData Support Forum</a>.</p>
+<p>New questions should be asked to <a class="reference external" href="mailto:support&#37;&#52;&#48;neurodata&#46;io">support<span>&#64;</span>neurodata<span>&#46;</span>io</a>.</p>
 <p><strong>How do I run the m2g pipeline?</strong></p>
-<p>Great question! To install the pipeline on your computer see the single node install, and for instructions on how to run it head over to the basic usage page and follow the tutorial there.</p>
+<p>To install the pipeline on your computer see the <a class="reference external" href="http://m2g.io/sphinx/local_config.html">single node install page</a>, and for instructions on how to run it head over to the basic usage page and follow the tutorial there.</p>
 <p><strong>How do you assess the quality of your pipeline?</strong></p>
-<p>We assess the performance of the pipeline after each algorithm implemented through quality assurance measures and report these values after execution. The entire pipeline has been validated through a metric called test-retest (TRT) reliability which ensures that graphs estimated from an individual over multiple scans are more similar to themselves than they are to those estimated from other subjects. Our pipeline has a perfect TRT score on the datasets tested (42/42 matches on the Kennedy Kreiger Institute 2009 dataset).</p>
+<p>We assess the performance of the pipeline after each algorithm implemented through quality assurance measures and report these values after execution. The entire pipeline has been validated through a metric called test-retest (TRT) reliability which ensures that graphs estimated from an individual over multiple scans are more similar to themselves than they are to those estimated from other subjects.</p>
 <p><strong>How often is m2g updated?</strong></p>
 <p>m2g undergoes regular updates. If you have a feature suggestion of bug fix, please let us know using the issues section of our Github repository and we&#8217;ll do our best to roll it out as soon as we can.</p>
 </div>
@@ -202,10 +209,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../tutorials/input_data.html" class="btn btn-neutral float-right" title="Data Formats" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../tutorials/data.html" class="btn btn-neutral float-right" title="Data Formats" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ocp.html" class="btn btn-neutral" title="OCP" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ocp.html" class="btn btn-neutral" title="NeuroData" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
