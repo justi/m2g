@@ -197,8 +197,8 @@
 <h2>Using m2g on captive cluster<a class="headerlink" href="#using-m2g-on-captive-cluster" title="Permalink to this headline">¶</a></h2>
 <p>In order to run m2g on the captive cluster we run in house (braincloud1), we expect you to have the following requirements satisfied:</p>
 <ol class="arabic simple">
-<li>A LONI client installed on your computer that is the same version as our sever (Currently v6.0.1). If you cannot find this version on <a class="reference external" href="http://www.loni.usc.edu/Software/Pipeline">their website</a>, contact them and <a class="reference external" href="http://pipeline.loni.usc.edu/learn/contact/">request a copy</a>.</li>
-<li>Your data organized in compliance with our <a class="reference external" href="http://m2g.io/tutorials/input_data.html">input specification</a></li>
+<li>A LONI client installed on your client computer that is the compatible version to our sever (Currently v6.0). Contact LONI and <a class="reference external" href="http://pipeline.loni.usc.edu/learn/contact/">request a copy</a>, as this is not the most recent release and they don&#8217;t publicly share older versions.</li>
+<li>Your data organized in compliance with our <a class="reference external" href="http://m2g.io/tutorials/data.html">input specification</a></li>
 <li>An account on the cluster. If you don&#8217;t have an account and would like one, you can email <a class="reference external" href="mailto:support&#37;&#52;&#48;neurodata&#46;io">support<span>&#64;</span>neurodata<span>&#46;</span>io</a> to see if you&#8217;re eligible.</li>
 </ol>
 <p><strong>Moving your data:</strong></p>
@@ -218,35 +218,42 @@ chmod -R 775 ./
 <li>Open the m2g workflow found in your local cloned copy of the m2g repo at subdirectory <code class="docutils literal"><span class="pre">library/workflows/m2g_lists.pipe</span></code></li>
 <li>Open the variables dialog from the wrench on the top right. The <code class="docutils literal"><span class="pre">inputDir</span></code> variable should be set to the location of your data. The <code class="docutils literal"><span class="pre">outputBaseDir</span></code> should be the location you would like derivates to be stored. The <code class="docutils literal"><span class="pre">sglabels</span></code> variable points to a file which contains a list of parcelations to process your data with. You can open this file on braincloud to see the atlases chosen, and if you wish to adjust the atlases used you can create a new file in your data directory containing paths to the atlases you wish to use (if they don&#8217;t exist in m2g already, you will need to copy them as well like was done above). If you wish to process in a space other than the MNI152 template, then you will also need to provide new paths for the remaining variables to the atlas space you wish to use.</li>
 <li>Press run</li>
-<li>Find your <a class="reference external" href="http://m2g.io/tutorials/input_data.html#output-data">graphs and other derivatives</a> from the base directory you provided</li>
+<li>Find your <a class="reference external" href="http://m2g.io/tutorials/data.html#output-data">graphs and other derivatives</a> from the base directory you provided</li>
 <li>Enjoy!</li>
 </ul>
 </div>
 <div class="section" id="using-m2g-in-an-ami">
 <h2>Using m2g in an AMI<a class="headerlink" href="#using-m2g-in-an-ami" title="Permalink to this headline">¶</a></h2>
-<p>Before beginning this guide, please ensure that you have the following:
-1. Amazon AWS credentials
-2. Your data organized in compliance with our <a class="reference external" href="http://m2g.io/tutorials/input_data.html">input specification</a></p>
+<p>Before beginning this guide, please ensure that you have the following:</p>
+<ol class="arabic simple">
+<li>Amazon AWS credentials</li>
+<li>Your data organized in compliance with our <a class="reference external" href="http://m2g.io/tutorials/data.html">input specification</a></li>
+</ol>
 <p><strong>Creating and connecting to the workstation:</strong></p>
 <ul class="simple">
 <li>Log in to the AWS Console and navigate to EC2 services</li>
-<li>Create new EC2 instance</li>
+<li>Create new EC2 instance. If you are unfamiliar with this, the following <a class="reference external" href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html">guide</a> may be useful to use in concert with ours. This will also be useful when mounting a harddrive, as you&#8217;ll be doing shortly.</li>
 <li>Under &#8216;Community AMIs&#8217; search for <code class="docutils literal"><span class="pre">neurodata</span></code> and select the most recent version</li>
-<li>Proceed to select computer size, storage, and security preferences, and launch instance</li>
+<li>Proceed to select computer size, storage, and security preferences, and launch instance. The computer size should be proportional to the amount of data you are wishing to run. Larger instances are suggested for faster performance, though smaller instances (must have &gt; 8GB of RAM) are good for debugging and test runs of your data. Storage is also proportional to your data needs. It is suggested that your additional storage is at least twice the size of your dataset, to ensure room for data derivatives. The default security settings are often sufficient, though if you have privacy concerns for your data you should contact AWS Support and see how to make your instance HIPPA compliant</li>
 <li>Once your instance is online, initiate an SSH tunnel through a terminal on your computer by running the following command with your ip address. You will be prompted to enter the password <code class="docutils literal"><span class="pre">neurodata</span></code>:</li>
 </ul>
 <div class="highlight-none"><div class="highlight"><pre>ssh -L 5901:127.0.0.1:5901 -N -f -l neurodata ${ip}
 </pre></div>
 </div>
 <ul class="simple">
-<li>Open a VNC client like <a class="reference external" href="https://www.realvnc.com/products/chrome/">RealVNC</a></li>
+<li>Open a VNC client like <a class="reference external" href="https://www.realvnc.com/products/chrome/">RealVNC</a>. For Mac users, screenshare is built in and has this capability.</li>
 <li>Connect to 127.0.0.1:5901 and enter the password <code class="docutils literal"><span class="pre">neurodata</span></code></li>
 <li>Login to the workstation using the same password</li>
 </ul>
 <p><strong>Processing your data:</strong></p>
 <ul class="simple">
-<li>Mount an addtional harddrive with sufficient storage capacity for your data</li>
-<li>Move all of your data into your new harddrive (either through s3, or scp or equivalent)</li>
+<li>Mount an addtional harddrive with sufficient storage capacity for your data. This can be done through the same <a class="reference external" href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html">guide</a> that helped you start your instance</li>
+<li>Move all of your data into your new harddrive (either through s3, or scp or equivalent). If you don&#8217;t have your own data and wish to download <a class="reference external" href="http://m2g.io/tutorials/available_data.html">publicly available datasets</a> you may download them directly to the EC2 instance. An example of transfering data from your computer can be done in the terminal of your client computer as follows:</li>
+</ul>
+<div class="highlight-none"><div class="highlight"><pre>scp -r /path/to/your/data/ ${ip}/data/
+</pre></div>
+</div>
+<ul class="simple">
 <li>Create a <code class="docutils literal"><span class="pre">temp</span></code> directory on this new harddrive, as well</li>
 <li>Open terminal and type the following:</li>
 </ul>
@@ -262,9 +269,9 @@ cd /share0/src/loni/loni_6.0.1
 <li>In LONI, open the <code class="docutils literal"><span class="pre">Edit</span> <span class="pre">&gt;</span> <span class="pre">Preferences</span></code> menu</li>
 <li>Change the Pipeline Cache to the <code class="docutils literal"><span class="pre">temp</span></code> folder you created earlier. Be sure that directory has permissions <code class="docutils literal"><span class="pre">777</span></code></li>
 <li>Change the number of simultaneous jobs in Local Execution to be approximately 90-95% of the total cores in your instance</li>
-<li>Open the variables dialog from the wrench on the top right, and change the variables to point to your data and where you want your derivatives stored</li>
+<li>Open the variables dialog from the wrench on the top right. The <code class="docutils literal"><span class="pre">inputDir</span></code> variable should be set to the location of your data. The <code class="docutils literal"><span class="pre">outputBaseDir</span></code> should be the location you would like derivates to be stored. The <code class="docutils literal"><span class="pre">sglabels</span></code> variable points to a file which contains a list of parcelations to process your data with. You can open this file on braincloud to see the atlases chosen, and if you wish to adjust the atlases used you can create a new file in your data directory containing paths to the atlases you wish to use (if they don&#8217;t exist in m2g already, you will need to copy them as well like was done above). If you wish to process in a space other than the MNI152 template, then you will also need to provide new paths for the remaining variables to the atlas space you wish to use.</li>
 <li>Press run</li>
-<li>Find your graphs and other derivatives from the base directory you provided</li>
+<li>Find your <a class="reference external" href="http://m2g.io/tutorials/data.html#output-data">graphs and other derivatives</a> from the base directory you provided</li>
 <li>Enjoy!</li>
 </ul>
 </div>

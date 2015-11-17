@@ -225,14 +225,21 @@
 </div>
 <div class="section" id="output-data">
 <h2>Output Data<a class="headerlink" href="#output-data" title="Permalink to this headline">¶</a></h2>
-<p>Data derivatives for processed brains include the following data, tagged with its quarterly release.  For each data product, users select the product, the atlas (parcellation scheme) and data format:</p>
+<p>Data derivatives for processed brains include the following data. They are organized by the following directory structure containing data as explained below:</p>
+<div class="highlight-none"><div class="highlight"><pre>./{dataset}/
+./{dataset}/derivatives/
+./{dataset}/derivatives/reg/
+./{dataset}/derivatives/fibers/
+./{dataset}/derivatives/bg/
+./{dataset}/derivatives/sg/
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li>The <code class="docutils literal"><span class="pre">reg</span></code> directory contains image aligned DTI and MPRAGE volumes to the atlas space (default is MNI152). These are in the compressed nifti format.</li>
 <li>The <code class="docutils literal"><span class="pre">fibers</span></code> directory contains fiber streamlines for the entire brain volume. These are in the MRIStudio format.</li>
 <li>The <code class="docutils literal"><span class="pre">bg</span></code> directory contains big graphs (i.e. voxelwise graphs) in the graphml format.</li>
 <li>The <code class="docutils literal"><span class="pre">sg</span></code> directory contains small graphs (i.e. parcellated by the input atlases) in the graphml format.</li>
 </ol>
-<p>Graphs range in size from O(10^1) to O(10^6), and intermediate products include graph invariants and processing artifacts (e.g., fibers, tensors).</p>
 </div>
 </div>
 
