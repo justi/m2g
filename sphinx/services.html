@@ -34,7 +34,7 @@
   
     <link rel="top" title="m2g v1.1.1 documentation" href="../index.html"/>
         <link rel="next" title="NeuroData" href="ocp.html"/>
-        <link rel="prev" title="Single Node Configuration" href="local_config.html"/> 
+        <link rel="prev" title="Sample Data" href="../tutorials/sample_data.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -79,22 +79,14 @@
               <p class="caption"><span class="caption-text">Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="local_config.html">Single Node Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="local_config.html#basic-package-update-and-install">Basic Package Update and Install</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local_config.html#install-and-configure-python-2-7">Install and Configure Python 2.7</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local_config.html#basics-for-development">Basics for Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local_config.html#oracle-java-install">Oracle Java Install</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local_config.html#java-setup">Java Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local_config.html#camino-and-fsl">Camino and FSL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local_config.html#igraph">igraph</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local_config.html#m2g-setup">m2g setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local_config.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local_config.html#running-test-workflow">Running test workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/available_data.html">Public Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/available_data.html#data-formats-and-access">Data Formats and Access</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/sample_data.html">Sample Data</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Services</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#using-m2g-on-our-captive-cluster">Using m2g on our captive cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-m2g-in-an-ami">Using m2g in an AMI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-m2g-on-our-captive-cluster">Using m2g on our captive cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#downloading-graphs">Downloading Graphs</a></li>
 </ul>
 </li>
@@ -112,7 +104,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/data.html#output-data">Output Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/available_data.html">Public Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#basic-package-update-and-install">Basic Package Update and Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#install-and-configure-python-2-7">Install and Configure Python 2.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#basics-for-development">Basics for Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#oracle-java-install">Oracle Java Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#java-setup">Java Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#camino-and-fsl">Camino and FSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#igraph">igraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#m2g-setup">m2g setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#export-paths-and-setup-environment">Export Paths and Setup Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#running-test-workflow">Running test workflow</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_usage.html">Basic Usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-complete-pipeline">m2g Complete Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_usage.html#m2g-registration-pipeline">m2g Registration Pipeline</a></li>
@@ -193,41 +197,6 @@
             
   <div class="section" id="services">
 <h1>Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="using-m2g-on-our-captive-cluster">
-<h2>Using m2g on our captive cluster<a class="headerlink" href="#using-m2g-on-our-captive-cluster" title="Permalink to this headline">¶</a></h2>
-<p>In order to run m2g on the captive cluster we run in house (braincloud1), we expect you to have the following three requirements satisfied.</p>
-<ol class="arabic simple">
-<li>A LONI client installed on your client computer that is the compatible version to our sever (Currently v6.0). Contact LONI and <a class="reference external" href="http://pipeline.loni.usc.edu/learn/contact/">request a copy</a>, as this is not the most recent release and they don&#8217;t publicly share older versions. If you are using a Mac, see this <a class="reference external" href="http://pipeline.loni.usc.edu/get-started/faq/#InstallOSX">faq page</a> for common issues;</li>
-<li>Your data organized in compliance with our <a class="reference external" href="http://m2g.io/tutorials/data.html">input specification</a>;</li>
-<li>An account on our cluster. If you don&#8217;t have an account and would like one, you can email <a class="reference external" href="mailto:support&#37;&#52;&#48;neurodata&#46;io">support<span>&#64;</span>neurodata<span>&#46;</span>io</a> to see if you&#8217;re eligible.</li>
-</ol>
-<p><strong>Moving your data:</strong></p>
-<ul class="simple">
-<li>scp/rsync or equivalently move your data to <code class="docutils literal"><span class="pre">braincloud1:/brainstore/MR/data</span></code>.</li>
-<li>ensure that the data directory is readable and writeable by user pipeline. An example of this is done below.</li>
-</ul>
-<div class="highlight-none"><div class="highlight"><pre>rsync -rv --progress /path/to/m2g_demo ${user}@braincloud1.cs.jhu.edu:/brainstore/MR/m2g_demo
-ssh ${user}@braincloud1.cs.jhu.edu
-cd /brainstore/MR/m2g_demo
-chmod -R 775 ./
-</pre></div>
-</div>
-<p><strong>Processing your data:</strong></p>
-<ul class="simple">
-<li>On your computer, open the LONI client and connect to <code class="docutils literal"><span class="pre">braincloud1.cs.jhu.edu</span></code> using your server login credentials by clicking on the icon in the bottom right of LONI Pipeline.</li>
-<li>Use <code class="docutils literal"><span class="pre">File&gt;Open</span></code> to open the m2g workflow found in your local cloned copy of the m2g repo, located at <code class="docutils literal"><span class="pre">library/workflows/m2g_lists.pipe</span></code>.</li>
-<li>Click the wrench in the top right and select variables dialog.<ul>
-<li>The <code class="docutils literal"><span class="pre">inputDir</span></code> variable should be set to the location of your data.</li>
-<li>The <code class="docutils literal"><span class="pre">outputBaseDir</span></code> should be <code class="docutils literal"><span class="pre">inputDir</span></code>, replacing <code class="docutils literal"><span class="pre">raw</span></code> with <code class="docutils literal"><span class="pre">derivatives-yyyymmdd</span></code>.</li>
-<li>The <code class="docutils literal"><span class="pre">sglabels</span></code> variable points to a file which contains a list of parcelations to process your data with. You can open this file on braincloud to see the atlases chosen, and if you wish to adjust the atlases used you can create a new file in your data directory containing paths to the atlases you wish to use (if they don&#8217;t exist in m2g already, you will need to copy them as well like was done above). If you wish to process in a space other than the MNI152 template, then you will also need to provide new paths for the remaining variables to the atlas space you wish to use.</li>
-</ul>
-</li>
-<li>Press run.</li>
-<li>Find your graphs and other derivatives organized according to our spec in the output base directory you provided.</li>
-<li>If you used the demo data, compare your results to mine (found at <code class="docutils literal"><span class="pre">/brainstore/MR/m2g_demo/myouts/</span></code>) using <a class="reference external" href="http://128.220.176.8/Graph-Explorer/shiny/">graph explorer</a>. For these small graphs, in order (113_1, 113_2, 142_1, 142_2), your edge count should be similar to: 1353508, 1371382, 1068374, and 1115822 weighted edges (i.e. sum of weights for all edges), respectively.</li>
-<li>Enjoy!</li>
-</ul>
-</div>
 <div class="section" id="using-m2g-in-an-ami">
 <h2>Using m2g in an AMI<a class="headerlink" href="#using-m2g-in-an-ami" title="Permalink to this headline">¶</a></h2>
 <p>Before beginning this guide, please ensure that you have the following:</p>
@@ -284,7 +253,42 @@ cd /share0/src/loni/loni_6.0.1
 </li>
 <li>Press run.</li>
 <li>Find your graphs and other derivatives organized according to our spec in the output base directory you provided.</li>
-<li>If you used the demo data, compare your results to mine (found at <code class="docutils literal"><span class="pre">/brainstore/MR/m2g_demo/myouts/</span></code>) using <a class="reference external" href="http://128.220.176.8/Graph-Explorer/shiny/">graph explorer</a>. For these small graphs, in order (113_1, 113_2, 142_1, 142_2), your edge count should be similar to: 1353508, 1371382, 1068374, and 1115822 weighted edges (i.e. sum of weights for all edges), respectively.</li>
+<li>If you used the demo data, compare your results to <a class="reference external" href="http://m2g.io/tutorials/sample_data.html">ours</a>.</li>
+<li>Enjoy!</li>
+</ul>
+</div>
+<div class="section" id="using-m2g-on-our-captive-cluster">
+<h2>Using m2g on our captive cluster<a class="headerlink" href="#using-m2g-on-our-captive-cluster" title="Permalink to this headline">¶</a></h2>
+<p>In order to run m2g on the captive cluster we run in house (braincloud1), we expect you to have the following three requirements satisfied.</p>
+<ol class="arabic simple">
+<li>A LONI client installed on your client computer that is the compatible version to our sever (Currently v6.0). Contact LONI and <a class="reference external" href="http://pipeline.loni.usc.edu/learn/contact/">request a copy</a>, as this is not the most recent release and they don&#8217;t publicly share older versions. If you are using a Mac, see this <a class="reference external" href="http://pipeline.loni.usc.edu/get-started/faq/#InstallOSX">faq page</a> for common issues;</li>
+<li>Your data organized in compliance with our <a class="reference external" href="http://m2g.io/tutorials/data.html">input specification</a>;</li>
+<li>An account on our cluster. If you don&#8217;t have an account and would like one, you can email <a class="reference external" href="mailto:support&#37;&#52;&#48;neurodata&#46;io">support<span>&#64;</span>neurodata<span>&#46;</span>io</a> to see if you&#8217;re eligible.</li>
+</ol>
+<p><strong>Moving your data:</strong></p>
+<ul class="simple">
+<li>scp/rsync or equivalently move your data to <code class="docutils literal"><span class="pre">braincloud1:/brainstore/MR/data</span></code>.</li>
+<li>ensure that the data directory is readable and writeable by user pipeline. An example of this is done below.</li>
+</ul>
+<div class="highlight-none"><div class="highlight"><pre>rsync -rv --progress /path/to/m2g_demo ${user}@braincloud1.cs.jhu.edu:/brainstore/MR/m2g_demo
+ssh ${user}@braincloud1.cs.jhu.edu
+cd /brainstore/MR/m2g_demo
+chmod -R 775 ./
+</pre></div>
+</div>
+<p><strong>Processing your data:</strong></p>
+<ul class="simple">
+<li>On your computer, open the LONI client and connect to <code class="docutils literal"><span class="pre">braincloud1.cs.jhu.edu</span></code> using your server login credentials by clicking on the icon in the bottom right of LONI Pipeline.</li>
+<li>Use <code class="docutils literal"><span class="pre">File&gt;Open</span></code> to open the m2g workflow found in your local cloned copy of the m2g repo, located at <code class="docutils literal"><span class="pre">library/workflows/m2g_lists.pipe</span></code>.</li>
+<li>Click the wrench in the top right and select variables dialog.<ul>
+<li>The <code class="docutils literal"><span class="pre">inputDir</span></code> variable should be set to the location of your data.</li>
+<li>The <code class="docutils literal"><span class="pre">outputBaseDir</span></code> should be <code class="docutils literal"><span class="pre">inputDir</span></code>, replacing <code class="docutils literal"><span class="pre">raw</span></code> with <code class="docutils literal"><span class="pre">derivatives-yyyymmdd</span></code>.</li>
+<li>The <code class="docutils literal"><span class="pre">sglabels</span></code> variable points to a file which contains a list of parcelations to process your data with. You can open this file on braincloud to see the atlases chosen, and if you wish to adjust the atlases used you can create a new file in your data directory containing paths to the atlases you wish to use (if they don&#8217;t exist in m2g already, you will need to copy them as well like was done above). If you wish to process in a space other than the MNI152 template, then you will also need to provide new paths for the remaining variables to the atlas space you wish to use.</li>
+</ul>
+</li>
+<li>Press run.</li>
+<li>Find your graphs and other derivatives organized according to our spec in the output base directory you provided.</li>
+<li>If you used the demo data, compare your results to <a class="reference external" href="http://m2g.io/tutorials/sample_data.html">ours</a>.</li>
 <li>Enjoy!</li>
 </ul>
 </div>
@@ -303,7 +307,7 @@ cd /share0/src/loni/loni_6.0.1
         <a href="ocp.html" class="btn btn-neutral float-right" title="NeuroData" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="local_config.html" class="btn btn-neutral" title="Single Node Configuration" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../tutorials/sample_data.html" class="btn btn-neutral" title="Sample Data" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
